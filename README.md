@@ -1,5 +1,7 @@
 # Molten OS Core
 
+![Molten OS Core banner](molten-os-banner.png)
+
 Molten OS Core is a simple but powerful product development operating system from [switch dimension](https://switchdimension.com). It gives AI coding agents reusable skills for turning an early product idea into clear brand direction, a usable visual system, and a landing page you can test with a real audience.
 
 All skills use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
