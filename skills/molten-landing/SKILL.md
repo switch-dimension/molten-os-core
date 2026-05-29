@@ -1,9 +1,12 @@
 ---
-name: landing
-description: Create or audit high-converting landing pages. Use whenever the user wants to build, design, draft, mock up, or prototype a landing page, marketing page, sales page, signup page, waitlist page, product launch page, or coming-soon page — OR wants to review, audit, check, critique, grade, score, QA, or stress-test an existing landing page. Triggers include "build me a landing page", "design a waitlist page", "review this landing page", "audit my page", "is this landing page good", "what's wrong with my page", "does this convert", "how can I improve this page". Routes to a build workflow or a 22-point audit depending on intent.
+name: molten-landing
+description: Molten OS Core — create or audit high-converting landing pages (build → index.html + styles.css, or 22-point audit). Use for landing page, waitlist, sales page, or conversion review. Reads `brand.md` and `design.md` when present. Routes to build or audit workflow by intent.
 metadata:
   author: switch-dimension
-  version: "1.1.0"
+  version: "1.2.0"
+  molten-suite: molten-os
+  molten-tier: core
+  molten-order: "4"
 ---
 
 # Landing Page

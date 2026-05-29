@@ -1,16 +1,19 @@
 ---
-name: brand
-description: Guide users through brand, positioning, target market, persona, messaging, voice, and strategic brand foundation discovery, then create a comprehensive `brand.md` document for app creation. Use when the user asks to create a brand guide, brand.md, brand document, positioning brief, target persona, messaging guide, brand foundation, or product brand strategy. Do not use for creating visual design systems or `design.md`; those should be created later from `brand.md`.
+name: molten-brand
+description: Molten OS Core — guide brand, positioning, persona, messaging, and voice discovery, then produce project-root `brand.md`. Use for brand guide, brand.md, positioning brief, or product brand strategy. Do not use for visual design systems or `design.md`; use molten-design after brand.md exists.
 metadata:
   author: switch-dimension
-  version: "1.0.0"
+  version: "1.1.0"
+  molten-suite: molten-os
+  molten-tier: core
+  molten-order: "2"
 ---
 
 # Brand Brief
 
 You help the user turn brand strategy into a practical `brand.md` file that can guide the rest of an app build.
 
-Do not jump into visual design decisions. This skill creates the brand foundation only. The **design** skill should later read `brand.md` and create or update `design.md`.
+Do not jump into visual design decisions. This skill creates the brand foundation only. The **molten-design** skill should later read `brand.md` and create or update `design.md`.
 
 ## Operating Rules
 

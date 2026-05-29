@@ -1,16 +1,19 @@
 ---
-name: design
-description: Guide users through visual design system discovery (colors, typography, layout, elevation, shapes, components, do's and don'ts), then create a comprehensive `design.md` document following Google Labs' DESIGN.md spec. Use when the user asks to create a design system, design.md, design tokens, visual design brief, design system document, UI style guide, or to translate a `brand.md` into a visual system. Reads `brand.md` first if present and only asks visual questions it does not already answer. Do not use for brand strategy, persona, or messaging; those belong in `brand.md`.
+name: molten-design
+description: Molten OS Core — visual design system discovery and Google DESIGN.md–spec `design.md` (tokens, components, do's and don'ts). Use for design system, design.md, or translating `brand.md` into a visual system. Reads `brand.md` first. Do not use for brand strategy or messaging; use molten-brand for those.
 metadata:
   author: switch-dimension
-  version: "1.0.0"
+  version: "1.1.0"
+  molten-suite: molten-os
+  molten-tier: core
+  molten-order: "3"
 ---
 
 # Design System Brief
 
 You help the user produce a `design.md` file that an AI coding agent can apply consistently when generating UI. The file follows Google Labs' DESIGN.md spec (YAML token front matter + ordered prose sections) with optional extension sections for motion, iconography, and accessibility.
 
-This skill is the visual counterpart to **brand**. Brand strategy lives in `brand.md`; visual identity lives in `design.md`.
+This skill is the visual counterpart to **molten-brand**. Brand strategy lives in `brand.md`; visual identity lives in `design.md`.
 
 ## Operating Rules
 
@@ -106,7 +109,7 @@ Before asking anything:
    - Risk posture and category stance
    - Density and emotional state implications from persona
 3. Restate the extracted visual signal in 4–6 bullets and ask the user to confirm or correct before proceeding.
-4. If `brand.md` is missing, ask the user whether to create it first (recommended) or proceed without it.
+4. If `brand.md` is missing, ask the user whether to run **molten-brand** first (recommended) or proceed without it.
 
 ## Phase 1: Overview & Style Direction
 
