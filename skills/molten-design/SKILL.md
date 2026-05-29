@@ -1,9 +1,9 @@
 ---
 name: molten-design
-description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Default to a quick, non-designer-friendly flow: read `molten-docs/brand/brand.md`, ask only a few plain-language questions if needed, infer token-level choices, and write the files. Do not use for brand strategy or messaging; use molten-brand for those."
+description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by asking whether the user wants a fast opinionated draft or a more detailed guided pass, unless they already chose an approach. Do not use for brand strategy or messaging; use molten-brand for those."
 metadata:
   author: switch-dimension
-  version: "1.4.0"
+  version: "1.5.0"
   molten-suite: molten-os
   molten-tier: core
   molten-order: "3"
@@ -21,11 +21,18 @@ You help the user produce a design system document that an AI coding agent can a
 
 This skill is the visual counterpart to **molten-brand**. Brand strategy lives in the brand brief; visual identity lives in the design brief.
 
-## Default Behavior: Quick Consultant Mode
+## First Ask: Fast Or Detailed
 
-Most users of this skill are not designers. They should not need to answer questions about token architecture, color theory, type systems, layout grids, elevation, or component anatomy.
+Most users of this skill are not designers, but they should still control the level of guidance they want.
 
-Default to this flow:
+Before creating files, ask which approach they want unless they already said "fast", "quick", "detailed", "guided", or equivalent in their prompt.
+
+Use `AskQuestion` with exactly these two choices:
+
+- **Fast draft:** Read the brand brief, ask at most 3 plain-language questions if needed, infer token-level choices, then create `design.md` and `example.html`.
+- **Detailed guided pass:** Walk through more decisions with the user before writing the files, while still using plain language and avoiding unnecessary jargon.
+
+If the user chooses **Fast draft**, use this flow:
 
 1. Read the brand brief and any existing UI styles.
 2. Ask at most **3 plain-language questions** only if the answer cannot be inferred.
@@ -34,7 +41,7 @@ Default to this flow:
 5. Write `molten-docs/design/example.html`.
 6. List assumptions so the user can react to a concrete draft.
 
-In Quick Consultant Mode, do **not** ask questions like:
+In Fast draft mode, do **not** ask questions like:
 
 - "What accent strategy should the system use?"
 - "What neutral temperature should the interface use?"
@@ -55,23 +62,24 @@ Only ask the user about plain-language inputs:
 - Optional reference websites/apps that feel close to the brand
 - Visual things to avoid
 
-If the user says "choose for me", "use best practices", "you decide", or gives no preference, decide and continue.
+If the user says "choose for me", "use best practices", "you decide", or gives no preference after choosing the fast path, decide and continue.
 
-## Deep Designer Mode Is Opt-In
+## Detailed Guided Pass
 
-The detailed phase guidance below is for Deep Designer Mode only. Use it only when the user explicitly asks for granular design control, token tuning, a designer-level workshop, or a deeper second pass after seeing the first draft.
+Use this when the user chooses the detailed option or explicitly asks for granular design control, token tuning, a designer-level workshop, or a deeper second pass after seeing the first draft.
 
-Do not enter Deep Designer Mode just because the phase guidance contains possible questions.
+Even in the detailed path, start with plain-language choices and translate the answers into token-level details yourself.
 
 ## Operating Rules
 
 - **Always read the brand brief first:** `molten-docs/brand/brand.md`, then legacy `brand.md` at the project root or `/docs/brand.md`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance).
-- Ask concise questions in small batches, within the Quick Consultant Mode question budget unless the user opts into Deep Designer Mode.
+- Ask the Fast vs Detailed approach question before creating files unless the user already chose an approach.
+- Ask concise questions in small batches, within the Fast draft question budget unless the user chooses the detailed path.
 - Prefer inference over questions. Use `AskQuestion` only when choices are plain-language and genuinely reduce user effort.
 - Ask open-ended questions conversationally when the answer is free text, such as reference websites, existing assets, visual dislikes, or product context.
 - Never list multiple-choice options as letters or bullets in chat text. Multiple choice → `AskQuestion`. Open-ended → plain prose.
 - Batch related `AskQuestion` items into a single tool call when they belong to the same phase.
-- **Act as a consultant, not a survey form.** Every `AskQuestion` must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
+- **Act as a consultant, not a survey form.** Every `AskQuestion` after the initial Fast vs Detailed choice must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
 - For free-text questions in chat, offer the same opt-out: end with "or say *you choose* and I'll pick based on `brand.md`." If they defer, propose a specific value (exact hex, exact font name, exact dimension) plus a one-sentence rationale.
 - If `brand.md` already answers a question, do not ask it again. Cite the value back to the user for confirmation only when ambiguous.
 - Push back on vague taste words ("modern", "clean", "premium", "minimal"). Replace them with concrete tradeoffs.
@@ -84,7 +92,7 @@ Do not enter Deep Designer Mode just because the phase guidance contains possibl
 
 ## When To Use `AskQuestion` vs Chat
 
-In Quick Consultant Mode, use `AskQuestion` only when:
+In Fast draft mode, use `AskQuestion` only when:
 
 - The answer is one or a few choices from a finite set.
 - The user benefits from seeing tradeoffs side-by-side.
@@ -156,13 +164,13 @@ Before asking anything:
 3. Use the extracted visual signal directly. Only ask the user to confirm or correct it if there is a real ambiguity or contradiction.
 4. If `brand.md` is missing, ask the user whether to run **molten-brand** first (recommended) or proceed without it.
 
-## Deep Designer Second Pass
+## Detailed Second Pass
 
 Only run this after the first `design.md` and `example.html` draft if the user explicitly asks for deeper control.
 
 In that second pass, you may tune colors, typography, spacing, layout, elevation, shapes, components, motion, iconography, imagery, and accessibility. Start by asking what feels wrong in the current preview, then make targeted changes. Avoid restarting the whole interview.
 
-Even in Deep Designer Mode, prefer plain-language questions first. Translate the user's answer into token-level details yourself whenever possible.
+Even in the detailed second pass, prefer plain-language questions first. Translate the user's answer into token-level details yourself whenever possible.
 
 ## Generate `molten-docs/design/design.md`
 
