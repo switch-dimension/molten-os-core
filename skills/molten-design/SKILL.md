@@ -1,9 +1,9 @@
 ---
 name: molten-design
-description: Molten OS Core — visual design system discovery and Google DESIGN.md–spec `molten-docs/design/design.md` (tokens, components, do's and don'ts). Use for design system, design.md, or translating the brand brief into a visual system. Reads `molten-docs/brand/brand.md` first. Do not use for brand strategy or messaging; use molten-brand for those.
+description: Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Default to a quick, non-designer-friendly flow: read `molten-docs/brand/brand.md`, ask only a few plain-language questions if needed, infer token-level choices, and write the files. Do not use for brand strategy or messaging; use molten-brand for those.
 metadata:
   author: switch-dimension
-  version: "1.3.0"
+  version: "1.4.0"
   molten-suite: molten-os
   molten-tier: core
   molten-order: "3"
@@ -21,19 +21,61 @@ You help the user produce a design system document that an AI coding agent can a
 
 This skill is the visual counterpart to **molten-brand**. Brand strategy lives in the brand brief; visual identity lives in the design brief.
 
+## Default Behavior: Quick Consultant Mode
+
+Most users of this skill are not designers. They should not need to answer questions about token architecture, color theory, type systems, layout grids, elevation, or component anatomy.
+
+Default to this flow:
+
+1. Read the brand brief and any existing UI styles.
+2. Ask at most **3 plain-language questions** only if the answer cannot be inferred.
+3. Make the design decisions yourself.
+4. Write `molten-docs/design/design.md`.
+5. Write `molten-docs/design/example.html`.
+6. List assumptions so the user can react to a concrete draft.
+
+In Quick Consultant Mode, do **not** ask questions like:
+
+- "What accent strategy should the system use?"
+- "What neutral temperature should the interface use?"
+- "What background strategy should the design brief specify?"
+- "How should semantic colors be handled?"
+- "What type pairing should the system use?"
+- "What spacing base should the system use?"
+- "What elevation strategy should the system use?"
+- "What corner radius philosophy should the system use?"
+
+Infer those details from `molten-docs/brand/brand.md`, existing project styles, and conservative defaults.
+
+Only ask the user about plain-language inputs:
+
+- Existing logo, website, or brand colors to respect
+- Desired feel, such as serious, friendly, premium, energetic, calm, or utilitarian
+- Product type, such as SaaS app, marketing site, developer tool, consumer app, or internal tool
+- Optional reference websites/apps that feel close to the brand
+- Visual things to avoid
+
+If the user says "choose for me", "use best practices", "you decide", or gives no preference, decide and continue.
+
+## Deep Designer Mode Is Opt-In
+
+The detailed phase guidance below is for Deep Designer Mode only. Use it only when the user explicitly asks for granular design control, token tuning, a designer-level workshop, or a deeper second pass after seeing the first draft.
+
+Do not enter Deep Designer Mode just because the phase guidance contains possible questions.
+
 ## Operating Rules
 
 - **Always read the brand brief first:** `molten-docs/brand/brand.md`, then legacy `brand.md` at the project root or `/docs/brand.md`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance).
-- Ask concise questions in small batches.
-- Prefer the `AskQuestion` tool for any question with a finite set of meaningful options (palette mood, type system, spacing rhythm, corner-radius philosophy, elevation strategy).
-- Ask open-ended questions conversationally when the answer is free text (exact hex codes, font names, brand references, component anatomy notes).
+- Ask concise questions in small batches, within the Quick Consultant Mode question budget unless the user opts into Deep Designer Mode.
+- Prefer inference over questions. Use `AskQuestion` only when choices are plain-language and genuinely reduce user effort.
+- Ask open-ended questions conversationally when the answer is free text, such as reference websites, existing assets, visual dislikes, or product context.
 - Never list multiple-choice options as letters or bullets in chat text. Multiple choice → `AskQuestion`. Open-ended → plain prose.
 - Batch related `AskQuestion` items into a single tool call when they belong to the same phase.
 - **Act as a consultant, not a survey form.** Every `AskQuestion` must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
 - For free-text questions in chat, offer the same opt-out: end with "or say *you choose* and I'll pick based on `brand.md`." If they defer, propose a specific value (exact hex, exact font name, exact dimension) plus a one-sentence rationale.
 - If `brand.md` already answers a question, do not ask it again. Cite the value back to the user for confirmation only when ambiguous.
 - Push back on vague taste words ("modern", "clean", "premium", "minimal"). Replace them with concrete tradeoffs.
-- Limit choices: max two font families, 9–15 typography levels, 4–6 named color palettes (extended swatches allowed in tokens), one consistent spacing base (typically 4px or 8px).
+- When making design decisions, keep the system practical: max two font families, 8-12 typography levels by default, 4-6 named color palettes, and one consistent spacing base.
 - Separate facts, assumptions, and open questions.
 - Do not generate app code while this skill is active.
 - Do not define brand persona, voice, or messaging. Defer to the brand brief.
@@ -42,25 +84,22 @@ This skill is the visual counterpart to **molten-brand**. Brand strategy lives i
 
 ## When To Use `AskQuestion` vs Chat
 
-Use `AskQuestion` when:
+In Quick Consultant Mode, use `AskQuestion` only when:
 
 - The answer is one or a few choices from a finite set.
 - The user benefits from seeing tradeoffs side-by-side.
-- You're forcing a decision between competing visual directions.
+- The choices are plain-language outcomes, not design-system internals.
 
 Examples of good `AskQuestion` prompts in this skill:
 
-- Palette mood, contrast posture, accent strategy
-- Type pairing strategy (one family / two families / display + text split)
-- Spacing base (4px / 8px / 4px with 2px half-step)
-- Corner radius philosophy (sharp / minimal / soft / pill)
-- Elevation strategy (shadows / borders / tonal layers / flat)
-- Density (compact / balanced / spacious)
-- Component shape direction (architectural / friendly / editorial)
+- Overall feel in plain language, such as serious / friendly / premium / energetic / calm / utilitarian
+- Product type, such as SaaS app / marketing site / developer tool / consumer app / internal tool
+- Visual archetype, such as Calm SaaS / Premium Editorial / Developer Tool / Friendly Consumer / Bold Launch Page
+- Whether to proceed from the brand brief alone or include optional reference websites
 
 Ask conversationally in chat (no `AskQuestion`) when:
 
-- The answer is free text: exact hex codes, font names, custom token names, anatomy notes, brand references.
+- The answer is free text: reference websites, existing brand colors, things to avoid, or context about the product.
 - You're pushing back on a vague answer.
 - You're confirming or summarizing before moving phases.
 
@@ -92,18 +131,18 @@ When the user opts out, propose a specific concrete value plus a one-sentence ra
 
 ### Example flow
 
-> **Question (AskQuestion):** "Accent strategy?"
-> Options: single hero accent / dual accent / brand color + functional accent / **Choose for me — recommend based on brand.md**
+> **Question (AskQuestion):** "What should the product feel like?"
+> Options: serious / friendly / premium / energetic / calm / utilitarian / **Choose for me — recommend based on brand.md**
 >
 > **User picks Choose for me.**
 >
-> **Agent reply:** "Picking **single hero accent** because `brand.md` calls for 'quiet confidence' and a single accent reinforces hierarchy without competing voices. Moving on to neutrals."
+> **Agent reply:** "Picking **calm SaaS** because `brand.md` calls for quiet confidence and a clear, trustworthy interface. I'll infer the detailed tokens from that direction."
 
 ### When *not* to defer
 
 If the user has already given an explicit constraint in `brand.md` or earlier in the conversation, do not re-ask. Apply the constraint directly and tell the user you applied it.
 
-## Phase 0: Ingest brand.md
+## Ingest The Brand Brief
 
 Before asking anything:
 
@@ -114,146 +153,18 @@ Before asking anything:
    - Visual references and anti-references
    - Risk posture and category stance
    - Density and emotional state implications from persona
-3. Restate the extracted visual signal in 4–6 bullets and ask the user to confirm or correct before proceeding.
+3. Use the extracted visual signal directly. Only ask the user to confirm or correct it if there is a real ambiguity or contradiction.
 4. If `brand.md` is missing, ask the user whether to run **molten-brand** first (recommended) or proceed without it.
 
-## Phase 1: Overview & Style Direction
+## Deep Designer Second Pass
 
-Translate brand signal into visual direction. Use `AskQuestion` for:
+Only run this after the first `design.md` and `example.html` draft if the user explicitly asks for deeper control.
 
-- Visual maturity (playful / polished / editorial / technical / utilitarian / luxury / expressive / calm) — pre-fill from `brand.md` if defined
-- Density (compact / balanced / spacious)
-- Contrast posture (high contrast / balanced / soft / muted)
-- Risk posture (safe and conventional / confident / contrarian / disruptive)
+In that second pass, you may tune colors, typography, spacing, layout, elevation, shapes, components, motion, iconography, imagery, and accessibility. Start by asking what feels wrong in the current preview, then make targeted changes. Avoid restarting the whole interview.
 
-Ask in chat:
+Even in Deep Designer Mode, prefer plain-language questions first. Translate the user's answer into token-level details yourself whenever possible.
 
-- Three concrete reference products whose visual feel the brand should evoke, with the specific quality each contributes (e.g. "Linear: keyboard density", "Stripe: information hierarchy")
-- Three anti-references and why they're wrong for this brand
-- The one-sentence visual thesis ("X is the visual identity of a brand that…")
-
-## Phase 2: Colors
-
-Build the palette from accent → neutrals → semantics. Use `AskQuestion` for:
-
-- Accent strategy (single hero accent / dual accent / brand color + functional accent)
-- Neutral temperature (cool grey / warm grey / true neutral / tinted with primary)
-- Background strategy (pure white / off-white / dark mode first / light + dark parity)
-- Semantic color approach (standard success/warning/error / custom semantic names / no semantics, use accents)
-
-Ask in chat:
-
-- Exact hex for primary, or describe in words and propose three options
-- Whether existing brand colors must be respected (logo, marketing)
-- Whether the system needs dark mode now, later, or never
-- Any colors that must be excluded (competitor associations, accessibility failures)
-
-Then produce the full palette:
-
-- Primary, secondary, tertiary (if needed), neutral, surface, on-surface, error
-- Tonal ramps if the system needs them (e.g. `primary-10` … `primary-90`)
-
-Validate WCAG AA contrast for any text-on-background pairing before locking values. Flag failures and propose adjustments.
-
-## Phase 3: Typography
-
-Use `AskQuestion` for:
-
-- Type pairing (single family across the system / display + text / serif + sans split / mono for data)
-- Headline weight strategy (semi-bold / bold / extra-bold / variable)
-- Letter-spacing posture (tight headlines / neutral / spacious labels)
-- Number of type levels (minimal: 6–8 / standard: 9–12 / extended: 13–15)
-
-Ask in chat:
-
-- Exact font families (with fallback stacks) or describe and propose three options
-- Whether labels/data use a different family (geometric sans, mono)
-- Any weights that are off-limits (the brand reaches for one specific cut)
-- Whether uppercase is allowed and where
-
-Define the type scale with explicit token names following the spec's recommendations (`headline-display`, `headline-lg`, `body-md`, `label-sm`, etc.) and assign a role per level.
-
-## Phase 4: Layout & Spacing
-
-Use `AskQuestion` for:
-
-- Spacing base (4px / 8px / 4px with 2px half-step / 8px with 4px half-step)
-- Grid strategy (fluid / fixed-max-width / 12-column / 8-column / asymmetric)
-- Maximum content width (narrow ~720px / standard ~1200px / wide ~1440px / no max)
-- Internal padding rhythm (tight / standard / generous)
-
-Ask in chat:
-
-- Specific gutter and margin values, or accept defaults from base unit
-- Mobile breakpoint values if the project has constraints
-- Whether containment (cards, sections) is heavy, light, or absent
-
-## Phase 5: Elevation & Depth
-
-Use `AskQuestion` for:
-
-- Elevation strategy (shadows / borders / tonal layers / flat with color contrast / mixed)
-- Shadow intensity (none / subtle / standard / dramatic) — only if shadows are chosen
-- Layer count (2 levels / 3 levels / 4+ levels)
-
-Ask in chat:
-
-- Specific elevation values (shadow specs, border colors, tonal shifts)
-- Where each elevation level applies (cards, modals, popovers, sticky bars)
-
-## Phase 6: Shapes
-
-Use `AskQuestion` for:
-
-- Corner radius philosophy (sharp 0px / architectural 2–4px / soft 8–12px / pill 9999px / mixed by component)
-- Radius consistency (single radius everywhere / scaled tokens by size / per-component)
-
-Ask in chat:
-
-- Exact radius values for the chosen scale tokens
-- Components that intentionally deviate (e.g. pill buttons, sharp inputs)
-
-## Phase 7: Components
-
-Cover at minimum: buttons, input fields, cards. Add chips, lists, tooltips, checkboxes, radios when the product needs them.
-
-For each component use `AskQuestion` for shape-level decisions (size scale, default state shape, hover treatment) and ask in chat for:
-
-- Anatomy (named parts)
-- Variants (primary, secondary, tertiary, destructive)
-- States (default, hover, focus, active, disabled, loading, error)
-- Accessibility notes (target size, focus ring, ARIA expectations)
-
-Encode every component in YAML tokens with state variants as sibling keys (`button-primary`, `button-primary-hover`, `button-primary-active`).
-
-## Phase 8: Do's and Don'ts
-
-Five rules, no more. The single highest-leverage section.
-
-Ask in chat:
-
-- Three things the agent must never do (specific, not vague)
-- Two things the agent must always do
-- Any plausible default that violates the brand identity
-
-Examples of strong rules:
-
-- "Never use border-radius above 8px."
-- "Never use pill-shaped buttons."
-- "Don't use the tertiary accent more than once per viewport section."
-- "Do maintain WCAG AA contrast (4.5:1 normal text)."
-- "Don't mix Space Grotesk into body text. It's for labels and interactive elements only."
-
-## Phase 9 (optional extensions): Motion, Iconography, Accessibility
-
-Add only if the user explicitly needs them. These are extension sections outside the core spec and the linter tolerates them.
-
-- **Motion & Animation**: durations, easings, when motion is used, reduced-motion behavior.
-- **Iconography**: icon set, size scale, stroke weight, color treatment.
-- **Imagery & Illustration**: photo style, illustration treatment, anti-references.
-- **Accessibility**: minimum contrast, focus rings, target sizes, reduced-motion, prefers-color-scheme behavior.
-
-## Phase 10: Generate `molten-docs/design/design.md`
+## Generate `molten-docs/design/design.md`
 
 When enough information is gathered, write the file at **`molten-docs/design/design.md`** with this structure. The YAML front matter is normative; the prose is rationale.
 
@@ -413,7 +324,7 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 Reference `molten-docs/design/design.md` from your agent config (CLAUDE.md, AGENTS.md, `.cursor/rules/`) so it loads every session. Validate with `npx @google/design.md lint molten-docs/design/design.md`.
 ````
 
-## Phase 11: Generate `molten-docs/design/example.html`
+## Generate `molten-docs/design/example.html`
 
 After writing `molten-docs/design/design.md`, create **`molten-docs/design/example.html`** as a human-readable preview of the design system.
 
@@ -486,7 +397,7 @@ Before finalizing `molten-docs/design/design.md`, verify:
 - All `{token.path}` references resolve to a defined token.
 - WCAG AA contrast holds for every text/background pair used by components.
 - No more than two font families.
-- 9–15 typography levels, each with a clear role.
+- 8-12 typography levels by default, each with a clear role.
 - Component variants use sibling keys (`button-primary-hover`), not nesting.
 - Do's and Don'ts is five rules and each is specific (no vague taste words).
 - Brand strategy, persona, and voice are *not* defined here; they live in `molten-docs/brand/brand.md`.
