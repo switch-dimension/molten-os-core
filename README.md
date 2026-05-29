@@ -22,8 +22,8 @@ npx skills add switch-dimension/molten-os-core --skill molten-design
 
 | Skill | Description |
 |-------|-------------|
-| **molten-brand** | Guide brand, positioning, persona, messaging, and voice discovery, then produce a project-root `brand.md` for downstream app and design work. |
-| **molten-design** | Translate `brand.md` into a Google DESIGN.md–spec `design.md` (tokens, components, do's and don'ts). Reads brand first; defers strategy to `brand.md`. |
+| **molten-brand** | Guide brand, positioning, persona, messaging, and voice discovery, then write `molten-docs/brand/brand.md` for downstream app and design work. |
+| **molten-design** | Translate `molten-docs/brand/brand.md` into a Google DESIGN.md–spec `design.md` (tokens, components, do's and don'ts). Reads brand first; defers strategy to the brand brief. |
 | **molten-landing** | Create or audit high-converting landing pages. Routes to a build workflow (outputs `index.html` + `styles.css`) or a 22-point conversion audit, both graded against a shared set of conversion principles. |
 
 ## Lifecycle order
@@ -39,9 +39,9 @@ Install [molten-os-pro](https://github.com/switch-dimension/molten-os-pro) for *
 ```
 skills/
 ├── molten-brand/
-│   └── SKILL.md              # Phased discovery → brand.md
+│   └── SKILL.md              # Phased discovery → molten-docs/brand/brand.md
 ├── molten-design/
-│   └── SKILL.md              # Visual system → design.md (reads brand.md)
+│   └── SKILL.md              # Visual system → design.md (reads molten-docs/brand/brand.md)
 └── molten-landing/
     ├── SKILL.md              # Router: build vs audit + principles summary
     └── references/

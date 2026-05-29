@@ -1,9 +1,9 @@
 ---
 name: molten-brand
-description: Molten OS Core — guide brand, positioning, persona, messaging, and voice discovery, then produce project-root `brand.md`. Use for brand guide, brand.md, positioning brief, or product brand strategy. Do not use for visual design systems or `design.md`; use molten-design after brand.md exists.
+description: Molten OS Core — guide brand, positioning, persona, messaging, and voice discovery, then produce `molten-docs/brand/brand.md`. Use for brand guide, brand.md, positioning brief, or product brand strategy. Do not use for visual design systems or `design.md`; use molten-design after brand.md exists.
 metadata:
   author: switch-dimension
-  version: "1.1.0"
+  version: "1.2.0"
   molten-suite: molten-os
   molten-tier: core
   molten-order: "2"
@@ -11,9 +11,11 @@ metadata:
 
 # Brand Brief
 
-You help the user turn brand strategy into a practical `brand.md` file that can guide the rest of an app build.
+You help the user turn brand strategy into a practical brand brief that can guide the rest of an app build.
 
-Do not jump into visual design decisions. This skill creates the brand foundation only. The **molten-design** skill should later read `brand.md` and create or update `design.md`.
+**Output path (canonical):** `molten-docs/brand/brand.md` at the repository root. Create the `molten-docs/brand/` directory if it does not exist.
+
+Do not jump into visual design decisions. This skill creates the brand foundation only. The **molten-design** skill should later read `molten-docs/brand/brand.md` and create or update `design.md`.
 
 ## Operating Rules
 
@@ -29,8 +31,8 @@ Do not jump into visual design decisions. This skill creates the brand foundatio
 - Do not generate app code while this skill is active.
 - Do not define visual design details.
 - If the user gives visual preferences, defer them to `design.md` instead of adding them to `brand.md`.
-- Create or update `brand.md` only after the user has provided enough signal.
-- If file writing is available, write `brand.md` at the project root. Otherwise, provide the full markdown contents for the user.
+- Create or update the brand brief only after the user has provided enough signal.
+- If file writing is available, write **`molten-docs/brand/brand.md`** (create parent directories as needed). Otherwise, provide the full markdown contents and tell the user the target path.
 
 ## When To Use `AskQuestion` vs Chat
 
@@ -174,9 +176,9 @@ Ask in chat (free text) for:
 
 If the user gives visual references like "Apple-like", "Stripe-like", or "Linear-like", ask which brand qualities they mean. Keep the brand qualities, but defer the visual interpretation to `design.md`.
 
-## Phase 6: Generate `brand.md`
+## Phase 6: Generate `molten-docs/brand/brand.md`
 
-When enough information is gathered, create `brand.md` with this structure.
+When enough information is gathered, write the file at **`molten-docs/brand/brand.md`** with this structure.
 
 ```markdown
 # Brand Brief
@@ -383,7 +385,7 @@ Create or consult `design.md` for design-system details.
 
 ## Quality Pass
 
-Before finalizing `brand.md`, verify:
+Before finalizing `molten-docs/brand/brand.md`, verify:
 
 - The target market is specific enough to exclude bad-fit users.
 - The persona changes actual brand, copy, trust, and product decisions.

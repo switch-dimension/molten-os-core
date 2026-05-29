@@ -101,7 +101,7 @@ If the user has already given an explicit constraint in `brand.md` or earlier in
 
 Before asking anything:
 
-1. Check for `brand.md` at the project root, then `/docs/brand.md`.
+1. Check for **`molten-docs/brand/brand.md`** (canonical). If missing, fall back to `brand.md` at the project root or `/docs/brand.md` for older projects.
 2. If present, read it and extract:
    - Brand maturity, personality traits, paired tone descriptors
    - First-impression words
