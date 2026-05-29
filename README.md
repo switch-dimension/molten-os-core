@@ -6,7 +6,7 @@ Molten OS Core is a simple but powerful product development operating system fro
 
 ## Installation
 
-Copy the link to [this repo](https://github.com/switch-dimension/molten-os-core), paste it into your agent, and ask it to install all skills to your **project** (this repo only) or to your **user** profile (for use across all projects).
+Copy the link to [this repo](https://github.com/switch-dimension/molten-os-core), paste it into your agent, and ask it to install all skills to your **project** or to your **user** profile (for use across all projects). Or manually install with the commands below using the [skills.sh](https://github.com/vercel-labs/skills) CLI.
 
 ```bash
 npx skills add switch-dimension/molten-os-core
