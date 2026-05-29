@@ -2,9 +2,7 @@
 
 ![Molten OS Core banner](molten-os-banner.png)
 
-Molten OS Core is a simple but powerful product development operating system from [switch dimension](https://switchdimension.com). It gives AI coding agents reusable skills for turning an early product idea into clear brand direction, a usable visual system, and a landing page you can test with a real audience.
-
-All skills use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
+Molten OS Core is a simple but powerful product development operating system from [Switch Dimension](https://switchdimension.com) and YouTuber [Rob Shocks](https://youtube.com/robshocks). In Phase 1, the system's goal is to give AI coding agents reusable skills for turning an early product idea into clear brand direction, a usable visual system, and a landing page you can test with a real audience.
 
 ## Installation
 
@@ -20,6 +18,8 @@ npx skills add switch-dimension/molten-os-core --skill molten-brand
 npx skills add switch-dimension/molten-os-core --skill molten-design
 npx skills add switch-dimension/molten-os-core --skill molten-skill-manage
 ```
+
+All skills use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
 
 ## Available Skills
 
@@ -46,4 +46,4 @@ Together, these core skills help you bring a product idea to market quickly, wit
 
 ## License
 
-Released under the [Unlicense](LICENSE), so anyone can use, copy, modify, publish, distribute, or sell it for any purpose.
+Released under the [MIT License](LICENSE). You may use, copy, modify, merge, publish, distribute, sublicense, and sell copies, provided the license and copyright notice are included in redistributions.
