@@ -16,6 +16,7 @@ Install a single skill:
 npx skills add switch-dimension/molten-os-core --skill molten-landing
 npx skills add switch-dimension/molten-os-core --skill molten-brand
 npx skills add switch-dimension/molten-os-core --skill molten-design
+npx skills add switch-dimension/molten-os-core --skill molten-skill-manage
 ```
 
 ## Available Skills
@@ -26,6 +27,7 @@ npx skills add switch-dimension/molten-os-core --skill molten-design
 | **molten-brand**   | Helps define the brand, positioning, audience, messaging, and voice, then writes `molten-docs/brand/brand.md`.                                    |
 | **molten-design**  | Turns the brand document into a practical design system in `molten-docs/design/design.md`, plus a visual preview in `molten-docs/design/example.html`. |
 | **molten-landing** | Creates or audits high-converting landing pages, using the brand and design system to help you test your product idea quickly with an audience.   |
+| **molten-skill-manage** | Manages agent skills with the skills.sh CLI (`npx skills`) — install, update, remove, list, and find skills.                                       |
 
 
 ## How To Use The Full Workflow
