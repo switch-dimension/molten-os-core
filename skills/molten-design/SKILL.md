@@ -1,6 +1,6 @@
 ---
 name: molten-design
-description: Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Default to a quick, non-designer-friendly flow: read `molten-docs/brand/brand.md`, ask only a few plain-language questions if needed, infer token-level choices, and write the files. Do not use for brand strategy or messaging; use molten-brand for those.
+description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Default to a quick, non-designer-friendly flow: read `molten-docs/brand/brand.md`, ask only a few plain-language questions if needed, infer token-level choices, and write the files. Do not use for brand strategy or messaging; use molten-brand for those."
 metadata:
   author: switch-dimension
   version: "1.4.0"
