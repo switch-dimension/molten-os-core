@@ -3,7 +3,7 @@ name: molten-design
 description: Molten OS Core — visual design system discovery and Google DESIGN.md–spec `molten-docs/design/design.md` (tokens, components, do's and don'ts). Use for design system, design.md, or translating the brand brief into a visual system. Reads `molten-docs/brand/brand.md` first. Do not use for brand strategy or messaging; use molten-brand for those.
 metadata:
   author: switch-dimension
-  version: "1.2.0"
+  version: "1.3.0"
   molten-suite: molten-os
   molten-tier: core
   molten-order: "3"
@@ -16,6 +16,8 @@ You help the user produce a design system document that an AI coding agent can a
 **Input path (canonical):** `molten-docs/brand/brand.md` from **molten-brand**. Fall back to `brand.md` at the project root or `/docs/brand.md` on older projects.
 
 **Output path (canonical):** `molten-docs/design/design.md` at the repository root. Create the `molten-docs/design/` directory if it does not exist.
+
+**Preview path (canonical):** `molten-docs/design/example.html`. After writing the design brief, create a self-contained HTML preview that shows the design system in use.
 
 This skill is the visual counterpart to **molten-brand**. Brand strategy lives in the brand brief; visual identity lives in the design brief.
 
@@ -36,7 +38,7 @@ This skill is the visual counterpart to **molten-brand**. Brand strategy lives i
 - Do not generate app code while this skill is active.
 - Do not define brand persona, voice, or messaging. Defer to the brand brief.
 - Create or update the design brief only after the user has provided enough signal.
-- If file writing is available, write **`molten-docs/design/design.md`** (create parent directories as needed). Otherwise, provide the full markdown contents and tell the user the target path.
+- If file writing is available, write **`molten-docs/design/design.md`** and **`molten-docs/design/example.html`** (create parent directories as needed). Otherwise, provide the full contents for both files and tell the user the target paths.
 
 ## When To Use `AskQuestion` vs Chat
 
@@ -285,6 +287,12 @@ typography:
     fontSize: 16px
     fontWeight: 400
     lineHeight: 1.6
+  label-md:
+    fontFamily: [Family]
+    fontSize: 14px
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: 0.02em
   label-sm:
     fontFamily: [Family]
     fontSize: 12px
@@ -405,6 +413,69 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 Reference `molten-docs/design/design.md` from your agent config (CLAUDE.md, AGENTS.md, `.cursor/rules/`) so it loads every session. Validate with `npx @google/design.md lint molten-docs/design/design.md`.
 ````
 
+## Phase 11: Generate `molten-docs/design/example.html`
+
+After writing `molten-docs/design/design.md`, create **`molten-docs/design/example.html`** as a human-readable preview of the design system.
+
+Purpose:
+
+- Make the abstract design tokens tangible for non-designers.
+- Give the user something they can open immediately in a browser.
+- Help future agents understand the intended look and feel from a visual specimen.
+
+Rules:
+
+- Keep it self-contained: one HTML file with inline CSS. Do not require a framework, build step, package install, CDN, or external assets.
+- Use CSS custom properties derived from the finalized tokens in `design.md`.
+- Do not create production app code. This is documentation and a preview only.
+- Keep the example polished but small enough to scan quickly.
+- If a token is missing or ambiguous, use the assumption already recorded in `design.md`; do not ask another question just for the preview.
+
+The preview should include:
+
+- A short title and one-sentence design thesis.
+- Color swatches with token names and hex values.
+- Typography samples for display/headline, body, label, and caption styles.
+- Button examples: primary, secondary, destructive, disabled, and focus-visible.
+- Input examples: default, focused, error, and disabled.
+- Card examples showing spacing, radius, borders, shadows, and content hierarchy.
+- A small realistic UI section that combines the system into one product-like slice.
+
+Use this structure:
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>[Design System Name] Preview</title>
+    <style>
+      :root {
+        --color-primary: [value from design.md];
+        --color-secondary: [value from design.md];
+        --color-tertiary: [value from design.md];
+        --color-neutral: [value from design.md];
+        --color-surface: [value from design.md];
+        --color-on-surface: [value from design.md];
+        --color-error: [value from design.md];
+        --font-body: [font stack from design.md];
+        --radius-sm: [value from design.md];
+        --radius-md: [value from design.md];
+        --space-sm: [value from design.md];
+        --space-md: [value from design.md];
+        --space-lg: [value from design.md];
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preview content goes here. -->
+  </body>
+</html>
+```
+
+Prefer real-looking labels over placeholders. For example, "Start project", "Book a demo", "Email address", and "Launch readiness" are better than "Button" or "Card title".
+
 ## Quality Pass
 
 Before finalizing `molten-docs/design/design.md`, verify:
@@ -421,6 +492,10 @@ Before finalizing `molten-docs/design/design.md`, verify:
 - Brand strategy, persona, and voice are *not* defined here; they live in `molten-docs/brand/brand.md`.
 - Every decision the user delegated via "Choose for me" appears in the *Assumptions* section with the one-sentence rationale that was given at the time.
 - Remaining assumptions are explicitly listed.
+- `molten-docs/design/example.html` exists and is self-contained.
+- The preview uses CSS variables that match the finalized `design.md` tokens.
+- The preview includes swatches, type samples, buttons, inputs, cards, and one realistic combined UI section.
+- The preview is clearly documentation, not production app code.
 
 If `npx @google/design.md` is available, suggest the user run:
 

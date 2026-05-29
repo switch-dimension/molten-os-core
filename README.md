@@ -1,6 +1,6 @@
 # Molten OS Core
 
-An agentic product lifecycle skill pack for [skills.sh](https://skills.sh)—reusable capabilities for AI coding agents (Cursor, Claude Code, Windsurf, and more).
+Molten OS Core is a simple but powerful product development operating system from [switch dimension](https://switchdimension.com). It gives AI coding agents reusable skills for turning an early product idea into clear brand direction, a usable visual system, and a landing page you can test with a real audience.
 
 All skills use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
 
@@ -20,42 +20,26 @@ npx skills add switch-dimension/molten-os-core --skill molten-design
 
 ## Available Skills
 
-| Skill | Description |
-|-------|-------------|
-| **molten-brand** | Guide brand, positioning, persona, messaging, and voice discovery, then write `molten-docs/brand/brand.md` for downstream app and design work. |
-| **molten-design** | Translate `molten-docs/brand/brand.md` into a Google DESIGN.md–spec `molten-docs/design/design.md` (tokens, components, do's and don'ts). Reads brand first; defers strategy to the brand brief. |
-| **molten-landing** | Create or audit high-converting landing pages. Routes to a build workflow (outputs `index.html` + `styles.css`) or a 22-point conversion audit, both graded against a shared set of conversion principles. |
 
-## Lifecycle order
+| Skill              | Description                                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **molten-brand**   | Helps define the brand, positioning, audience, messaging, and voice, then writes `molten-docs/brand/brand.md`.                                    |
+| **molten-design**  | Turns the brand document into a practical design system in `molten-docs/design/design.md`, plus a visual preview in `molten-docs/design/example.html`. |
+| **molten-landing** | Creates or audits high-converting landing pages, using the brand and design system to help you test your product idea quickly with an audience.   |
 
-```
-molten-validate (pro) → molten-brand → molten-design → molten-landing
-```
 
-Install [molten-os-pro](https://github.com/switch-dimension/molten-os-pro) for **molten-validate** and other pro skills.
+## How To Use The Full Workflow
 
-## Repository layout
+Molten works best as a simple sequence:
 
-```
-skills/
-├── molten-brand/
-│   └── SKILL.md              # Phased discovery → molten-docs/brand/brand.md
-├── molten-design/
-│   └── SKILL.md              # Visual system → molten-docs/design/design.md
-└── molten-landing/
-    ├── SKILL.md              # Router: build vs audit + principles summary
-    └── references/
-        ├── principles.md     # Shared 7 conversion principles
-        ├── creating.md       # Build workflow
-        └── auditing.md       # 22-point audit checklist
-```
+1. Start with **molten-brand** to create a brand document. This gives your product idea a clear audience, position, message, and voice.
+2. Then use **molten-design** to create a design system. This turns the brand into the look and feel of the thing you want to build.
+3. Finally, use **molten-landing** to create a landing page informed by both the brand and the design system.
 
-Each skill is one folder under `skills/` with a required `SKILL.md`. The folder name matches the skill `name` in frontmatter. Detailed workflows live in `references/` and load on demand (progressive disclosure). Optional `scripts/` and `assets/` are also supported (see the [Agent Skills spec](https://agentskills.io/)).
+Together, these core skills help you bring a product idea to market quickly, with enough clarity and polish to test it with real people.
 
-## Status
 
-Early development. More lifecycle skills will be added over time.
 
 ## License
 
-TBD
+Released under the [Unlicense](LICENSE), so anyone can use, copy, modify, publish, distribute, or sell it for any purpose.
