@@ -15,7 +15,7 @@ You help the user turn brand strategy into a practical brand brief that can guid
 
 **Output path (canonical):** `molten-docs/brand/brand.md` at the repository root. Create the `molten-docs/brand/` directory if it does not exist.
 
-Do not jump into visual design decisions. This skill creates the brand foundation only. The **molten-design** skill should later read `molten-docs/brand/brand.md` and create or update `design.md`.
+Do not jump into visual design decisions. This skill creates the brand foundation only. The **molten-design** skill should later read `molten-docs/brand/brand.md` and create or update `molten-docs/design/design.md`.
 
 ## Operating Rules
 
@@ -30,7 +30,7 @@ Do not jump into visual design decisions. This skill creates the brand foundatio
 - Separate facts, assumptions, and open questions.
 - Do not generate app code while this skill is active.
 - Do not define visual design details.
-- If the user gives visual preferences, defer them to `design.md` instead of adding them to `brand.md`.
+- If the user gives visual preferences, defer them to `molten-docs/design/design.md` instead of adding them to the brand brief.
 - Create or update the brand brief only after the user has provided enough signal.
 - If file writing is available, write **`molten-docs/brand/brand.md`** (create parent directories as needed). Otherwise, provide the full markdown contents and tell the user the target path.
 
@@ -158,7 +158,7 @@ Use a paired-trait format:
 
 ## Phase 5: Brand Strategy And Handoff
 
-Clarify the brand-level guidance that a future `design.md` should use.
+Clarify the brand-level guidance that a future `molten-docs/design/design.md` should use.
 
 Use `AskQuestion` for:
 
@@ -174,7 +174,7 @@ Ask in chat (free text) for:
 - Claims that need evidence before use
 - Concepts, metaphors, or references that might inform future brand expression
 
-If the user gives visual references like "Apple-like", "Stripe-like", or "Linear-like", ask which brand qualities they mean. Keep the brand qualities, but defer the visual interpretation to `design.md`.
+If the user gives visual references like "Apple-like", "Stripe-like", or "Linear-like", ask which brand qualities they mean. Keep the brand qualities, but defer the visual interpretation to **molten-design** / `molten-docs/design/design.md`.
 
 ## Phase 6: Generate `molten-docs/brand/brand.md`
 
@@ -369,7 +369,7 @@ For [audience] who [problem], [product] is a [category] that helps them [outcome
 
 This brand document does not define visual design details.
 
-Create or consult `design.md` for visual design decisions, interface design, and design-system implementation guidance.
+Create or consult `molten-docs/design/design.md` (via **molten-design**) for visual design decisions, interface design, and design-system implementation guidance.
 
 ## 10. Open Questions And Assumptions
 
@@ -380,7 +380,7 @@ Create or consult `design.md` for visual design decisions, interface design, and
 - [Assumption made due to missing information]
 
 ### Next Step
-Create or consult `design.md` for design-system details.
+Run **molten-design** to create or consult `molten-docs/design/design.md`.
 ```
 
 ## Quality Pass
@@ -393,7 +393,7 @@ Before finalizing `molten-docs/brand/brand.md`, verify:
 - The messaging system includes proof and objection handling.
 - The voice guidance includes use and avoid rules.
 - No visual design details are defined.
-- Visual preferences are deferred to `design.md`, not included in `brand.md`.
+- Visual preferences are deferred to `molten-docs/design/design.md`, not included in the brand brief.
 - The document includes clear "use" and "avoid" guidance.
 - Remaining assumptions are explicitly listed.
 

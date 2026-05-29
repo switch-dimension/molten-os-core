@@ -9,12 +9,12 @@ The rubric you write against is the seven conversion principles in [`principles.
 Before asking anything, check for Molten OS Core artifacts:
 
 - **Brand:** `molten-docs/brand/brand.md` (canonical from **molten-brand**). Fall back to `brand.md` at the project root or in `.docs/` on older projects.
-- **Design:** `design.md` at the project root or in `.docs/` (from **molten-design**).
+- **Design:** `molten-docs/design/design.md` (canonical from **molten-design**). Fall back to `design.md` at the project root or in `.docs/` on older projects.
 
 When present, these are the source of truth — don't re-ask what they already answer.
 
 - **`molten-docs/brand/brand.md`** (or legacy root `brand.md`) typically supplies: positioning, target persona, the transformation/outcome, voice and tone, key messaging, and objections. Pull the H1 outcome, sub-head mechanism, and the objection list straight from it.
-- **`design.md`** typically supplies: accent color, neutrals, type scale, font stack, spacing scale, and component conventions. Use these verbatim as your CSS variables instead of inventing a palette.
+- **`molten-docs/design/design.md`** (or legacy root `design.md`) typically supplies: accent color, neutrals, type scale, font stack, spacing scale, and component conventions. Use these verbatim as your CSS variables instead of inventing a palette.
 
 If both exist and are complete, you may be able to skip most of Step 1 — confirm only the conversion goal, traffic source, and output preference. If they're partial, ask only for the gaps. State which file you pulled from so the user can see the lineage. If neither exists, proceed to Step 1 in full (and you may offer **molten-brand** / **molten-design** first if the project would benefit).
 

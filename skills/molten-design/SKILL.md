@@ -1,9 +1,9 @@
 ---
 name: molten-design
-description: Molten OS Core — visual design system discovery and Google DESIGN.md–spec `design.md` (tokens, components, do's and don'ts). Use for design system, design.md, or translating `brand.md` into a visual system. Reads `brand.md` first. Do not use for brand strategy or messaging; use molten-brand for those.
+description: Molten OS Core — visual design system discovery and Google DESIGN.md–spec `molten-docs/design/design.md` (tokens, components, do's and don'ts). Use for design system, design.md, or translating the brand brief into a visual system. Reads `molten-docs/brand/brand.md` first. Do not use for brand strategy or messaging; use molten-brand for those.
 metadata:
   author: switch-dimension
-  version: "1.1.0"
+  version: "1.2.0"
   molten-suite: molten-os
   molten-tier: core
   molten-order: "3"
@@ -11,13 +11,17 @@ metadata:
 
 # Design System Brief
 
-You help the user produce a `design.md` file that an AI coding agent can apply consistently when generating UI. The file follows Google Labs' DESIGN.md spec (YAML token front matter + ordered prose sections) with optional extension sections for motion, iconography, and accessibility.
+You help the user produce a design system document that an AI coding agent can apply consistently when generating UI. The file follows Google Labs' DESIGN.md spec (YAML token front matter + ordered prose sections) with optional extension sections for motion, iconography, and accessibility.
 
-This skill is the visual counterpart to **molten-brand**. Brand strategy lives in `brand.md`; visual identity lives in `design.md`.
+**Input path (canonical):** `molten-docs/brand/brand.md` from **molten-brand**. Fall back to `brand.md` at the project root or `/docs/brand.md` on older projects.
+
+**Output path (canonical):** `molten-docs/design/design.md` at the repository root. Create the `molten-docs/design/` directory if it does not exist.
+
+This skill is the visual counterpart to **molten-brand**. Brand strategy lives in the brand brief; visual identity lives in the design brief.
 
 ## Operating Rules
 
-- **Always read `brand.md` first** if it exists at the project root or `/docs/`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance).
+- **Always read the brand brief first:** `molten-docs/brand/brand.md`, then legacy `brand.md` at the project root or `/docs/brand.md`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance).
 - Ask concise questions in small batches.
 - Prefer the `AskQuestion` tool for any question with a finite set of meaningful options (palette mood, type system, spacing rhythm, corner-radius philosophy, elevation strategy).
 - Ask open-ended questions conversationally when the answer is free text (exact hex codes, font names, brand references, component anatomy notes).
@@ -30,9 +34,9 @@ This skill is the visual counterpart to **molten-brand**. Brand strategy lives i
 - Limit choices: max two font families, 9–15 typography levels, 4–6 named color palettes (extended swatches allowed in tokens), one consistent spacing base (typically 4px or 8px).
 - Separate facts, assumptions, and open questions.
 - Do not generate app code while this skill is active.
-- Do not define brand persona, voice, or messaging. Defer to `brand.md`.
-- Create or update `design.md` only after the user has provided enough signal.
-- Write `design.md` at the project root by default. Use `/docs/design.md` only if the project already keeps docs there.
+- Do not define brand persona, voice, or messaging. Defer to the brand brief.
+- Create or update the design brief only after the user has provided enough signal.
+- If file writing is available, write **`molten-docs/design/design.md`** (create parent directories as needed). Otherwise, provide the full markdown contents and tell the user the target path.
 
 ## When To Use `AskQuestion` vs Chat
 
@@ -247,9 +251,9 @@ Add only if the user explicitly needs them. These are extension sections outside
 - **Imagery & Illustration**: photo style, illustration treatment, anti-references.
 - **Accessibility**: minimum contrast, focus rings, target sizes, reduced-motion, prefers-color-scheme behavior.
 
-## Phase 10: Generate `design.md`
+## Phase 10: Generate `molten-docs/design/design.md`
 
-When enough information is gathered, create `design.md` at the project root with this structure. The YAML front matter is normative; the prose is rationale.
+When enough information is gathered, write the file at **`molten-docs/design/design.md`** with this structure. The YAML front matter is normative; the prose is rationale.
 
 ````markdown
 ---
@@ -315,7 +319,7 @@ components:
 
 # [Design System Name]
 
-Visual identity for [product name]. Pairs with `brand.md` for brand strategy and voice.
+Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for brand strategy and voice.
 
 ## Overview
 
@@ -398,12 +402,12 @@ Visual identity for [product name]. Pairs with `brand.md` for brand strategy and
 - [Assumption made due to missing information]
 
 ### Next Step
-Reference `design.md` from your agent config (CLAUDE.md, AGENTS.md, .cursor/rules/) so it loads every session. Validate with `npx @google/design.md lint design.md`.
+Reference `molten-docs/design/design.md` from your agent config (CLAUDE.md, AGENTS.md, `.cursor/rules/`) so it loads every session. Validate with `npx @google/design.md lint molten-docs/design/design.md`.
 ````
 
 ## Quality Pass
 
-Before finalizing `design.md`, verify:
+Before finalizing `molten-docs/design/design.md`, verify:
 
 - YAML front matter is valid (matching `---` fences, no duplicate keys).
 - Sections appear in spec order (Overview, Colors, Typography, Layout, Elevation & Depth, Shapes, Components, Do's and Don'ts), with extensions appended after.
@@ -414,14 +418,14 @@ Before finalizing `design.md`, verify:
 - 9–15 typography levels, each with a clear role.
 - Component variants use sibling keys (`button-primary-hover`), not nesting.
 - Do's and Don'ts is five rules and each is specific (no vague taste words).
-- Brand strategy, persona, and voice are *not* defined here; they live in `brand.md`.
+- Brand strategy, persona, and voice are *not* defined here; they live in `molten-docs/brand/brand.md`.
 - Every decision the user delegated via "Choose for me" appears in the *Assumptions* section with the one-sentence rationale that was given at the time.
 - Remaining assumptions are explicitly listed.
 
 If `npx @google/design.md` is available, suggest the user run:
 
 ```bash
-npx @google/design.md lint design.md
+npx @google/design.md lint molten-docs/design/design.md
 ```
 
 If linter findings appear, walk through them with the user before treating the file as final.
