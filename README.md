@@ -34,6 +34,8 @@ All skills use the **`molten-<name>`** convention so they are easy to distinguis
 
 ## How To Use The Full Workflow
 
+![Molten OS Core workflow: brand, design system, landing page](molten-workflow.png)
+
 Molten works best as a simple sequence:
 
 1. Start with **molten-brand** to create a brand document. This gives your product idea a clear audience, position, message, and voice.
