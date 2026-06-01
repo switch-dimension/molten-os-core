@@ -2,11 +2,21 @@
 
 ![Molten OS Core banner](molten-os-banner.png)
 
-Molten OS Core is a simple but powerful product development operating system from [Switch Dimension](https://switchdimension.com) and YouTuber [Rob Shocks](https://youtube.com/robshocks). In Phase 1, the system's goal is to give AI coding agents reusable skills for turning an early product idea into clear brand direction, a usable visual system, and a landing page you can test with a real audience.
+Molten OS Core is a simple but powerful product development operating system from [Switch Dimension](https://switchdimension.com) and AI builder YouTuber [Rob Shocks](https://youtube.com/robshocks). In Phase 1, the system's goal is to give AI coding agents reusable skills for turning an early product idea into clear brand direction, a usable visual system, and a landing page you can test with a real audience. This skill system is under the MIT license so feel free to copy, fork, and use as inspiration for your own evolving system.
 
 ## Installation
 
-Copy the link to [this repo](https://github.com/switch-dimension/molten-os-core), paste it into your agent, and ask it to install all skills to your **project** or to your **user** profile (for use across all projects). Or manually install with the commands below using the [skills.sh](https://github.com/vercel-labs/skills) CLI.
+```
+https://github.com/switch-dimension/molten-os-core
+```
+
+Drop this prompt into your AI agent:
+
+```
+install all the skills in this repo to my project
+```
+
+Or install manually with the [skills.sh](https://github.com/vercel-labs/skills) CLI:
 
 ```bash
 npx skills add switch-dimension/molten-os-core
@@ -16,9 +26,6 @@ Install a single skill:
 
 ```bash
 npx skills add switch-dimension/molten-os-core --skill molten-landing
-npx skills add switch-dimension/molten-os-core --skill molten-brand
-npx skills add switch-dimension/molten-os-core --skill molten-design
-npx skills add switch-dimension/molten-os-core --skill molten-skill-manage
 ```
 
 All skills use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
