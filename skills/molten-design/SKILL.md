@@ -1,9 +1,9 @@
 ---
 name: molten-design
-description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by asking whether the user wants a fast opinionated draft or a more detailed guided pass, unless they already chose an approach. Do not use for brand strategy or messaging; use molten-brand for those."
+description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by asking whether this is for a landing page, web product, or mobile product (one surface at a time), then whether the user wants a fast opinionated draft or a more detailed guided pass, unless they already chose. Do not use for brand strategy or messaging; use molten-brand for those."
 metadata:
   author: switch-dimension
-  version: "1.6.0"
+  version: "1.7.1"
   molten-suite: molten-os
   molten-tier: core
   molten-order: "3"
@@ -21,26 +21,68 @@ You help the user produce a design system document that an AI coding agent can a
 
 This skill is the visual counterpart to **molten-brand**. Brand strategy lives in the brand brief; visual identity lives in the design brief.
 
+## First Ask: Design Surface
+
+At the start of every run, establish **one design surface** for this session. Do not blend landing-page marketing UI with web-app or mobile-app product UI in the same `design.md`.
+
+Skip this ask only when the user already named the surface clearly (e.g. "landing page design system", "mobile app UI", "SaaS dashboard").
+
+Use the structured question tool:
+
+**"What is this design system for?"**
+
+Options:
+
+- **Landing page** — marketing / conversion pages (hero, sections, CTAs); pairs with **molten-landing**
+- **Web product** — browser-based app UI (dashboards, forms, nav, dense workflows)
+- **Mobile product** — phone-first app UI (lists, tabs, thumb zones, native-like patterns)
+- **Choose for me — infer from brand.md and context** (`id: choose_for_me`)
+
+When the user picks **Choose for me**, infer from `brand.md` and their prompt:
+
+- Marketing site, waitlist, launch, or single-page conversion → **Landing page**
+- SaaS, admin, developer tool, internal tool, dashboard → **Web product**
+- Consumer app, field tool, on-the-go workflow → **Mobile product** (or **Web product** if they said responsive web app only)
+
+State the choice and one-sentence reason before continuing.
+
+### One surface at a time
+
+- Scope **every** decision in this run — tokens, components, Pinterest searches, `example.html`, and Do's and Don'ts — to the chosen surface only.
+- Record the surface in the **Overview** and **Assumptions** sections of `design.md` (example: `Design surface: landing page`).
+- If the user needs more than one surface (e.g. landing page **and** web app), finish this run for the chosen surface, then tell them to run **molten-design** again for the other surface. Do not expand scope mid-session.
+
+### How each surface changes the system
+
+| Surface | Prioritize | De-emphasize in this run |
+|--------|------------|---------------------------|
+| **Landing page** | Display type, hero hierarchy, section rhythm, CTA buttons, proof blocks, marketing whitespace | App chrome, data tables, complex nav shells |
+| **Web product** | App layout, nav/sidebar, forms, cards, tables, modals, focus states, dense information UI | Long-scroll marketing sections, campaign hero patterns |
+| **Mobile product** | Touch targets (min 44px), bottom nav / tab bar, list rows, single-column flow, safe areas, thumb reach | Hover-dependent patterns, wide multi-column dashboards |
+
 ## First Ask: Fast Or Detailed
 
 Most users of this skill are not designers, but they should still control the level of guidance they want.
 
 Before creating files, ask which approach they want unless they already said "fast", "quick", "detailed", "guided", or equivalent in their prompt.
 
-Use the structured question tool with exactly these two choices:
+Batch **Design surface** and **Fast vs Detailed** into one structured question tool call when both are still unknown.
+
+Use the structured question tool with exactly these two choices for the workflow:
 
 - **Fast draft:** Read the brand brief, ask at most 3 plain-language questions if needed, infer token-level choices, then create `design.md` and `example.html`.
 - **Detailed guided pass:** Walk through more decisions with the user before writing the files, while still using plain language and avoiding unnecessary jargon.
 
 If the user chooses **Fast draft**, use this flow:
 
-1. Read the brand brief and any existing UI styles.
-2. Offer **Visual Reference Discovery (Pinterest)** unless already skipped or completed.
-3. Ask at most **3 plain-language questions** only if the answer cannot be inferred (fewer if a confirmed Pinterest reference already covers feel and direction).
-4. Make the design decisions yourself.
-5. Write `molten-docs/design/design.md`.
-6. Write `molten-docs/design/example.html`.
-7. List assumptions so the user can react to a concrete draft.
+1. Confirm **design surface** (landing page, web product, or mobile product).
+2. Read the brand brief and any existing UI styles.
+3. Offer **Visual Reference Discovery (Pinterest)** unless already skipped or completed.
+4. Ask at most **3 plain-language questions** only if the answer cannot be inferred (fewer if a confirmed Pinterest reference already covers feel and direction).
+5. Make the design decisions yourself — scoped to the chosen surface.
+6. Write `molten-docs/design/design.md`.
+7. Write `molten-docs/design/example.html`.
+8. List assumptions so the user can react to a concrete draft.
 
 In Fast draft mode, do **not** ask questions like:
 
@@ -73,8 +115,10 @@ Even in the detailed path, start with plain-language choices and translate the a
 
 ## Operating Rules
 
-- **Always read the brand brief first:** `molten-docs/brand/brand.md`, then legacy `brand.md` at the project root or `/docs/brand.md`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance).
+- **Read the brand brief before design decisions:** `molten-docs/brand/brand.md`, then legacy `brand.md` at the project root or `/docs/brand.md`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance). Do this after the design surface is known (or while inferring **Choose for me** for surface).
+- Ask the **design surface** question at the start of every run unless already clear from the user's prompt.
 - Ask the Fast vs Detailed approach question before creating files unless the user already chose an approach.
+- Scope the entire run to **one** surface (landing page, web product, or mobile product). Never mix surfaces in one `design.md`.
 - Ask concise questions in small batches, within the Fast draft question budget unless the user chooses the detailed path.
 - Prefer inference over questions. Use the structured question tool only when choices are plain-language and genuinely reduce user effort.
 - **Structured question tool by agent:**
@@ -84,7 +128,7 @@ Even in the detailed path, start with plain-language choices and translate the a
 - Ask open-ended questions conversationally when the answer is free text, such as reference websites, existing assets, visual dislikes, or product context.
 - Never list multiple-choice options as letters or bullets in chat text. Multiple choice → structured question tool. Open-ended → plain prose.
 - Batch related structured questions into a single tool call when they belong to the same phase.
-- **Act as a consultant, not a survey form.** Every structured question after the initial Fast vs Detailed choice must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
+- **Act as a consultant, not a survey form.** Every structured question after the initial startup questions (design surface and fast vs detailed) must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
 - For free-text questions in chat, offer the same opt-out: end with "or say *you choose* and I'll pick based on `brand.md`." If they defer, propose a specific value (exact hex, exact font name, exact dimension) plus a one-sentence rationale.
 - If `brand.md` already answers a question, do not ask it again. Cite the value back to the user for confirmation only when ambiguous.
 - Push back on vague taste words ("modern", "clean", "premium", "minimal"). Replace them with concrete tradeoffs.
@@ -105,6 +149,7 @@ In Fast draft mode, use the structured question tool (`request_user_input` / `As
 
 Examples of good structured-question prompts in this skill:
 
+- Design surface: landing page / web product / mobile product
 - Overall feel in plain language, such as serious / friendly / premium / energetic / calm / utilitarian
 - Product type, such as SaaS app / marketing site / developer tool / consumer app / internal tool
 - Visual archetype, such as Calm SaaS / Premium Editorial / Developer Tool / Friendly Consumer / Bold Launch Page
@@ -157,7 +202,7 @@ If the user has already given an explicit constraint in `brand.md` or earlier in
 
 ## Ingest The Brand Brief
 
-Before asking anything:
+After the **design surface** is chosen (or inferred), and before Pinterest or token work:
 
 1. Check for **`molten-docs/brand/brand.md`** (canonical). If missing, fall back to `brand.md` at the project root or `/docs/brand.md` for older projects.
 2. If present, read it and extract:
@@ -171,43 +216,82 @@ Before asking anything:
 
 ## Visual Reference Discovery (Pinterest)
 
-After ingesting `brand.md`, offer Pinterest browsing **before** locking design tokens or writing `design.md`. This gives non-designers concrete visual direction without asking them to articulate taste in design-system jargon.
-
-### Offer the phase
-
-Use the structured question tool unless the user already said they want Pinterest references, already attached a reference image, or explicitly said to skip references.
-
-Prompt: **"Want to browse Pinterest for visual direction before I lock the design system?"**
-
-Options:
-
-- **Yes — open Pinterest searches for me**
-- **Skip — infer from brand.md alone**
-- **Choose for me — recommend based on brand.md** (`id: choose_for_me`)
-
-If they pick **Choose for me**: recommend **Skip** when `brand.md` already has strong visual references or a clear maturity/personality signal; recommend **Yes** when the brand brief is thin on visual cues or the user chose the detailed path. State the recommendation in one sentence, then follow it.
+After ingesting `brand.md`, curate Pinterest inspiration **before** locking design tokens or writing `design.md`. This gives non-designers concrete visual direction without asking them to articulate taste in design-system jargon.
 
 Do not write `design.md` until this phase is complete (reference confirmed) or explicitly skipped.
 
 ### Generate 5 Pinterest search terms
 
-When the user opts in, derive **exactly five** search terms from `brand.md` and any plain-language feel answers already given. Show the list to the user before opening tabs.
+Derive **exactly five** search terms from `brand.md`, the chosen **design surface**, and any plain-language feel answers already given. Do this **before** presenting the phase to the user.
+
+**Keep all five terms inside one surface.** Do not spread searches across unrelated concepts (palette-only, generic typography, abstract mood boards, editorial print, logo marks, etc.). Every term must clearly read as the chosen surface type.
 
 Rules:
 
-- Each term should explore a **different visual angle**: palette/mood, typography, layout density, component style, overall product aesthetic.
-- Keep terms **2–5 words**, visual and Pinterest-friendly — not abstract strategy words ("modern", "premium").
-- Ground terms in product type, category, persona density, and first-impression words from `brand.md`.
+- **Landing page:** every term must include landing-page language (`landing page`, `marketing site`, `startup website`, `sales page`, `waitlist page`, or similar). Vary *within* landing-page patterns — hero, sections, CTA, social proof, full-page layout — not across unrelated domains.
+- **Web product:** every term must include web-app language (`web app ui`, `dashboard ui`, `saas interface`, `admin panel`, `app dashboard`, or similar). Vary *within* app UI patterns — nav/shell, cards, forms, data views, settings — not marketing or mobile terms.
+- **Mobile product:** every term must include mobile-app language (`mobile app ui`, `ios app design`, `android app ui`, `mobile interface`, or similar). Vary *within* mobile patterns — home, lists, tab bar, onboarding, profile — not desktop dashboard or landing-page terms.
+- Add **one** brand/context modifier from `brand.md` where natural (category, feel, B2B/B2C, dark/light) — but the surface anchor words stay mandatory in every term.
+- Keep terms **3–6 words**, visual and Pinterest-friendly — not abstract strategy words ("modern", "premium", "aesthetic" alone).
 - **Exclude** anti-references and things the user said to avoid.
-- Do not repeat the same angle twice.
+- Do not duplicate the same pattern twice (five hero-only searches is too narrow; five different landing-page sections is right).
 
-Example for a calm developer SaaS:
+Example for a calm developer SaaS **web product** (all app UI):
 
-1. `dark developer dashboard ui`
-2. `minimal saas typography layout`
-3. `soft neutral app interface`
-4. `rounded card ui design`
-5. `calm productivity app aesthetic`
+1. `minimal saas dashboard ui`
+2. `developer web app interface`
+3. `clean admin panel design`
+4. `saas app sidebar navigation ui`
+5. `dark mode web app dashboard`
+
+Example for the same brand as a **landing page** (all marketing page):
+
+1. `saas landing page design`
+2. `b2b startup landing page hero`
+3. `minimal saas marketing website`
+4. `landing page cta section design`
+5. `developer tool landing page layout`
+
+Example for the same brand as a **mobile product** (all mobile app):
+
+1. `minimal productivity mobile app ui`
+2. `ios saas app home screen`
+3. `mobile app dashboard design`
+4. `clean mobile app list ui`
+5. `dark mode mobile app interface`
+
+If the five terms do not all clearly belong to the chosen surface, rewrite them before showing the list to the user.
+
+### Offer the phase
+
+Skip this subsection if the user already attached a reference image or explicitly said to skip references.
+
+Do **not** ask whether they want to browse Pinterest. Present what you have already prepared, then offer to open it.
+
+In chat, say something like:
+
+> I've collected some visual inspiration for you on Pinterest that aligns with your brand. I can open those for you to take a look and pick one example as a favourite to aid design direction.
+>
+> Here are the five searches I put together:
+> 1. …
+> 2. …
+> 3. …
+> 4. …
+> 5. …
+
+Then use the structured question tool:
+
+**"Shall I open these Pinterest searches for you?"**
+
+Options:
+
+- **Yes — open them so I can pick a favourite**
+- **Skip — infer from brand.md alone**
+- **Choose for me — recommend based on brand.md** (`id: choose_for_me`)
+
+If they pick **Choose for me**: recommend **Skip** when `brand.md` already has strong visual references or a clear maturity/personality signal; recommend **Yes** when the brand brief is thin on visual cues or the user chose the detailed path. State the recommendation in one sentence, then follow it.
+
+Only generate new search terms if the user asks for different angles; do not re-ask whether to use Pinterest at all.
 
 ### Open 5 Pinterest tabs
 
@@ -227,7 +311,7 @@ Open all five in the user's **default browser**, in separate tabs. Prefer the fi
 
 After opening (or on fallback), tell the user:
 
-> Browse the five tabs. Pick **one** pin that feels closest to the direction you want. Paste or attach **that single image** here — screenshot, saved image, or drag-and-drop. I'll describe what I take from it before we lock the design system.
+> Take a look through the five tabs. Pick **one** pin as your favourite — the example that feels closest to the direction you want. Paste or attach **that single image** here (screenshot, saved image, or drag-and-drop). I'll describe what I take from it before we lock the design system.
 
 Wait for the image. Do not proceed to token decisions until they submit one reference **or** say to skip (e.g. "skip", "no reference", "continue without").
 
@@ -351,7 +435,7 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 
 ## Overview
 
-[Holistic description of look and feel. Personality, target audience, emotional response. Reference brand.md.]
+[Holistic description of look and feel. Personality, target audience, emotional response. Reference brand.md. State the design surface — landing page, web product, or mobile product — and what this system optimizes for.]
 
 ## Colors
 
@@ -384,7 +468,7 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 
 ## Components
 
-[Per-component prose: anatomy, variants, states, accessibility notes. Token specifics live in front matter.]
+[Per-component prose: anatomy, variants, states, accessibility notes. Token specifics live in front matter. Include only components relevant to the chosen surface — e.g. hero/CTA/proof for landing page; nav/forms/tables for web product; tab bar/list rows/FAB for mobile product.]
 
 ### Buttons
 
@@ -453,13 +537,16 @@ Rules:
 
 The preview should include:
 
-- A short title and one-sentence design thesis.
+- A short title and one-sentence design thesis (name the design surface).
 - Color swatches with token names and hex values.
 - Typography samples for display/headline, body, label, and caption styles.
 - Button examples: primary, secondary, destructive, disabled, and focus-visible.
-- Input examples: default, focused, error, and disabled.
+- Input examples: default, focused, error, and disabled (web and mobile product surfaces).
 - Card examples showing spacing, radius, borders, shadows, and content hierarchy.
-- A small realistic UI section that combines the system into one product-like slice.
+- One realistic combined UI section scoped to the chosen surface:
+  - **Landing page:** hero + CTA + one proof/feature section
+  - **Web product:** nav/sidebar slice with cards, form, or table
+  - **Mobile product:** phone-width frame (~390px), status/header area, list or tab bar, thumb-friendly controls
 
 Use this structure:
 
@@ -510,6 +597,7 @@ Before finalizing `molten-docs/design/design.md`, verify:
 - Component variants use sibling keys (`button-primary-hover`), not nesting.
 - Do's and Don'ts is five rules and each is specific (no vague taste words).
 - Brand strategy, persona, and voice are *not* defined here; they live in `molten-docs/brand/brand.md`.
+- The chosen design surface (landing page, web product, or mobile product) is stated in Overview and Assumptions; the file does not try to serve multiple surfaces at once.
 - Every decision the user delegated via "Choose for me" appears in the *Assumptions* section with the one-sentence rationale that was given at the time.
 - If a Pinterest reference was confirmed, the *Assumptions* section records the adopted visual signals in one line.
 - Remaining assumptions are explicitly listed.
