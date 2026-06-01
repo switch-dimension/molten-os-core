@@ -9,7 +9,7 @@ Molten OS Core is a set of AI agent skills from [Switch Dimension](https://switc
 Drop this prompt into your AI agent to get started:
 
 ```
-install all the skills in this repo to my project
+install all the skills in this repo to my project - https://github.com/switch-dimension/molten-os-core
 ```
 
 > Released under the MIT license — copy it, fork it, and use it as inspiration for your own evolving system. [Full install options below.](#installation)
