@@ -19,11 +19,16 @@ Do not jump into visual design decisions. This skill creates the brand foundatio
 
 ## Operating Rules
 
+- Suggest the user dictate their answers using the microphone option if present in their agent. Guide the user via an example of how to answer. Example for question 1 my answer is x 
 - Ask concise questions in small batches.
-- Prefer the `AskQuestion` tool for any question with a finite set of meaningful options. Use it for awareness level, persona archetype, personality dimensions, tone choices, and similar structured tradeoffs.
+- Prefer the agent's structured question tool for any question with a finite set of meaningful options. Use it for awareness level, persona archetype, personality dimensions, tone choices, and similar structured tradeoffs.
+- **Structured question tool by agent:**
+  - **Codex:** `request_user_input`
+  - **Claude Code:** `AskUserQuestion`
+  - **Cursor:** `AskQuestion`
 - Ask open-ended questions conversationally in chat when the answer is free text (product name, one-liner, problem description, unique copy, references).
-- Never list multiple-choice options as letters or bullets in chat text. If it's multiple choice, use `AskQuestion`. If it's open-ended, ask in plain prose.
-- Batch related `AskQuestion` items into a single tool call when they belong to the same phase.
+- Never list multiple-choice options as letters or bullets in chat text. If it's multiple choice, use the structured question tool for that agent. If it's open-ended, ask in plain prose.
+- Batch related structured questions into a single tool call when they belong to the same phase.
 - If the user already provided an answer, do not ask for it again.
 - Prefer specific tradeoffs over generic taste words.
 - Push back on vague answers like "modern", "clean", "premium", or "for everyone".
@@ -32,17 +37,17 @@ Do not jump into visual design decisions. This skill creates the brand foundatio
 - Do not define visual design details.
 - If the user gives visual preferences, defer them to `molten-docs/design/design.md` instead of adding them to the brand brief.
 - Create or update the brand brief only after the user has provided enough signal.
-- If file writing is available, write **`molten-docs/brand/brand.md`** (create parent directories as needed). Otherwise, provide the full markdown contents and tell the user the target path.
+- If file writing is available, write `**molten-docs/brand/brand.md`** (create parent directories as needed). Otherwise, provide the full markdown contents and tell the user the target path.
 
-## When To Use `AskQuestion` vs Chat
+## When To Use Structured Questions vs Chat
 
-Use `AskQuestion` when:
+Use the structured question tool (`request_user_input` / `AskUserQuestion` / `AskQuestion`) when:
 
 - The answer is naturally one or a few choices from a finite set.
 - The user benefits from seeing the tradeoffs side-by-side.
 - You're forcing a decision between competing brand directions.
 
-Examples of good `AskQuestion` prompts in this skill:
+Examples of good structured-question prompts in this skill:
 
 - Awareness level (unaware / problem-aware / solution-aware / product-aware / most-aware)
 - Brand maturity (playful / polished / editorial / technical / utilitarian / luxury / expressive / calm)
@@ -51,7 +56,7 @@ Examples of good `AskQuestion` prompts in this skill:
 - Pricing position (free / low-cost / mid-market / premium / enterprise)
 - Persona archetype, narrative arc style, primary objection type
 
-Ask conversationally in chat (no `AskQuestion`) when:
+Ask conversationally in chat (no structured question tool) when:
 
 - The answer must be free text: product name, one-liner, problem description, customer quote, claim, anti-reference, custom CTA copy, microcopy rule.
 - You're pushing back on a vague answer.
@@ -59,7 +64,7 @@ Ask conversationally in chat (no `AskQuestion`) when:
 
 ## Phase 1: Brand Foundation
 
-Start by asking for the minimum viable brand context. Ask in chat (not `AskQuestion`) because these answers are free text.
+Start by asking for the minimum viable brand context. Ask in chat (not the structured question tool) because these answers are free text.
 
 Cover:
 
@@ -82,7 +87,7 @@ Useful questions:
 
 Once the foundation is clear, clarify the market and positioning.
 
-Use `AskQuestion` for:
+Use the structured question tool for:
 
 - Buyer vs user (same person / different person / buying committee)
 - Awareness level (unaware / problem-aware / solution-aware / product-aware / most-aware)
@@ -106,7 +111,7 @@ Do not accept "small businesses", "founders", or "creators" without narrowing by
 
 Build one primary persona first. Add secondary personas only if they change product, message, trust, or buying decisions.
 
-Use `AskQuestion` for:
+Use the structured question tool for:
 
 - Skill level (novice / intermediate / expert / mixed)
 - Primary device or environment (mobile / desktop / both / specialized hardware)
@@ -131,7 +136,7 @@ Persona quality bar:
 
 Translate strategy into voice and copy rules.
 
-Use `AskQuestion` for the voice axes (ask multiple in a single call, `allow_multiple: false` per axis):
+Use the structured question tool for the voice axes (ask multiple in a single call, `allow_multiple: false` per axis):
 
 - Formality (very formal / professional / conversational / casual / playful)
 - Authority (peer-to-peer / coach / expert / authority figure)
@@ -160,7 +165,7 @@ Use a paired-trait format:
 
 Clarify the brand-level guidance that a future `molten-docs/design/design.md` should use.
 
-Use `AskQuestion` for:
+Use the structured question tool for:
 
 - Brand maturity (playful / polished / editorial / technical / utilitarian / luxury / expressive / calm) — `allow_multiple: true` if the user wants a blend
 - Risk posture (safe and conventional / confident / contrarian / disruptive)
@@ -178,7 +183,7 @@ If the user gives visual references like "Apple-like", "Stripe-like", or "Linear
 
 ## Phase 6: Generate `molten-docs/brand/brand.md`
 
-When enough information is gathered, write the file at **`molten-docs/brand/brand.md`** with this structure.
+When enough information is gathered, write the file at `**molten-docs/brand/brand.md`** with this structure.
 
 ```markdown
 # Brand Brief

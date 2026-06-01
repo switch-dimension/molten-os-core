@@ -27,7 +27,7 @@ Most users of this skill are not designers, but they should still control the le
 
 Before creating files, ask which approach they want unless they already said "fast", "quick", "detailed", "guided", or equivalent in their prompt.
 
-Use `AskQuestion` with exactly these two choices:
+Use the structured question tool with exactly these two choices:
 
 - **Fast draft:** Read the brand brief, ask at most 3 plain-language questions if needed, infer token-level choices, then create `design.md` and `example.html`.
 - **Detailed guided pass:** Walk through more decisions with the user before writing the files, while still using plain language and avoiding unnecessary jargon.
@@ -75,11 +75,15 @@ Even in the detailed path, start with plain-language choices and translate the a
 - **Always read the brand brief first:** `molten-docs/brand/brand.md`, then legacy `brand.md` at the project root or `/docs/brand.md`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance).
 - Ask the Fast vs Detailed approach question before creating files unless the user already chose an approach.
 - Ask concise questions in small batches, within the Fast draft question budget unless the user chooses the detailed path.
-- Prefer inference over questions. Use `AskQuestion` only when choices are plain-language and genuinely reduce user effort.
+- Prefer inference over questions. Use the structured question tool only when choices are plain-language and genuinely reduce user effort.
+- **Structured question tool by agent:**
+  - **Codex:** `request_user_input`
+  - **Claude Code:** `AskUserQuestion`
+  - **Cursor:** `AskQuestion`
 - Ask open-ended questions conversationally when the answer is free text, such as reference websites, existing assets, visual dislikes, or product context.
-- Never list multiple-choice options as letters or bullets in chat text. Multiple choice → `AskQuestion`. Open-ended → plain prose.
-- Batch related `AskQuestion` items into a single tool call when they belong to the same phase.
-- **Act as a consultant, not a survey form.** Every `AskQuestion` after the initial Fast vs Detailed choice must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
+- Never list multiple-choice options as letters or bullets in chat text. Multiple choice → structured question tool. Open-ended → plain prose.
+- Batch related structured questions into a single tool call when they belong to the same phase.
+- **Act as a consultant, not a survey form.** Every structured question after the initial Fast vs Detailed choice must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
 - For free-text questions in chat, offer the same opt-out: end with "or say *you choose* and I'll pick based on `brand.md`." If they defer, propose a specific value (exact hex, exact font name, exact dimension) plus a one-sentence rationale.
 - If `brand.md` already answers a question, do not ask it again. Cite the value back to the user for confirmation only when ambiguous.
 - Push back on vague taste words ("modern", "clean", "premium", "minimal"). Replace them with concrete tradeoffs.
@@ -90,22 +94,22 @@ Even in the detailed path, start with plain-language choices and translate the a
 - Create or update the design brief only after the user has provided enough signal.
 - If file writing is available, write **`molten-docs/design/design.md`** and **`molten-docs/design/example.html`** (create parent directories as needed). Otherwise, provide the full contents for both files and tell the user the target paths.
 
-## When To Use `AskQuestion` vs Chat
+## When To Use Structured Questions vs Chat
 
-In Fast draft mode, use `AskQuestion` only when:
+In Fast draft mode, use the structured question tool (`request_user_input` / `AskUserQuestion` / `AskQuestion`) only when:
 
 - The answer is one or a few choices from a finite set.
 - The user benefits from seeing tradeoffs side-by-side.
 - The choices are plain-language outcomes, not design-system internals.
 
-Examples of good `AskQuestion` prompts in this skill:
+Examples of good structured-question prompts in this skill:
 
 - Overall feel in plain language, such as serious / friendly / premium / energetic / calm / utilitarian
 - Product type, such as SaaS app / marketing site / developer tool / consumer app / internal tool
 - Visual archetype, such as Calm SaaS / Premium Editorial / Developer Tool / Friendly Consumer / Bold Launch Page
 - Whether to proceed from the brand brief alone or include optional reference websites
 
-Ask conversationally in chat (no `AskQuestion`) when:
+Ask conversationally in chat (no structured question tool) when:
 
 - The answer is free text: reference websites, existing brand colors, things to avoid, or context about the product.
 - You're pushing back on a vague answer.
@@ -115,7 +119,7 @@ Ask conversationally in chat (no `AskQuestion`) when:
 
 Every question in this skill must allow the user to delegate the decision to you. You are operating as a design consultant — the user should be able to say "you decide" at any point and trust that you will make a reasoned, brand-aligned choice.
 
-### For `AskQuestion`
+### For the structured question tool
 
 Always append a final option with `id: choose_for_me` and a label that names the action and the basis for your judgment. Examples:
 
@@ -139,7 +143,7 @@ When the user opts out, propose a specific concrete value plus a one-sentence ra
 
 ### Example flow
 
-> **Question (AskQuestion):** "What should the product feel like?"
+> **Question (structured question tool):** "What should the product feel like?"
 > Options: serious / friendly / premium / energetic / calm / utilitarian / **Choose for me — recommend based on brand.md**
 >
 > **User picks Choose for me.**

@@ -20,7 +20,7 @@ If both exist and are complete, you may be able to skip most of Step 1 — confi
 
 ## Step 1 — Ask the questions before you write anything
 
-Collect the brief up front, before writing any markup. If your environment has a structured question/multiple-choice tool, use it; otherwise ask in plain text. Either way, group related questions and present them together — don't drip them out one at a time. Skip any question the user already answered in their initial prompt, or that `brand.md` / `design.md` already answers (see Step 0).
+Collect the brief up front, before writing any markup. Use the structured question tool when choices are finite (`request_user_input` / `AskUserQuestion` / `AskQuestion`); otherwise ask in plain text. Either way, group related questions and present them together — don't drip them out one at a time. Skip any question the user already answered in their initial prompt, or that `brand.md` / `design.md` already answers (see Step 0).
 
 Gather these inputs (adapt phrasing to the user, but cover the substance):
 
