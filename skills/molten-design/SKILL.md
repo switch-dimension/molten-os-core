@@ -3,7 +3,7 @@ name: molten-design
 description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by asking whether the user wants a fast opinionated draft or a more detailed guided pass, unless they already chose an approach. Do not use for brand strategy or messaging; use molten-brand for those."
 metadata:
   author: switch-dimension
-  version: "1.5.0"
+  version: "1.6.0"
   molten-suite: molten-os
   molten-tier: core
   molten-order: "3"
@@ -35,11 +35,12 @@ Use the structured question tool with exactly these two choices:
 If the user chooses **Fast draft**, use this flow:
 
 1. Read the brand brief and any existing UI styles.
-2. Ask at most **3 plain-language questions** only if the answer cannot be inferred.
-3. Make the design decisions yourself.
-4. Write `molten-docs/design/design.md`.
-5. Write `molten-docs/design/example.html`.
-6. List assumptions so the user can react to a concrete draft.
+2. Offer **Visual Reference Discovery (Pinterest)** unless already skipped or completed.
+3. Ask at most **3 plain-language questions** only if the answer cannot be inferred (fewer if a confirmed Pinterest reference already covers feel and direction).
+4. Make the design decisions yourself.
+5. Write `molten-docs/design/design.md`.
+6. Write `molten-docs/design/example.html`.
+7. List assumptions so the user can react to a concrete draft.
 
 In Fast draft mode, do **not** ask questions like:
 
@@ -91,7 +92,7 @@ Even in the detailed path, start with plain-language choices and translate the a
 - Separate facts, assumptions, and open questions.
 - Do not generate app code while this skill is active.
 - Do not define brand persona, voice, or messaging. Defer to the brand brief.
-- Create or update the design brief only after the user has provided enough signal.
+- Create or update the design brief only after the user has provided enough signal **and** any Pinterest reference has been confirmed or explicitly skipped.
 - If file writing is available, write **`molten-docs/design/design.md`** and **`molten-docs/design/example.html`** (create parent directories as needed). Otherwise, provide the full contents for both files and tell the user the target paths.
 
 ## When To Use Structured Questions vs Chat
@@ -167,6 +168,102 @@ Before asking anything:
    - Density and emotional state implications from persona
 3. Use the extracted visual signal directly. Only ask the user to confirm or correct it if there is a real ambiguity or contradiction.
 4. If `brand.md` is missing, ask the user whether to run **molten-brand** first (recommended) or proceed without it.
+
+## Visual Reference Discovery (Pinterest)
+
+After ingesting `brand.md`, offer Pinterest browsing **before** locking design tokens or writing `design.md`. This gives non-designers concrete visual direction without asking them to articulate taste in design-system jargon.
+
+### Offer the phase
+
+Use the structured question tool unless the user already said they want Pinterest references, already attached a reference image, or explicitly said to skip references.
+
+Prompt: **"Want to browse Pinterest for visual direction before I lock the design system?"**
+
+Options:
+
+- **Yes — open Pinterest searches for me**
+- **Skip — infer from brand.md alone**
+- **Choose for me — recommend based on brand.md** (`id: choose_for_me`)
+
+If they pick **Choose for me**: recommend **Skip** when `brand.md` already has strong visual references or a clear maturity/personality signal; recommend **Yes** when the brand brief is thin on visual cues or the user chose the detailed path. State the recommendation in one sentence, then follow it.
+
+Do not write `design.md` until this phase is complete (reference confirmed) or explicitly skipped.
+
+### Generate 5 Pinterest search terms
+
+When the user opts in, derive **exactly five** search terms from `brand.md` and any plain-language feel answers already given. Show the list to the user before opening tabs.
+
+Rules:
+
+- Each term should explore a **different visual angle**: palette/mood, typography, layout density, component style, overall product aesthetic.
+- Keep terms **2–5 words**, visual and Pinterest-friendly — not abstract strategy words ("modern", "premium").
+- Ground terms in product type, category, persona density, and first-impression words from `brand.md`.
+- **Exclude** anti-references and things the user said to avoid.
+- Do not repeat the same angle twice.
+
+Example for a calm developer SaaS:
+
+1. `dark developer dashboard ui`
+2. `minimal saas typography layout`
+3. `soft neutral app interface`
+4. `rounded card ui design`
+5. `calm productivity app aesthetic`
+
+### Open 5 Pinterest tabs
+
+Build one URL per term:
+
+`https://www.pinterest.com/search/pins/?q={url_encoded_term}`
+
+(URL-encode spaces as `+` or `%20`.)
+
+Open all five in the user's **default browser**, in separate tabs. Prefer the first method that works in the current environment; do not block the workflow if opening fails.
+
+1. **Shell (macOS):** `open "url1" "url2" "url3" "url4" "url5"`
+2. **Shell (Linux):** `xdg-open "url1" "url2" ...` (one invocation with multiple URLs when supported)
+3. **Shell (Windows):** `start "" "url1"` for each URL
+4. **`cursor-app-control` `open_resource`:** one call per URL, if available
+5. **Fallback:** paste the five links as markdown so the user can open them manually
+
+After opening (or on fallback), tell the user:
+
+> Browse the five tabs. Pick **one** pin that feels closest to the direction you want. Paste or attach **that single image** here — screenshot, saved image, or drag-and-drop. I'll describe what I take from it before we lock the design system.
+
+Wait for the image. Do not proceed to token decisions until they submit one reference **or** say to skip (e.g. "skip", "no reference", "continue without").
+
+### Interpret the reference image
+
+When the user attaches **one** image, analyze it and summarize in plain language under these headings:
+
+- **Colors** — dominant palette, accent usage, light vs dark, warm vs cool, saturation
+- **Typography feel** — sans/serif/mono tendency, weight contrast, headline vs body hierarchy (exact font names only when obvious)
+- **Layout & density** — whitespace, grid vs editorial, information density
+- **Shape & depth** — corner radius, borders vs shadows, flat vs layered
+- **Mood** — 2–3 concrete adjectives tied to what you see, not vague taste words
+- **Adopt into tokens** — specific implications for `design.md` (example: "12px radius", "warm off-white surface ~#FAF8F5", "single saturated accent on neutral base")
+- **Avoid** — anything that conflicts with `brand.md` anti-references or would hurt usability (contrast, tap targets)
+
+If the image is unclear, low resolution, or off-topic, say so and ask for a different pin or permission to skip.
+
+### Confirmation gate (mandatory)
+
+Before applying the reference to tokens, get explicit approval. Use the structured question tool when available:
+
+**"Does this match what you liked in the reference?"**
+
+Options:
+
+- **Yes — lock this direction into the design system**
+- **Adjust — I'll describe what to change**
+- **Different reference — I'll paste another image**
+- **Skip reference — use brand.md only**
+
+- **Yes:** map the adopted signals into concrete YAML tokens and prose in `design.md`. Record in **Assumptions**: `Visual reference: user-selected pin → [one-line summary of adopted signals]`.
+- **Adjust:** take their correction, revise the interpretation, and ask again until they confirm or skip.
+- **Different reference:** repeat interpret + confirmation with the new image only (still one reference at a time).
+- **Skip:** do not let the discarded reference influence tokens; continue from `brand.md` alone.
+
+Never silently apply a reference. The user must confirm (or skip) before `design.md` is written.
 
 ## Detailed Second Pass
 
@@ -414,6 +511,7 @@ Before finalizing `molten-docs/design/design.md`, verify:
 - Do's and Don'ts is five rules and each is specific (no vague taste words).
 - Brand strategy, persona, and voice are *not* defined here; they live in `molten-docs/brand/brand.md`.
 - Every decision the user delegated via "Choose for me" appears in the *Assumptions* section with the one-sentence rationale that was given at the time.
+- If a Pinterest reference was confirmed, the *Assumptions* section records the adopted visual signals in one line.
 - Remaining assumptions are explicitly listed.
 - `molten-docs/design/example.html` exists and is self-contained.
 - The preview uses CSS variables that match the finalized `design.md` tokens.
