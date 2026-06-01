@@ -1,4 +1,4 @@
-# Molten OS Core
+# Molten OS Core - Idea in, testable product out
 
 ![Molten OS Core banner](molten-os-banner.png)
 
