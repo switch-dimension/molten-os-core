@@ -72,6 +72,10 @@ npx skills add switch-dimension/molten-os-core --skill molten-landing
 
 All skills use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
 
+## Changelog
+
+Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v1.1.0**.
+
 ## License
 
 Released under the [MIT License](LICENSE). You may use, copy, modify, merge, publish, distribute, sublicense, and sell copies, provided the license and copyright notice are included in redistributions.
