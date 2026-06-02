@@ -15,9 +15,11 @@ This project manages agent skills with the **skills.sh** CLI, run via `npx skill
 
 ## Operating Rules
 
+- At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
 - Always run the CLI through `npx skills <command>` (no global install assumed).
 - Default to **project** scope. Add `-g`/`--global` only when the user wants a skill available across all their projects.
 - Use `-y`/`--yes` to skip interactive prompts when the intent is unambiguous; otherwise let prompts run so the user can choose.
+- Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
 - When you need structured choices from the user (scope, agents, which skills), use the agent's structured question tool:
   - **Codex:** `request_user_input`
   - **Claude Code:** `AskUserQuestion`

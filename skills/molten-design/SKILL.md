@@ -123,12 +123,14 @@ Even in the detailed path, start with plain-language choices and translate the a
 
 ## Operating Rules
 
+- At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
 - **Read the brand brief before design decisions:** `molten-docs/brand/brand.md`, then legacy `brand.md` at the project root or `/docs/brand.md`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance). Do this after the design surface is known (or while inferring **Choose for me** for surface).
 - **Read the matching surface reference before design decisions:** `references/landing-page.md`, `references/web-app.md`, `references/mobile-app.md`, or `references/desktop-app.md`.
 - Ask the **design surface** question at the start of every run unless already clear from the user's prompt.
 - Ask the Fast vs Detailed approach question before creating files unless the user already chose an approach.
 - Scope the entire run to **one** surface (landing page, web product, mobile product, or desktop product). Never mix surfaces in one pass.
 - Ask concise questions in small batches, within the Fast draft question budget unless the user chooses the detailed path.
+- Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
 - Prefer inference over questions. Use the structured question tool only when choices are plain-language and genuinely reduce user effort.
 - **Structured question tool by agent:**
   - **Codex:** `request_user_input`

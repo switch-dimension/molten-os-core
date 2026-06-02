@@ -19,8 +19,10 @@ Do not jump into visual design decisions. This skill creates the brand foundatio
 
 ## Operating Rules
 
-- Suggest the user dictate their answers using the microphone option if present in their agent. Guide the user via an example of how to answer. Example for question 1 my answer is x 
+- At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- Guide the user via an example of how to answer. Example: "For question 1, my answer is..."
 - Ask concise questions in small batches.
+- Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
 - Prefer the agent's structured question tool for any question with a finite set of meaningful options. Use it for awareness level, persona archetype, personality dimensions, tone choices, and similar structured tradeoffs.
 - **Structured question tool by agent:**
   - **Codex:** `request_user_input`

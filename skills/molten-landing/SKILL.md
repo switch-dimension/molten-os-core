@@ -15,7 +15,9 @@ This skill covers the full landing-page lifecycle: **building** a new page and *
 
 ## Operating Rules
 
+- At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
 - Ask concise questions in small batches. Group related questions together — don't drip them out one at a time.
+- Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
 - Prefer the agent's structured question tool for any question with a finite set of meaningful options (conversion goal, awareness level, output format, build vs audit).
 - **Structured question tool by agent:**
   - **Codex:** `request_user_input`

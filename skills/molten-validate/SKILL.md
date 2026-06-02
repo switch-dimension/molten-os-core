@@ -36,6 +36,8 @@ After routing, also read when needed:
 
 ## Operating principles (non-negotiable)
 
+Before interactive validation, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+
 1. **Past behaviour beats hypotheticals.**
 2. **Compliments are not evidence** (friends, family, advisors, LinkedIn).
 3. **Strangers + costly commitment = signal** (money, reputation, significant time).
@@ -48,6 +50,7 @@ After routing, also read when needed:
 
 - **Chat (free text):** Round 1 hypothesis, clarifications, pushback on vague answers.
 - **`AskQuestion`:** Rounds 2–5 in full interview (one round per user turn unless they say "run the full interview now").
+- **Numbered chat questions:** Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
 - **Never** paste multiple-choice options as bullets in chat — use `AskQuestion`.
 - **Do not re-ask** what the user already answered; confirm and move on.
 - **One round per turn** in full interview (default).
