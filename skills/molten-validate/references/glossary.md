@@ -8,8 +8,6 @@ In **internal rubric tables** you may use the short forms in parentheses after t
 
 **Never** put these in chat, `AskQuestion` labels, or `product-score-*.md`:
 
-- Book titles, author names, or branded frameworks. 
-
 **Instead:** describe the *check* in plain language (what you looked for and what the evidence showed). Framework names live only in `[research.md](research.md)` and the **Internal reference** column in `[scoring.md](scoring.md)` — agent-only.
 
 ## Customer discovery (how to interview — standalone)

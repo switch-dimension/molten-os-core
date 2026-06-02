@@ -1,11 +1,9 @@
 # Idea Evaluation Research
 
-> Foundation document for the `molten-validate` skill (Molten OS Pro).
+> Foundation document for the `molten-validate` skill (Molten OS Pro).  
 > Goal: distill how the most cited operators, investors, and authors decide whether a product / business idea is worth pursuing — and turn that into a defensible evaluation framework.
 
-> **AGENT-INTERNAL ONLY.** Do not quote expert names, book titles, or framework brands in chat, `AskQuestion`, or `product-score-*.md`. User-facing copy: [`glossary.md`](glossary.md) (plain language + standalone customer-discovery guidance).
-
-User-facing definitions for jargon (CAC, LTV, GTM, TAM, etc.): [`glossary.md`](glossary.md).
+User-facing definitions for jargon (CAC, LTV, GTM, TAM, etc.): `[glossary.md](glossary.md)`.
 
 ---
 
@@ -13,23 +11,25 @@ User-facing definitions for jargon (CAC, LTV, GTM, TAM, etc.): [`glossary.md`](g
 
 The frameworks below were selected because they (a) are widely cited, (b) have been pressure-tested across thousands of startups, and (c) cover complementary lenses (problem, market, solution, business, distribution, founder).
 
-| # | Expert | Primary work | Lens |
-|---|--------|--------------|------|
-| 1 | **Paul Graham** | *How to Get Startup Ideas* (essay), YC essays | Idea origination, "live in the future" |
-| 2 | **Sam Altman / Jessica Livingston / Michael Seibel** | YC Startup Playbook, *How to Start a Startup* | Execution, "make something people want", default alive/dead |
-| 3 | **Eric Ries** | *The Lean Startup* | Validated learning, Build-Measure-Learn, MVP |
-| 4 | **Steve Blank** | *The Four Steps to the Epiphany* | Customer development, "get out of the building" |
-| 5 | **Rob Fitzpatrick** | *The Mom Test* | Customer interviews that don't lie |
-| 6 | **Alex Hormozi** | *$100M Offers*, *$100M Leads* | Value equation, offer-driven evaluation |
-| 7 | **Peter Thiel** | *Zero to One* | Monopoly, 10x, secrets, durability |
-| 8 | **Marty Cagan** | *Inspired* (SVPG) | Four product risks |
-| 9 | **Clayton Christensen** (+ Bob Moesta, Tony Ulwick) | *Competing Against Luck* | Jobs to Be Done |
-| 10 | **Ash Maurya** | *Running Lean*, Lean Canvas | Business-model-as-product, problem/solution fit |
-| 11 | **Dan Olsen** | *The Lean Product Playbook* | Product-Market Fit Pyramid |
-| 12 | **Bill Aulet** | *Disciplined Entrepreneurship* (MIT) | 24-step framework, beachhead market |
-| 13 | **Teresa Torres** | *Continuous Discovery Habits* | Opportunity Solution Tree, assumption testing |
-| 14 | **April Dunford** | *Obviously Awesome* | Positioning relative to alternatives |
-| 15 | **Seth Godin** | *Purple Cow*, *This Is Marketing* | Remarkability, smallest viable audience |
+
+| #   | Expert                                               | Primary work                                  | Lens                                                        |
+| --- | ---------------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------- |
+| 1   | **Paul Graham**                                      | *How to Get Startup Ideas* (essay), YC essays | Idea origination, "live in the future"                      |
+| 2   | **Sam Altman / Jessica Livingston / Michael Seibel** | YC Startup Playbook, *How to Start a Startup* | Execution, "make something people want", default alive/dead |
+| 3   | **Eric Ries**                                        | *The Lean Startup*                            | Validated learning, Build-Measure-Learn, MVP                |
+| 4   | **Steve Blank**                                      | *The Four Steps to the Epiphany*              | Customer development, "get out of the building"             |
+| 5   | **Rob Fitzpatrick**                                  | *The Mom Test*                                | Customer interviews that don't lie                          |
+| 6   | **Alex Hormozi**                                     | *$100M Offers*, *$100M Leads*                 | Value equation, offer-driven evaluation                     |
+| 7   | **Peter Thiel**                                      | *Zero to One*                                 | Monopoly, 10x, secrets, durability                          |
+| 8   | **Marty Cagan**                                      | *Inspired* (SVPG)                             | Four product risks                                          |
+| 9   | **Clayton Christensen** (+ Bob Moesta, Tony Ulwick)  | *Competing Against Luck*                      | Jobs to Be Done                                             |
+| 10  | **Ash Maurya**                                       | *Running Lean*, Lean Canvas                   | Business-model-as-product, problem/solution fit             |
+| 11  | **Dan Olsen**                                        | *The Lean Product Playbook*                   | Product-Market Fit Pyramid                                  |
+| 12  | **Bill Aulet**                                       | *Disciplined Entrepreneurship* (MIT)          | 24-step framework, beachhead market                         |
+| 13  | **Teresa Torres**                                    | *Continuous Discovery Habits*                 | Opportunity Solution Tree, assumption testing               |
+| 14  | **April Dunford**                                    | *Obviously Awesome*                           | Positioning relative to alternatives                        |
+| 15  | **Seth Godin**                                       | *Purple Cow*, *This Is Marketing*             | Remarkability, smallest viable audience                     |
+
 
 ---
 
@@ -46,6 +46,7 @@ The best ideas share three traits:
 3. **Few others realise it's worth doing.** (The third is where most "tarpit" ideas die — many have tried, few succeeded.)
 
 Operating questions:
+
 - "What's missing or broken in your daily life?"
 - "What do you wish someone would make for you?"
 - Are you **living in the future** in some domain? The gap between that future and the present is the idea.
@@ -87,6 +88,7 @@ The 4 steps:
 4. **Company Building** — transition from search to scale.
 
 The three founder questions:
+
 1. Do we *really* understand the customer's problem?
 2. Do enough people care to deliver a huge business?
 3. Will they care enough to *tell their friends*?
@@ -106,6 +108,7 @@ Anti-patterns to detect in your own interviews:
 - **Ideas** — feature requests. The motivation behind the request is what matters, not the request itself.
 
 Good questions:
+
 - *"Why do you bother?"* (uncovers goals)
 - *"What else have you tried?"* (uncovers existing alternatives & willingness to pay)
 - *"Talk me through the last time that happened."* (uncovers actual workflow & friction)
@@ -285,6 +288,7 @@ The strongest evaluation question: *if a buyer compares this against [competitiv
 In a saturated market, **"adequate" is invisible.** Only **remarkable** products earn organic distribution. Remarkability is built *into the product*, not bolted onto marketing.
 
 Evaluation questions:
+
 - Is this idea **worth making a remark about**?
 - Would a stranger naturally tell another stranger about it?
 - Who is the **smallest viable audience** that will love it so much they evangelise? (Better 1,000 true fans than 1M tepid users.)
@@ -330,7 +334,7 @@ Despite different vocabularies, **eight themes** appear across nearly every fram
 
 > *Cagan: viability risk. Hormozi: value equation amplifiers. YC: default alive/dead. Bottom-up unit economics.*
 
-**Test:** Bottom-up math — # of customers × realistic price × realistic capture rate. Compare **lifetime value** (what one customer is worth over time) to **cost to acquire a customer** (ads, sales, outbound). Is lifetime value at least ~3× acquisition cost at a realistic price? Can you afford to acquire them? (See [`glossary.md`](glossary.md).)
+**Test:** Bottom-up math — # of customers × realistic price × realistic capture rate. Compare **lifetime value** (what one customer is worth over time) to **cost to acquire a customer** (ads, sales, outbound). Is lifetime value at least ~3× acquisition cost at a realistic price? Can you afford to acquire them? (See `[glossary.md](glossary.md)`.)
 
 ### Theme 7 — Distribution, not just product
 
@@ -348,14 +352,16 @@ Despite different vocabularies, **eight themes** appear across nearly every fram
 
 ## 4. Where the experts diverge (and what to do about it)
 
-| Dimension | Camp A | Camp B | How to reconcile |
-|---|---|---|---|
-| Origin of ideas | **PG, YC** — notice, don't think up; organic > engineered | **Aulet, Maurya** — disciplined process can produce great ideas | Most ideas the agent will be asked to evaluate already exist. Don't litigate origin; evaluate substance. |
-| Talk-to-customers first | **Blank, Fitzpatrick, Torres** — interview before anything | **PG, YC** — talk to users *while* building; just ship | Reconcile via stage: pre-MVP → interviews; once shippable, *interview + ship* in parallel weekly. |
-| Market size framing | **Aulet, Thiel** — small market first, dominate it | **Generic VC** — show a $1B+ TAM | Always do **bottom-up** TAM for the beachhead first; top-down only as sanity check. |
-| Build vs. demo | **Ries** — MVP that tests the riskiest assumption | **Maurya** — demo-sell-build, don't build until you've sold | Both agree: don't build the full product. The "MVP" can be a landing page, video, LOI, concierge service. |
-| 10× better | **Thiel** — must be 10× to dethrone incumbents | **Christensen** — better-on-the-job, not necessarily 10× on every axis | Be 10× better *on the axis the job rewards*, not 10× across the board. |
-| Differentiation | **Dunford** — frame yourself against alternatives | **Godin** — be so remarkable you create your own frame | Use Dunford to defend, Godin to attack. Both are forms of "be obviously different on something that matters." |
+
+| Dimension               | Camp A                                                     | Camp B                                                                 | How to reconcile                                                                                              |
+| ----------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Origin of ideas         | **PG, YC** — notice, don't think up; organic > engineered  | **Aulet, Maurya** — disciplined process can produce great ideas        | Most ideas the agent will be asked to evaluate already exist. Don't litigate origin; evaluate substance.      |
+| Talk-to-customers first | **Blank, Fitzpatrick, Torres** — interview before anything | **PG, YC** — talk to users *while* building; just ship                 | Reconcile via stage: pre-MVP → interviews; once shippable, *interview + ship* in parallel weekly.             |
+| Market size framing     | **Aulet, Thiel** — small market first, dominate it         | **Generic VC** — show a $1B+ TAM                                       | Always do **bottom-up** TAM for the beachhead first; top-down only as sanity check.                           |
+| Build vs. demo          | **Ries** — MVP that tests the riskiest assumption          | **Maurya** — demo-sell-build, don't build until you've sold            | Both agree: don't build the full product. The "MVP" can be a landing page, video, LOI, concierge service.     |
+| 10× better              | **Thiel** — must be 10× to dethrone incumbents             | **Christensen** — better-on-the-job, not necessarily 10× on every axis | Be 10× better *on the axis the job rewards*, not 10× across the board.                                        |
+| Differentiation         | **Dunford** — frame yourself against alternatives          | **Godin** — be so remarkable you create your own frame                 | Use Dunford to defend, Godin to attack. Both are forms of "be obviously different on something that matters." |
+
 
 ---
 
@@ -384,18 +390,20 @@ Pulled from the modern startup-failure literature, cross-referenced with the fra
 
 Combining all of the above into a single rubric. Each criterion is scored 0–5, with explicit anchors. Total = 50.
 
-| # | Criterion | Lens(es) | 0 — fatal | 5 — strong |
-|---|-----------|----------|-----------|------------|
-| 1 | **Problem clarity** | Blank, Olsen, Christensen | Vague "people struggle with X" | Specific person, specific trigger moment, in their own words |
-| 2 | **Pain severity** | Hormozi, Christensen, Fitzpatrick | Nice-to-have; no workaround in use | Existing workarounds / spend / pain visible; "hair on fire" |
-| 3 | **Demand evidence** | Ries, Maurya, YC, Fitzpatrick | Compliments from friends only | ≥3 strangers gave costly commitment (LOI / pre-pay / time) |
-| 4 | **Differentiation** | Thiel, Dunford, Godin | "Like X but cheaper / nicer" | 10× better on the axis the job rewards; not easily copyable |
-| 5 | **Beachhead viability** | Aulet, Olsen, Godin | "Everyone who…" | Same product, same sales cycle, word-of-mouth network |
-| 6 | **Business viability** | Cagan, YC | Lifetime value < cost to acquire at realistic price | Bottom-up math works at ≥~3:1 (lifetime value : acquisition cost) with credible channel |
-| 7 | **Distribution path** | Thiel, Godin | "We'll do content + ads" | One channel identified with credible unit economics or built-in virality |
-| 8 | **Timing / "why now"** | Thiel, PG | "It's always been a problem" | Specific recent shift (tech, regulation, behaviour) unlocks this |
-| 9 | **Founder–market fit** | PG, YC, Thiel | No domain advantage; built because it sounded cool | Founders live the problem, can build, see something others don't |
-| 10 | **Riskiest-assumption testability** | Ries, Torres, Maurya | Can't articulate what would prove it wrong | Riskiest assumption named + cheapest experiment designed |
+
+| #   | Criterion                           | Lens(es)                          | 0 — fatal                                           | 5 — strong                                                                              |
+| --- | ----------------------------------- | --------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| 1   | **Problem clarity**                 | Blank, Olsen, Christensen         | Vague "people struggle with X"                      | Specific person, specific trigger moment, in their own words                            |
+| 2   | **Pain severity**                   | Hormozi, Christensen, Fitzpatrick | Nice-to-have; no workaround in use                  | Existing workarounds / spend / pain visible; "hair on fire"                             |
+| 3   | **Demand evidence**                 | Ries, Maurya, YC, Fitzpatrick     | Compliments from friends only                       | ≥3 strangers gave costly commitment (LOI / pre-pay / time)                              |
+| 4   | **Differentiation**                 | Thiel, Dunford, Godin             | "Like X but cheaper / nicer"                        | 10× better on the axis the job rewards; not easily copyable                             |
+| 5   | **Beachhead viability**             | Aulet, Olsen, Godin               | "Everyone who…"                                     | Same product, same sales cycle, word-of-mouth network                                   |
+| 6   | **Business viability**              | Cagan, YC                         | Lifetime value < cost to acquire at realistic price | Bottom-up math works at ≥~3:1 (lifetime value : acquisition cost) with credible channel |
+| 7   | **Distribution path**               | Thiel, Godin                      | "We'll do content + ads"                            | One channel identified with credible unit economics or built-in virality                |
+| 8   | **Timing / "why now"**              | Thiel, PG                         | "It's always been a problem"                        | Specific recent shift (tech, regulation, behaviour) unlocks this                        |
+| 9   | **Founder–market fit**              | PG, YC, Thiel                     | No domain advantage; built because it sounded cool  | Founders live the problem, can build, see something others don't                        |
+| 10  | **Riskiest-assumption testability** | Ries, Torres, Maurya              | Can't articulate what would prove it wrong          | Riskiest assumption named + cheapest experiment designed                                |
+
 
 Interpretation (rough heuristic):
 
@@ -411,18 +419,12 @@ Interpretation (rough heuristic):
 A repeatable seven-step flow that the future skill will operationalise:
 
 1. **State the idea as a one-sentence hypothesis** in the form:
-   *"We believe [target customer] struggles with [problem] in [context], and would adopt [solution] because [unique value]."*
-
+  *"We believe [target customer] struggles with [problem] in [context], and would adopt [solution] because [unique value]."*
 2. **Map the Lean Canvas** (Maurya) — 20 minutes, by hand. Force every block.
-
 3. **Run customer-discovery conversations** (glossary) — ≥10 strangers in the segment, no pitching. Look for commitment + past behaviour. Confirm problem clarity and pain severity before solution fit.
-
 4. **Score against the 10-criterion rubric** (Section 6). Identify the three weakest criteria.
-
 5. **For each weak criterion, name the riskiest assumption** behind it and design the cheapest experiment that could falsify it (Torres / Ries). Build an Opportunity Solution Tree if there are competing solution paths.
-
 6. **Run the 7-question / 4-risks check** (Thiel + Cagan) as a "would this survive contact with reality?" gate. Specifically pressure-test value, viability, distribution, durability.
-
 7. **Decide: pursue / refine / pivot / kill.** Document the assumptions you're betting on and the evidence required to disconfirm them. Re-evaluate at the next milestone.
 
 ---
@@ -432,8 +434,8 @@ A repeatable seven-step flow that the future skill will operationalise:
 The live skill should:
 
 - **Trigger** when a user describes an idea, asks "is this a good business?", drops a one-liner pitch, or wants to validate a concept.
-- **Ask structured questions** per [`full-interview.md`](full-interview.md) and glossary § Customer discovery — past behaviour, not hypotheticals; force clarity on customer, problem, alternative, evidence.
-- **Score** on the 10-criterion rubric using [`scoring.md`](scoring.md); in user output, explain *what was checked*, not which author said it.
+- **Ask structured questions** per `[full-interview.md](full-interview.md)` and glossary § Customer discovery — past behaviour, not hypotheticals; force clarity on customer, problem, alternative, evidence.
+- **Score** on the 10-criterion rubric using `[scoring.md](scoring.md)`; in user output, explain *what was checked*, not which author said it.
 - **Flag red flags** from Section 5 in plain language.
 - **Recommend the next action** — almost always an experiment to falsify the weakest assumption, never "go build the thing."
 - **Refuse to validate** ideas with only friends-and-family evidence.
@@ -447,11 +449,13 @@ Do **not** add this section to `product-score-*.md` or chat unless the user expl
 Tiered roughly by where to start.
 
 **Tier 1 — start here**
+
 - Rob Fitzpatrick, *The Mom Test*
 - Paul Graham, *How to Get Startup Ideas* (free essay)
 - Eric Ries, *The Lean Startup*
 
 **Tier 2 — go deeper**
+
 - Steve Blank, *The Four Steps to the Epiphany*
 - Ash Maurya, *Running Lean* (3rd ed.)
 - Dan Olsen, *The Lean Product Playbook*
@@ -459,9 +463,11 @@ Tiered roughly by where to start.
 - Marty Cagan, *Inspired*
 
 **Tier 3 — strategic lenses**
+
 - Peter Thiel, *Zero to One*
 - Bill Aulet, *Disciplined Entrepreneurship*
 - April Dunford, *Obviously Awesome*
 - Clayton Christensen, *Competing Against Luck*
 - Alex Hormozi, *$100M Offers*
 - Seth Godin, *Purple Cow* (and *This Is Marketing*)
+
