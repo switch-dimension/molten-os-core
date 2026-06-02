@@ -9,24 +9,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Tag | When to use |
 | --- | --- |
-| **`v1.1.0`** (recommended) | Tag `main` today — includes the full skill pack, `molten-skill-manage`, MIT license, and the conversion-focused README with install prompts. |
+| **`v1.2.0`** (recommended) | Tag `main` today — adds `molten-validate`, surface-routed `molten-design`, README/changelog updates, and the full public skill pack. |
+| **`v1.1.0`** | Includes the full initial skill pack, `molten-skill-manage`, MIT license, and the conversion-focused README with install prompts. |
 | **`v1.0.0`** | Retroactive baseline if you prefer the first public tag to stop at 2026-05-29 (skills + MIT + banner/workflow only, before the June README pass). |
-| **`v1.2.0`** | Next minor release after committing pending `molten-brand` agent-tool portability updates (see [Unreleased]). |
 
 Per-skill versions in skill front matter (independent of repo tags):
 
 | Skill | Version in `SKILL.md` |
 | --- | --- |
 | molten-brand | 1.2.0 |
-| molten-design | 1.5.0 |
+| molten-design | 1.8.0 |
 | molten-landing | 1.2.0 |
 | molten-skill-manage | 1.0.0 |
+| molten-validate | 1.2.0 |
 
 ## [Unreleased]
 
+Nothing yet.
+
+## [1.2.0] - 2026-06-02
+
+Validation-first workflow and surface-specific design-system guidance.
+
+### Added
+
+- **molten-validate** — adversarial product-idea validation skill with quick score, full 5-round interview, and re-validation modes. Outputs reports to `molten-docs/validate/product-score-N.md`.
+- **molten-design:** Surface reference files for landing page, web product, mobile product, and desktop product design systems.
+
 ### Changed
 
-- **molten-brand:** Document agent-specific structured question tools (`AskQuestion`, `AskUserQuestion`, `request_user_input`) and microphone/dictation hint for discovery intake *(local changes, not yet on `main`)*.
+- README workflow now starts with **molten-validate** before brand, design, and landing page creation.
+- README skill table now lists all five discovered skills.
+- **molten-design:** Restructured into a shared routing spine plus surface-specific references, with one canonical `design.md` model using shared core tokens and a surface layer.
+
+## [1.1.1] - 2026-06-02
+
+Skill portability and design-reference workflow polish.
+
+### Changed
+
+- **molten-brand:** Document agent-specific structured question tools (`AskQuestion`, `AskUserQuestion`, `request_user_input`) and microphone/dictation hint for discovery intake.
+- **molten-design:** Added Pinterest visual-reference discovery, a design-surface first ask, and focused surface-specific Pinterest search terms.
 
 ## [1.1.0] - 2026-06-01
 

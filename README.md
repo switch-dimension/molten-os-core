@@ -2,9 +2,9 @@
 
 ![Molten OS Core banner](molten-os-banner.png)
 
-### Turn a raw product idea into a landing page you can test with real people — brand, design system, and page — in an afternoon, not a quarter.
+### Turn a raw product idea into a validated landing page you can test with real people — score, brand, design system, and page — in an afternoon, not a quarter.
 
-Molten OS Core is a set of AI agent skills from [Switch Dimension](https://switchdimension.com) and AI builder YouTuber [Rob Shocks](https://youtube.com/robshocks). It hands your coding agent the combined playbooks of branding and design thought leaders, codified into skills, so your idea gets its best possible first shot in front of a real audience.
+Molten OS Core is a set of AI agent skills from [Switch Dimension](https://switchdimension.com) and AI builder YouTuber [Rob Shocks](https://youtube.com/robshocks). It helps your coding agent challenge the idea first, then turn the strongest version into brand, design, and a landing page, so your product gets its best possible first shot in front of a real audience.
 
 Drop this prompt into your AI agent to get started:
 
@@ -14,9 +14,9 @@ install all the skills in this repo to my project - https://github.com/switch-di
 
 > Released under the MIT license — copy it, fork it, and use it as inspiration for your own evolving system. [Full install options below.](#installation)
 
-## Why start with a landing page?
+## Why validate before building?
 
-One of the fastest, cheapest ways to de-risk an idea is to put a landing page in front of real people. A good landing page is a sharper test than a pitch deck or a business plan, because it forces you to answer the questions that actually decide whether a product works:
+One of the fastest, cheapest ways to de-risk an idea is to pressure-test the assumptions, then put the strongest version in front of real people. A good validation pass and landing page are sharper tests than a pitch deck or a business plan, because they force you to answer the questions that actually decide whether a product works:
 
 - **Who** is this for?
 - **What** pain are they feeling?
@@ -29,12 +29,13 @@ Even in the age of AI, doing this well is slow and easy to get wrong. Molten OS 
 
 ## What you get
 
-Three core skills that build on each other, plus a helper for managing them:
+Four product skills that build on each other, plus a helper for managing them:
 
 | Skill              | What it does for you                                                                                                                              |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **molten-validate** | Adversarially scores a product idea with quick, full-interview, or re-validation modes; writes `molten-docs/validate/product-score-N.md`.          |
 | **molten-brand**   | Pins down who you're for, the pain you solve, your positioning, message, and voice — written to `molten-docs/brand/brand.md`.                      |
-| **molten-design**  | Turns that brand into a practical design system in `molten-docs/design/design.md`, plus a live visual preview in `molten-docs/design/example.html`. |
+| **molten-design**  | Turns that brand into a practical design system for one surface at a time — landing, web, mobile, or desktop — plus a live visual preview.          |
 | **molten-landing** | Creates (or audits) a high-converting landing page from your brand and design system, so you can test the idea with an audience fast.              |
 | **molten-skill-manage** | Manages the skills themselves via the skills.sh CLI (`npx skills`) — install, update, remove, list, and find skills.                          |
 
@@ -44,9 +45,10 @@ Three core skills that build on each other, plus a helper for managing them:
 
 Molten works best as a simple sequence:
 
-1. **molten-brand** — give your idea a clear audience, position, message, and voice.
-2. **molten-design** — turn that brand into a look and feel you can build with.
-3. **molten-landing** — ship a landing page informed by both, ready for real visitors.
+1. **molten-validate** — pressure-test the idea, score the evidence, and define the riskiest assumption to test.
+2. **molten-brand** — give a promising idea a clear audience, position, message, and voice.
+3. **molten-design** — turn that brand into a focused visual system for one surface: landing page, web product, mobile product, or desktop product.
+4. **molten-landing** — ship a landing page informed by both, ready for real visitors.
 
 Together these take a product idea to market quickly, with enough clarity and polish to test it with real people.
 
@@ -74,7 +76,7 @@ All skills use the **`molten-<name>`** convention so they are easy to distinguis
 
 ## Changelog
 
-Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v1.1.0**.
+Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v1.2.0**.
 
 ## License
 

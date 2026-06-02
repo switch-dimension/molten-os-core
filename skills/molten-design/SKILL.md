@@ -1,9 +1,9 @@
 ---
 name: molten-design
-description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by asking whether this is for a landing page, web product, or mobile product (one surface at a time), then whether the user wants a fast opinionated draft or a more detailed guided pass, unless they already chose. Do not use for brand strategy or messaging; use molten-brand for those."
+description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by choosing one design surface (landing page, web product, mobile product, or desktop product), then load the matching surface reference and ask whether the user wants a fast draft or detailed pass. Do not use for brand strategy or messaging; use molten-brand for those."
 metadata:
   author: switch-dimension
-  version: "1.7.1"
+  version: "1.8.0"
   molten-suite: molten-os
   molten-tier: core
   molten-order: "3"
@@ -23,7 +23,7 @@ This skill is the visual counterpart to **molten-brand**. Brand strategy lives i
 
 ## First Ask: Design Surface
 
-At the start of every run, establish **one design surface** for this session. Do not blend landing-page marketing UI with web-app or mobile-app product UI in the same `design.md`.
+At the start of every run, establish **one design surface** for this session. Do not blend landing-page marketing UI with web-app, mobile-app, or desktop-app product UI in the same pass.
 
 Skip this ask only when the user already named the surface clearly (e.g. "landing page design system", "mobile app UI", "SaaS dashboard").
 
@@ -36,29 +36,36 @@ Options:
 - **Landing page** — marketing / conversion pages (hero, sections, CTAs); pairs with **molten-landing**
 - **Web product** — browser-based app UI (dashboards, forms, nav, dense workflows)
 - **Mobile product** — phone-first app UI (lists, tabs, thumb zones, native-like patterns)
+- **Desktop product** — desktop app UI (window chrome, menus, multi-pane workflows, keyboard-heavy use)
 - **Choose for me — infer from brand.md and context** (`id: choose_for_me`)
 
 When the user picks **Choose for me**, infer from `brand.md` and their prompt:
 
 - Marketing site, waitlist, launch, or single-page conversion → **Landing page**
-- SaaS, admin, developer tool, internal tool, dashboard → **Web product**
-- Consumer app, field tool, on-the-go workflow → **Mobile product** (or **Web product** if they said responsive web app only)
+- SaaS, admin, developer tool, internal tool, dashboard, or responsive browser app → **Web product**
+- Consumer app, field tool, or on-the-go phone-first workflow → **Mobile product**
+- Electron, native desktop app, menu bar, command palette, IDE/tooling, or keyboard-heavy multi-window app → **Desktop product**
 
 State the choice and one-sentence reason before continuing.
+
+## Surface Reference Routing
+
+After the design surface is chosen, read exactly one surface reference before Pinterest, token, component, or preview decisions:
+
+| Chosen surface | Required reference |
+| --- | --- |
+| Landing page | `references/landing-page.md` |
+| Web product | `references/web-app.md` |
+| Mobile product | `references/mobile-app.md` |
+| Desktop product | `references/desktop-app.md` |
+
+These references contain the surface-specific guidance: layout, density, component set, Pinterest search anchors, preview slice, and surface do's/don'ts. Keep `SKILL.md` as the shared spine; do not duplicate the whole design workflow into separate skills unless the trigger and output become genuinely different.
 
 ### One surface at a time
 
 - Scope **every** decision in this run — tokens, components, Pinterest searches, `example.html`, and Do's and Don'ts — to the chosen surface only.
 - Record the surface in the **Overview** and **Assumptions** sections of `design.md` (example: `Design surface: landing page`).
-- If the user needs more than one surface (e.g. landing page **and** web app), finish this run for the chosen surface, then tell them to run **molten-design** again for the other surface. Do not expand scope mid-session.
-
-### How each surface changes the system
-
-| Surface | Prioritize | De-emphasize in this run |
-|--------|------------|---------------------------|
-| **Landing page** | Display type, hero hierarchy, section rhythm, CTA buttons, proof blocks, marketing whitespace | App chrome, data tables, complex nav shells |
-| **Web product** | App layout, nav/sidebar, forms, cards, tables, modals, focus states, dense information UI | Long-scroll marketing sections, campaign hero patterns |
-| **Mobile product** | Touch targets (min 44px), bottom nav / tab bar, list rows, single-column flow, safe areas, thumb reach | Hover-dependent patterns, wide multi-column dashboards |
+- If the user needs more than one surface (e.g. landing page **and** web app), finish this run for the chosen surface, then run **molten-design** again for the next surface. Do not expand scope mid-session.
 
 ## First Ask: Fast Or Detailed
 
@@ -75,14 +82,15 @@ Use the structured question tool with exactly these two choices for the workflow
 
 If the user chooses **Fast draft**, use this flow:
 
-1. Confirm **design surface** (landing page, web product, or mobile product).
-2. Read the brand brief and any existing UI styles.
-3. Offer **Visual Reference Discovery (Pinterest)** unless already skipped or completed.
-4. Ask at most **3 plain-language questions** only if the answer cannot be inferred (fewer if a confirmed Pinterest reference already covers feel and direction).
-5. Make the design decisions yourself — scoped to the chosen surface.
-6. Write `molten-docs/design/design.md`.
-7. Write `molten-docs/design/example.html`.
-8. List assumptions so the user can react to a concrete draft.
+1. Confirm **design surface** (landing page, web product, mobile product, or desktop product).
+2. Read the matching surface reference from `references/`.
+3. Read the brand brief, existing `design.md` if present, and any existing UI styles.
+4. Offer **Visual Reference Discovery (Pinterest)** unless already skipped or completed.
+5. Ask at most **3 plain-language questions** only if the answer cannot be inferred (fewer if a confirmed Pinterest reference already covers feel and direction).
+6. Make the design decisions yourself — scoped to the chosen surface.
+7. Write or update `molten-docs/design/design.md`.
+8. Write `molten-docs/design/example.html`.
+9. List assumptions so the user can react to a concrete draft.
 
 In Fast draft mode, do **not** ask questions like:
 
@@ -116,9 +124,10 @@ Even in the detailed path, start with plain-language choices and translate the a
 ## Operating Rules
 
 - **Read the brand brief before design decisions:** `molten-docs/brand/brand.md`, then legacy `brand.md` at the project root or `/docs/brand.md`. Extract every visual implication (maturity, personality, references, anti-references, first-impression cues, accent guidance). Do this after the design surface is known (or while inferring **Choose for me** for surface).
+- **Read the matching surface reference before design decisions:** `references/landing-page.md`, `references/web-app.md`, `references/mobile-app.md`, or `references/desktop-app.md`.
 - Ask the **design surface** question at the start of every run unless already clear from the user's prompt.
 - Ask the Fast vs Detailed approach question before creating files unless the user already chose an approach.
-- Scope the entire run to **one** surface (landing page, web product, or mobile product). Never mix surfaces in one `design.md`.
+- Scope the entire run to **one** surface (landing page, web product, mobile product, or desktop product). Never mix surfaces in one pass.
 - Ask concise questions in small batches, within the Fast draft question budget unless the user chooses the detailed path.
 - Prefer inference over questions. Use the structured question tool only when choices are plain-language and genuinely reduce user effort.
 - **Structured question tool by agent:**
@@ -149,7 +158,7 @@ In Fast draft mode, use the structured question tool (`request_user_input` / `As
 
 Examples of good structured-question prompts in this skill:
 
-- Design surface: landing page / web product / mobile product
+- Design surface: landing page / web product / mobile product / desktop product
 - Overall feel in plain language, such as serious / friendly / premium / energetic / calm / utilitarian
 - Product type, such as SaaS app / marketing site / developer tool / consumer app / internal tool
 - Visual archetype, such as Calm SaaS / Premium Editorial / Developer Tool / Friendly Consumer / Bold Launch Page
@@ -214,6 +223,24 @@ After the **design surface** is chosen (or inferred), and before Pinterest or to
 3. Use the extracted visual signal directly. Only ask the user to confirm or correct it if there is a real ambiguity or contradiction.
 4. If `brand.md` is missing, ask the user whether to run **molten-brand** first (recommended) or proceed without it.
 
+## Existing Design Briefs And Surface Layers
+
+Use one canonical design brief at **`molten-docs/design/design.md`**. Do not create separate unrelated design systems for landing, web, mobile, and desktop unless the user explicitly asks for separate brands.
+
+Structure the output as:
+
+- **Shared core:** colors, semantic colors, typography families, base type scale, radius philosophy, spacing base, motion principles, iconography, accessibility defaults.
+- **Surface layer:** layout, density, component set, navigation patterns, section patterns, interaction states, and preview slice for the chosen surface.
+
+If `molten-docs/design/design.md` already exists:
+
+1. Read it before making new token decisions.
+2. Treat shared core tokens as locked unless the user explicitly asks to redesign the brand system.
+3. Add or update only the chosen **surface layer**.
+4. Record the inheritance in **Assumptions**: `Shared core inherited from existing design.md; updated surface layer: [surface]`.
+
+If this is the first design run, create a complete `design.md` for the chosen surface and label which decisions are shared core vs. surface layer so future surface passes can inherit the core.
+
 ## Visual Reference Discovery (Pinterest)
 
 After ingesting `brand.md`, curate Pinterest inspiration **before** locking design tokens or writing `design.md`. This gives non-designers concrete visual direction without asking them to articulate taste in design-system jargon.
@@ -222,45 +249,17 @@ Do not write `design.md` until this phase is complete (reference confirmed) or e
 
 ### Generate 5 Pinterest search terms
 
-Derive **exactly five** search terms from `brand.md`, the chosen **design surface**, and any plain-language feel answers already given. Do this **before** presenting the phase to the user.
-
-**Keep all five terms inside one surface.** Do not spread searches across unrelated concepts (palette-only, generic typography, abstract mood boards, editorial print, logo marks, etc.). Every term must clearly read as the chosen surface type.
+Derive **exactly five** search terms from `brand.md`, the chosen **design surface**, any plain-language feel answers already given, and the **Pinterest search angles** in the selected surface reference. Do this **before** presenting the phase to the user.
 
 Rules:
 
-- **Landing page:** every term must include landing-page language (`landing page`, `marketing site`, `startup website`, `sales page`, `waitlist page`, or similar). Vary *within* landing-page patterns — hero, sections, CTA, social proof, full-page layout — not across unrelated domains.
-- **Web product:** every term must include web-app language (`web app ui`, `dashboard ui`, `saas interface`, `admin panel`, `app dashboard`, or similar). Vary *within* app UI patterns — nav/shell, cards, forms, data views, settings — not marketing or mobile terms.
-- **Mobile product:** every term must include mobile-app language (`mobile app ui`, `ios app design`, `android app ui`, `mobile interface`, or similar). Vary *within* mobile patterns — home, lists, tab bar, onboarding, profile — not desktop dashboard or landing-page terms.
-- Add **one** brand/context modifier from `brand.md` where natural (category, feel, B2B/B2C, dark/light) — but the surface anchor words stay mandatory in every term.
+- Keep all five terms inside the chosen surface. Do not spread searches across unrelated concepts (palette-only, generic typography, abstract mood boards, editorial print, logo marks, etc.).
+- Use the anchor words and example patterns from the selected surface reference.
+- Add **one** brand/context modifier from `brand.md` where natural (category, feel, B2B/B2C, dark/light), but the surface anchor words stay mandatory in every term.
 - Keep terms **3–6 words**, visual and Pinterest-friendly — not abstract strategy words ("modern", "premium", "aesthetic" alone).
 - **Exclude** anti-references and things the user said to avoid.
-- Do not duplicate the same pattern twice (five hero-only searches is too narrow; five different landing-page sections is right).
-
-Example for a calm developer SaaS **web product** (all app UI):
-
-1. `minimal saas dashboard ui`
-2. `developer web app interface`
-3. `clean admin panel design`
-4. `saas app sidebar navigation ui`
-5. `dark mode web app dashboard`
-
-Example for the same brand as a **landing page** (all marketing page):
-
-1. `saas landing page design`
-2. `b2b startup landing page hero`
-3. `minimal saas marketing website`
-4. `landing page cta section design`
-5. `developer tool landing page layout`
-
-Example for the same brand as a **mobile product** (all mobile app):
-
-1. `minimal productivity mobile app ui`
-2. `ios saas app home screen`
-3. `mobile app dashboard design`
-4. `clean mobile app list ui`
-5. `dark mode mobile app interface`
-
-If the five terms do not all clearly belong to the chosen surface, rewrite them before showing the list to the user.
+- Do not duplicate the same pattern twice; vary within the chosen surface's patterns.
+- If the five terms do not all clearly belong to the chosen surface, rewrite them before showing the list to the user.
 
 ### Offer the phase
 
@@ -273,6 +272,7 @@ In chat, say something like:
 > I've collected some visual inspiration for you on Pinterest that aligns with your brand. I can open those for you to take a look and pick one example as a favourite to aid design direction.
 >
 > Here are the five searches I put together:
+>
 > 1. …
 > 2. …
 > 3. …
@@ -342,6 +342,8 @@ Options:
 - **Different reference — I'll paste another image**
 - **Skip reference — use brand.md only**
 
+Then:
+
 - **Yes:** map the adopted signals into concrete YAML tokens and prose in `design.md`. Record in **Assumptions**: `Visual reference: user-selected pin → [one-line summary of adopted signals]`.
 - **Adjust:** take their correction, revise the interpretation, and ask again until they confirm or skip.
 - **Different reference:** repeat interpret + confirmation with the new image only (still one reference at a time).
@@ -361,7 +363,12 @@ Even in the detailed second pass, prefer plain-language questions first. Transla
 
 When enough information is gathered, write the file at **`molten-docs/design/design.md`** with this structure. The YAML front matter is normative; the prose is rationale.
 
-````markdown
+The file should clearly separate:
+
+- **Shared core:** reusable brand system tokens and principles that should remain stable across landing, web, mobile, and desktop surfaces.
+- **Surface layer:** the chosen surface's layout, density, component priorities, and preview guidance.
+
+```markdown
 ---
 version: alpha
 name: [Design System Name]
@@ -435,11 +442,15 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 
 ## Overview
 
-[Holistic description of look and feel. Personality, target audience, emotional response. Reference brand.md. State the design surface — landing page, web product, or mobile product — and what this system optimizes for.]
+[Holistic description of look and feel. Personality, target audience, emotional response. Reference brand.md. State the design surface — landing page, web product, mobile product, or desktop product — and what this system optimizes for.]
+
+## Shared Core
+
+[Describe the stable cross-surface choices: color philosophy, type family pairing, radius philosophy, spacing base, motion posture, iconography posture, and accessibility defaults. If this file inherited an existing shared core, say so.]
 
 ## Colors
 
-[Prose describing each key palette with its role. One bullet per palette, named with descriptive language (e.g. "Midnight Forest Green") and the hex from tokens.]
+[Shared core. Prose describing each key palette with its role. One bullet per palette, named with descriptive language (e.g. "Midnight Forest Green") and the hex from tokens.]
 
 - **Primary (#RRGGBB):** [Role and when to use]
 - **Secondary (#RRGGBB):** [Role and when to use]
@@ -448,7 +459,7 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 
 ## Typography
 
-[Prose describing the type strategy. Family choices and their roles.]
+[Shared core. Prose describing the type strategy. Family choices and their roles.]
 
 - **Headlines:** [Family, weight, voice it creates]
 - **Body:** [Family, size, readability decisions]
@@ -456,7 +467,7 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 
 ## Layout
 
-[Grid model, max width, spacing rhythm, containment strategy.]
+[Surface layer. Grid model, max width, spacing rhythm, containment strategy for the chosen surface. Use the selected `references/*.md` file.]
 
 ## Elevation & Depth
 
@@ -468,7 +479,7 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 
 ## Components
 
-[Per-component prose: anatomy, variants, states, accessibility notes. Token specifics live in front matter. Include only components relevant to the chosen surface — e.g. hero/CTA/proof for landing page; nav/forms/tables for web product; tab bar/list rows/FAB for mobile product.]
+[Surface layer. Per-component prose: anatomy, variants, states, accessibility notes. Token specifics live in front matter. Include only components relevant to the chosen surface from the selected reference — e.g. hero/CTA/proof for landing page; nav/forms/tables for web product; tab bar/list rows/FAB for mobile product; window chrome/menus/panes for desktop product.]
 
 ### Buttons
 
@@ -512,10 +523,12 @@ Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for 
 
 ### Assumptions
 - [Assumption made due to missing information]
+- [Design surface: chosen surface]
+- [Shared core: newly created or inherited from existing design.md]
 
 ### Next Step
 Reference `molten-docs/design/design.md` from your agent config (CLAUDE.md, AGENTS.md, `.cursor/rules/`) so it loads every session. Validate with `npx @google/design.md lint molten-docs/design/design.md`.
-````
+```
 
 ## Generate `molten-docs/design/example.html`
 
@@ -547,6 +560,7 @@ The preview should include:
   - **Landing page:** hero + CTA + one proof/feature section
   - **Web product:** nav/sidebar slice with cards, form, or table
   - **Mobile product:** phone-width frame (~390px), status/header area, list or tab bar, thumb-friendly controls
+  - **Desktop product:** desktop-width app window with title/menu area, sidebar or split pane, and keyboard-oriented control surface
 
 Use this structure:
 
@@ -588,7 +602,7 @@ Prefer real-looking labels over placeholders. For example, "Start project", "Boo
 Before finalizing `molten-docs/design/design.md`, verify:
 
 - YAML front matter is valid (matching `---` fences, no duplicate keys).
-- Sections appear in spec order (Overview, Colors, Typography, Layout, Elevation & Depth, Shapes, Components, Do's and Don'ts), with extensions appended after.
+- Sections appear in spec order (Overview, Shared Core, Colors, Typography, Layout, Elevation & Depth, Shapes, Components, Do's and Don'ts), with extensions appended after.
 - A `primary` color is defined (linter warns otherwise).
 - All `{token.path}` references resolve to a defined token.
 - WCAG AA contrast holds for every text/background pair used by components.
@@ -597,7 +611,9 @@ Before finalizing `molten-docs/design/design.md`, verify:
 - Component variants use sibling keys (`button-primary-hover`), not nesting.
 - Do's and Don'ts is five rules and each is specific (no vague taste words).
 - Brand strategy, persona, and voice are *not* defined here; they live in `molten-docs/brand/brand.md`.
-- The chosen design surface (landing page, web product, or mobile product) is stated in Overview and Assumptions; the file does not try to serve multiple surfaces at once.
+- The chosen design surface (landing page, web product, mobile product, or desktop product) is stated in Overview and Assumptions; the current pass does not try to serve multiple surfaces at once.
+- Shared core decisions are labeled and preserved when extending an existing `design.md`.
+- Surface-layer decisions match the selected reference file.
 - Every decision the user delegated via "Choose for me" appears in the *Assumptions* section with the one-sentence rationale that was given at the time.
 - If a Pinterest reference was confirmed, the *Assumptions* section records the adopted visual signals in one line.
 - Remaining assumptions are explicitly listed.
@@ -616,4 +632,4 @@ If linter findings appear, walk through them with the user before treating the f
 
 ## Reference
 
-For deeper background on the spec, token schema, linter rules, and authoring principles, see the project's `design-md-research.md` if present, or the canonical spec at https://github.com/google-labs-code/design.md.
+For deeper background on the spec, token schema, linter rules, and authoring principles, see the project's `design-md-research.md` if present, or the canonical spec at [https://github.com/google-labs-code/design.md](https://github.com/google-labs-code/design.md).
