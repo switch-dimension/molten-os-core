@@ -5,6 +5,7 @@ metadata:
   author: switch-dimension
   version: "1.2.0"
   molten-suite: molten-os
+  molten-category: product
   molten-tier: pro
   molten-order: "1"
   molten-requires: molten-os-core

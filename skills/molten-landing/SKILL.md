@@ -5,6 +5,7 @@ metadata:
   author: switch-dimension
   version: "1.2.0"
   molten-suite: molten-os
+  molten-category: product
   molten-tier: core
   molten-order: "4"
 ---

@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Tag | When to use |
 | --- | --- |
-| **`v1.3.0`** (recommended) | Tag `main` today — adds `molten-search` search router skill. |
+| **`v1.3.1`** (recommended) | Tag `main` today — README product/utility split and `molten-category` metadata. |
+| **`v1.3.0`** | Adds `molten-search` search router skill. |
 | **`v1.2.0`** | Adds `molten-validate`, surface-routed `molten-design`, README/changelog updates, and the full public skill pack. |
 | **`v1.1.0`** | Includes the full initial skill pack, `molten-skill-manage`, MIT license, and the conversion-focused README with install prompts. |
 | **`v1.0.0`** | Retroactive baseline if you prefer the first public tag to stop at 2026-05-29 (skills + MIT + banner/workflow only, before the June README pass). |
@@ -22,12 +23,27 @@ Per-skill versions in skill front matter (independent of repo tags):
 | molten-design | 1.8.0 |
 | molten-landing | 1.2.0 |
 | molten-search | 1.0.0 |
-| molten-skill-manage | 1.0.0 |
+| molten-skill-manage | 1.1.0 |
 | molten-validate | 1.2.0 |
 
 ## [Unreleased]
 
 Nothing yet.
+
+## [1.3.1] - 2026-08-25
+
+Product vs utility skill taxonomy.
+
+### Added
+
+- **`molten-category` metadata** — `product` for pipeline skills (validate → brand → design → landing); `utility` for cross-cutting helpers (search, skill-manage).
+- **molten-skill-manage:** Skill taxonomy section documenting product vs utility conventions.
+
+### Changed
+
+- README split into **Product skills** and **Utility skills** sections; workflow diagram covers product pipeline only.
+- README install examples for product-only and utility-only installs.
+- Utility skills no longer carry `molten-order` in front matter.
 
 ## [1.3.0] - 2026-08-25
 

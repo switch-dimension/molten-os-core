@@ -3,10 +3,10 @@ name: molten-skill-manage
 description: Molten OS Core — manage agent skills with the skills.sh CLI (`npx skills`). Use to install, add, update, upgrade, remove, list, or find skills, restore from a lockfile, or scaffold a new skill. Trigger when the user mentions skills.sh, the skills CLI, `npx skills`, or asks to add/install/update/remove/list skills.
 metadata:
   author: switch-dimension
-  version: "1.0.0"
+  version: "1.1.0"
   molten-suite: molten-os
+  molten-category: utility
   molten-tier: core
-  molten-order: "1"
 ---
 
 # Managing Skills
@@ -107,3 +107,21 @@ npx skills experimental_install
 ## Naming Convention
 
 Skills in this suite use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`. When scaffolding a new Molten skill, follow that prefix.
+
+## Skill taxonomy
+
+Molten OS Core skills fall into two categories. Set `molten-category` in skill front matter when adding or editing a skill.
+
+| Category | Skills | `molten-order` | Purpose |
+| --- | --- | --- | --- |
+| **product** | molten-validate, molten-brand, molten-design, molten-landing | Required (`"1"`–`"4"`) | Sequential pipeline; writes artifacts to `molten-docs/` |
+| **utility** | molten-search, molten-skill-manage | Omit | Cross-cutting helpers; use anytime, not part of the product workflow |
+
+**Product skills** run in order and build on each other. **Utility skills** are optional — install only what you need.
+
+When scaffolding a new skill:
+
+- Product skill → `molten-category: product`, assign the next `molten-order`
+- Utility skill → `molten-category: utility`, no `molten-order`
+
+Keep all skills in flat `skills/molten-<name>/` paths so `npx skills add` discovers them correctly.

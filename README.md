@@ -29,16 +29,29 @@ Even in the age of AI, doing this well is slow and easy to get wrong. Molten OS 
 
 ## What you get
 
-Four product skills that build on each other, plus search routing and a helper for managing skills:
+Molten OS Core has two kinds of skills: a **product pipeline** that takes an idea to a testable landing page, and **utility skills** you can use anytime.
 
-| Skill              | What it does for you                                                                                                                              |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **molten-search**  | Routes search and research queries to the right backend — quick web lookup, recent social pulse, platform-specific fetch, or cited web research.   |
-| **molten-validate** | Adversarially scores a product idea with quick, full-interview, or re-validation modes; writes `molten-docs/validate/product-score-N.md`.          |
-| **molten-brand**   | Pins down who you're for, the pain you solve, your positioning, message, and voice — written to `molten-docs/brand/brand.md`.                      |
-| **molten-design**  | Turns that brand into a practical design system for one surface at a time — landing, web, mobile, or desktop — plus a live visual preview.          |
-| **molten-landing** | Creates (or audits) a high-converting landing page from your brand and design system, so you can test the idea with an audience fast.              |
-| **molten-skill-manage** | Manages the skills themselves via the skills.sh CLI (`npx skills`) — install, update, remove, list, and find skills.                          |
+### Product skills
+
+Run these in order. Each step writes artifacts under `molten-docs/`.
+
+| Skill | What it does for you |
+| --- | --- |
+| **molten-validate** | Adversarially scores a product idea with quick, full-interview, or re-validation modes; writes `molten-docs/validate/product-score-N.md`. |
+| **molten-brand** | Pins down who you're for, the pain you solve, your positioning, message, and voice — written to `molten-docs/brand/brand.md`. |
+| **molten-design** | Turns that brand into a practical design system for one surface at a time — landing, web, mobile, or desktop — plus a live visual preview. |
+| **molten-landing** | Creates (or audits) a high-converting landing page from your brand and design system, so you can test the idea with an audience fast. |
+
+### Utility skills
+
+Cross-cutting helpers. Not part of the product workflow — install and use as needed.
+
+| Skill | What it does for you |
+| --- | --- |
+| **molten-search** | Routes search and research queries to the right backend — quick web lookup, recent social pulse, platform-specific fetch, or cited web research. |
+| **molten-skill-manage** | Manages skills via the skills.sh CLI (`npx skills`) — install, update, remove, list, and find skills. |
+
+Use **molten-search** during validation for competitor or market research. Use **molten-skill-manage** to install or update skills in a project.
 
 ## How it works
 
@@ -73,11 +86,23 @@ Install a single skill:
 npx skills add switch-dimension/molten-os-core --skill molten-landing
 ```
 
+Install product skills only:
+
+```bash
+npx skills add switch-dimension/molten-os-core --skill molten-validate molten-brand molten-design molten-landing
+```
+
+Install utility skills only:
+
+```bash
+npx skills add switch-dimension/molten-os-core --skill molten-search molten-skill-manage
+```
+
 All skills use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
 
 ## Changelog
 
-Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v1.3.0**.
+Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v1.3.1**.
 
 ## License
 

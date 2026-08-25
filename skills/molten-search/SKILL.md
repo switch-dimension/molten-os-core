@@ -5,8 +5,8 @@ metadata:
   author: switch-dimension
   version: "1.0.0"
   molten-suite: molten-os
+  molten-category: utility
   molten-tier: core
-  molten-order: "0"
 ---
 
 # Molten Search
