@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Tag | When to use |
 | --- | --- |
-| **`v1.2.0`** (recommended) | Tag `main` today — adds `molten-validate`, surface-routed `molten-design`, README/changelog updates, and the full public skill pack. |
+| **`v1.3.0`** (recommended) | Tag `main` today — adds `molten-search` search router skill. |
+| **`v1.2.0`** | Adds `molten-validate`, surface-routed `molten-design`, README/changelog updates, and the full public skill pack. |
 | **`v1.1.0`** | Includes the full initial skill pack, `molten-skill-manage`, MIT license, and the conversion-focused README with install prompts. |
 | **`v1.0.0`** | Retroactive baseline if you prefer the first public tag to stop at 2026-05-29 (skills + MIT + banner/workflow only, before the June README pass). |
 
@@ -20,12 +21,21 @@ Per-skill versions in skill front matter (independent of repo tags):
 | molten-brand | 1.2.0 |
 | molten-design | 1.8.0 |
 | molten-landing | 1.2.0 |
+| molten-search | 1.0.0 |
 | molten-skill-manage | 1.0.0 |
 | molten-validate | 1.2.0 |
 
 ## [Unreleased]
 
 Nothing yet.
+
+## [1.3.0] - 2026-08-25
+
+Search routing for live web and social research during product work.
+
+### Added
+
+- **molten-search** — routes search and research queries to Cursor WebSearch, last30days, agent-reach, or parallel-cli web search.
 
 ## [1.2.0] - 2026-06-02
 

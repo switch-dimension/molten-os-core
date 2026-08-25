@@ -29,10 +29,11 @@ Even in the age of AI, doing this well is slow and easy to get wrong. Molten OS 
 
 ## What you get
 
-Four product skills that build on each other, plus a helper for managing them:
+Four product skills that build on each other, plus search routing and a helper for managing skills:
 
 | Skill              | What it does for you                                                                                                                              |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **molten-search**  | Routes search and research queries to the right backend — quick web lookup, recent social pulse, platform-specific fetch, or cited web research.   |
 | **molten-validate** | Adversarially scores a product idea with quick, full-interview, or re-validation modes; writes `molten-docs/validate/product-score-N.md`.          |
 | **molten-brand**   | Pins down who you're for, the pain you solve, your positioning, message, and voice — written to `molten-docs/brand/brand.md`.                      |
 | **molten-design**  | Turns that brand into a practical design system for one surface at a time — landing, web, mobile, or desktop — plus a live visual preview.          |
@@ -76,7 +77,7 @@ All skills use the **`molten-<name>`** convention so they are easy to distinguis
 
 ## Changelog
 
-Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v1.2.0**.
+Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v1.3.0**.
 
 ## License
 
