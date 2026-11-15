@@ -29,7 +29,7 @@ Even in the age of AI, doing this well is slow and easy to get wrong. Molten OS 
 
 ## What you get
 
-Molten OS Core has two kinds of skills: a **product pipeline** that takes an idea to a testable landing page, and **utility skills** you can use anytime.
+Molten OS Core has three kinds of skills: a **product pipeline** that takes an idea to a testable landing page, an **Agent Development Loop** that takes a feature from discovery to an implementation plan, and **utility skills** you can use anytime.
 
 ### Product skills
 
@@ -37,10 +37,21 @@ Run these in order. Each step writes artifacts under `molten-docs/`.
 
 | Skill | What it does for you |
 | --- | --- |
-| **molten-validate** | Adversarially scores a product idea with quick, full-interview, or re-validation modes; writes `molten-docs/validate/product-score-N.md`. |
-| **molten-brand** | Pins down who you're for, the pain you solve, your positioning, message, and voice — written to `molten-docs/brand/brand.md`. |
-| **molten-design** | Turns that brand into a practical design system for one surface at a time — landing, web, mobile, or desktop — plus a live visual preview. |
-| **molten-landing** | Creates (or audits) a high-converting landing page from your brand and design system, so you can test the idea with an audience fast. |
+| **mt-validate** | Adversarially scores a product idea with quick, full-interview, or re-validation modes; writes `molten-docs/validate/product-score-N.md`. |
+| **mt-brand** | Pins down who you're for, the pain you solve, your positioning, message, and voice — written to `molten-docs/brand/brand.md`. |
+| **mt-design** | Turns that brand into a practical design system for one surface at a time — landing, web, mobile, or desktop — plus a live visual preview. |
+| **mt-landing** | Creates (or audits) a high-converting landing page from your brand and design system, so you can test the idea with an audience fast. |
+
+### Agent Development Loop
+
+Run these in order when building a feature with your coding agent. Each step writes artifacts under `molten-docs/`.
+
+| Skill | What it does for you |
+| --- | --- |
+| **mt-discovery** | Explores the problem before any code — goals, users, constraints, codebase context, and the riskiest unknown; writes `molten-docs/discovery/<slug>.md`. |
+| **mt-prototype** | Builds a fast, throwaway prototype to answer the riskiest question, then records what was learned in `molten-docs/prototype/<slug>.md`. |
+| **mt-spec** | Turns discovery and prototype learnings into a testable spec with acceptance criteria; writes `molten-docs/spec/<slug>.md`. |
+| **mt-plan** | Converts the approved spec into an ordered, agent-executable implementation plan; writes `molten-docs/plan/<slug>.md`. |
 
 ### Utility skills
 
@@ -48,10 +59,10 @@ Cross-cutting helpers. Not part of the product workflow — install and use as n
 
 | Skill | What it does for you |
 | --- | --- |
-| **molten-search** | Routes search and research queries to the right backend — quick web lookup, recent social pulse, platform-specific fetch, or cited web research. |
-| **molten-skill-manage** | Manages skills via the skills.sh CLI (`npx skills`) — install, update, remove, list, and find skills. |
+| **mt-search** | Routes search and research queries to the right backend — quick web lookup, recent social pulse, platform-specific fetch, or cited web research. |
+| **mt-skill-manage** | Manages skills via the skills.sh CLI (`npx skills`) — install, update, remove, list, and find skills. |
 
-Use **molten-search** during validation for competitor or market research. Use **molten-skill-manage** to install or update skills in a project.
+Use **mt-search** during validation for competitor or market research. Use **mt-skill-manage** to install or update skills in a project.
 
 ## How it works
 
@@ -59,10 +70,10 @@ Use **molten-search** during validation for competitor or market research. Use *
 
 Molten works best as a simple sequence:
 
-1. **molten-validate** — pressure-test the idea, score the evidence, and define the riskiest assumption to test.
-2. **molten-brand** — give a promising idea a clear audience, position, message, and voice.
-3. **molten-design** — turn that brand into a focused visual system for one surface: landing page, web product, mobile product, or desktop product.
-4. **molten-landing** — ship a landing page informed by both, ready for real visitors.
+1. **mt-validate** — pressure-test the idea, score the evidence, and define the riskiest assumption to test.
+2. **mt-brand** — give a promising idea a clear audience, position, message, and voice.
+3. **mt-design** — turn that brand into a focused visual system for one surface: landing page, web product, mobile product, or desktop product.
+4. **mt-landing** — ship a landing page informed by both, ready for real visitors.
 
 Together these take a product idea to market quickly, with enough clarity and polish to test it with real people.
 
@@ -83,22 +94,28 @@ npx skills add switch-dimension/molten-os-core
 Install a single skill:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill molten-landing
+npx skills add switch-dimension/molten-os-core --skill mt-landing
 ```
 
 Install product skills only:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill molten-validate molten-brand molten-design molten-landing
+npx skills add switch-dimension/molten-os-core --skill mt-validate mt-brand mt-design mt-landing
+```
+
+Install Agent Development Loop skills only:
+
+```bash
+npx skills add switch-dimension/molten-os-core --skill mt-discovery mt-prototype mt-spec mt-plan
 ```
 
 Install utility skills only:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill molten-search molten-skill-manage
+npx skills add switch-dimension/molten-os-core --skill mt-search mt-skill-manage
 ```
 
-All skills use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
+All skills use the **`mt-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
 
 ## Changelog
 

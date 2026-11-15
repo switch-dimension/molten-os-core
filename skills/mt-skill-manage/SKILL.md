@@ -1,5 +1,5 @@
 ---
-name: molten-skill-manage
+name: mt-skill-manage
 description: Molten OS Core — manage agent skills with the skills.sh CLI (`npx skills`). Use to install, add, update, upgrade, remove, list, or find skills, restore from a lockfile, or scaffold a new skill. Trigger when the user mentions skills.sh, the skills CLI, `npx skills`, or asks to add/install/update/remove/list skills.
 metadata:
   author: switch-dimension
@@ -38,7 +38,7 @@ npx skills add switch-dimension/molten-os-core
 Install specific skills or target specific agents:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill molten-brand molten-design
+npx skills add switch-dimension/molten-os-core --skill mt-brand mt-design
 npx skills add switch-dimension/molten-os-core --agent claude-code cursor
 npx skills add switch-dimension/molten-os-core --all   # all skills, all agents, no prompts
 ```
@@ -53,7 +53,7 @@ npx skills add switch-dimension/molten-os-core --list
 
 ```bash
 npx skills update                 # update all
-npx skills update molten-landing  # update one
+npx skills update mt-landing  # update one
 npx skills update -p              # project skills only
 npx skills update -g              # global skills only
 ```
@@ -62,7 +62,7 @@ npx skills update -g              # global skills only
 
 ```bash
 npx skills remove                 # interactive picker
-npx skills remove molten-design
+npx skills remove mt-design
 npx skills remove --all           # remove all, all agents, no prompts
 ```
 
@@ -84,7 +84,7 @@ npx skills find landing
 **Scaffold a new skill** in this repo:
 
 ```bash
-npx skills init molten-<name>   # creates molten-<name>/SKILL.md
+npx skills init mt-<name>   # creates mt-<name>/SKILL.md
 ```
 
 **Restore from the lockfile** (`skills-lock.json`):
@@ -106,22 +106,24 @@ npx skills experimental_install
 
 ## Naming Convention
 
-Skills in this suite use the **`molten-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`. When scaffolding a new Molten skill, follow that prefix.
+Skills in this suite use the **`mt-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`. When scaffolding a new Molten skill, follow that prefix.
 
 ## Skill taxonomy
 
-Molten OS Core skills fall into two categories. Set `molten-category` in skill front matter when adding or editing a skill.
+Molten OS Core skills fall into three categories. Set `molten-category` in skill front matter when adding or editing a skill.
 
 | Category | Skills | `molten-order` | Purpose |
 | --- | --- | --- | --- |
-| **product** | molten-validate, molten-brand, molten-design, molten-landing | Required (`"1"`–`"4"`) | Sequential pipeline; writes artifacts to `molten-docs/` |
-| **utility** | molten-search, molten-skill-manage | Omit | Cross-cutting helpers; use anytime, not part of the product workflow |
+| **product** | mt-validate, mt-brand, mt-design, mt-landing | Required (`"1"`–`"4"`) | Sequential pipeline; writes artifacts to `molten-docs/` |
+| **dev-loop** | mt-discovery, mt-prototype, mt-spec, mt-plan | Required (`"1"`–`"4"`) | Agent Development Loop; feature discovery → prototype → spec → plan, writes artifacts to `molten-docs/` |
+| **utility** | mt-search, mt-skill-manage | Omit | Cross-cutting helpers; use anytime, not part of the product workflow |
 
-**Product skills** run in order and build on each other. **Utility skills** are optional — install only what you need.
+**Product skills** and **dev-loop skills** each run in order and build on each other. **Utility skills** are optional — install only what you need.
 
 When scaffolding a new skill:
 
 - Product skill → `molten-category: product`, assign the next `molten-order`
+- Dev-loop skill → `molten-category: dev-loop`, assign the next `molten-order`
 - Utility skill → `molten-category: utility`, no `molten-order`
 
-Keep all skills in flat `skills/molten-<name>/` paths so `npx skills add` discovers them correctly.
+Keep all skills in flat `skills/mt-<name>/` paths so `npx skills add` discovers them correctly.

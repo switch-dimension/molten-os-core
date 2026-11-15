@@ -1,6 +1,6 @@
 ---
-name: molten-design
-description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by choosing one design surface (landing page, web product, mobile product, or desktop product), then load the matching surface reference and ask whether the user wants a fast draft or detailed pass. Do not use for brand strategy or messaging; use molten-brand for those."
+name: mt-design
+description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by choosing one design surface (landing page, web product, mobile product, or desktop product), then load the matching surface reference and ask whether the user wants a fast draft or detailed pass. Do not use for brand strategy or messaging; use mt-brand for those."
 metadata:
   author: switch-dimension
   version: "1.8.0"
@@ -14,13 +14,13 @@ metadata:
 
 You help the user produce a design system document that an AI coding agent can apply consistently when generating UI. The file follows Google Labs' DESIGN.md spec (YAML token front matter + ordered prose sections) with optional extension sections for motion, iconography, and accessibility.
 
-**Input path (canonical):** `molten-docs/brand/brand.md` from **molten-brand**. Fall back to `brand.md` at the project root or `/docs/brand.md` on older projects.
+**Input path (canonical):** `molten-docs/brand/brand.md` from **mt-brand**. Fall back to `brand.md` at the project root or `/docs/brand.md` on older projects.
 
 **Output path (canonical):** `molten-docs/design/design.md` at the repository root. Create the `molten-docs/design/` directory if it does not exist.
 
 **Preview path (canonical):** `molten-docs/design/example.html`. After writing the design brief, create a self-contained HTML preview that shows the design system in use.
 
-This skill is the visual counterpart to **molten-brand**. Brand strategy lives in the brand brief; visual identity lives in the design brief.
+This skill is the visual counterpart to **mt-brand**. Brand strategy lives in the brand brief; visual identity lives in the design brief.
 
 ## First Ask: Design Surface
 
@@ -34,7 +34,7 @@ Use the structured question tool:
 
 Options:
 
-- **Landing page** — marketing / conversion pages (hero, sections, CTAs); pairs with **molten-landing**
+- **Landing page** — marketing / conversion pages (hero, sections, CTAs); pairs with **mt-landing**
 - **Web product** — browser-based app UI (dashboards, forms, nav, dense workflows)
 - **Mobile product** — phone-first app UI (lists, tabs, thumb zones, native-like patterns)
 - **Desktop product** — desktop app UI (window chrome, menus, multi-pane workflows, keyboard-heavy use)
@@ -66,7 +66,7 @@ These references contain the surface-specific guidance: layout, density, compone
 
 - Scope **every** decision in this run — tokens, components, Pinterest searches, `example.html`, and Do's and Don'ts — to the chosen surface only.
 - Record the surface in the **Overview** and **Assumptions** sections of `design.md` (example: `Design surface: landing page`).
-- If the user needs more than one surface (e.g. landing page **and** web app), finish this run for the chosen surface, then run **molten-design** again for the next surface. Do not expand scope mid-session.
+- If the user needs more than one surface (e.g. landing page **and** web app), finish this run for the chosen surface, then run **mt-design** again for the next surface. Do not expand scope mid-session.
 
 ## First Ask: Fast Or Detailed
 
@@ -224,7 +224,7 @@ After the **design surface** is chosen (or inferred), and before Pinterest or to
    - Risk posture and category stance
    - Density and emotional state implications from persona
 3. Use the extracted visual signal directly. Only ask the user to confirm or correct it if there is a real ambiguity or contradiction.
-4. If `brand.md` is missing, ask the user whether to run **molten-brand** first (recommended) or proceed without it.
+4. If `brand.md` is missing, ask the user whether to run **mt-brand** first (recommended) or proceed without it.
 
 ## Existing Design Briefs And Surface Layers
 

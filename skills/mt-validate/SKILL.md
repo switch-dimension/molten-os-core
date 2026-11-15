@@ -1,6 +1,6 @@
 ---
-name: molten-validate
-description: Molten OS Pro — adversarially validate a product or business idea (quick score, full 5-round interview, or re-validate). 10-criterion rubric (/50), red flags, falsifiable experiment; writes molten-docs/validate/product-score-N.md. Use when the user pitches an idea, asks if it is a good business/product, or wants a sanity check. Do NOT use when the idea is already validated and the user only needs implementation. Requires molten-os-core (molten-brand, molten-design, molten-landing) after a strong score.
+name: mt-validate
+description: Molten OS Pro — adversarially validate a product or business idea (quick score, full 5-round interview, or re-validate). 10-criterion rubric (/50), red flags, falsifiable experiment; writes molten-docs/validate/product-score-N.md. Use when the user pitches an idea, asks if it is a good business/product, or wants a sanity check. Do NOT use when the idea is already validated and the user only needs implementation. Requires molten-os-core (mt-brand, mt-design, mt-landing) after a strong score.
 metadata:
   author: switch-dimension
   version: "1.2.0"

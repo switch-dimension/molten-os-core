@@ -1,6 +1,6 @@
 # Idea Evaluation Research
 
-> Foundation document for the `molten-validate` skill (Molten OS Pro).  
+> Foundation document for the `mt-validate` skill (Molten OS Pro).  
 > Goal: distill how the most cited operators, investors, and authors decide whether a product / business idea is worth pursuing — and turn that into a defensible evaluation framework.
 
 User-facing definitions for jargon (CAC, LTV, GTM, TAM, etc.): `[glossary.md](glossary.md)`.

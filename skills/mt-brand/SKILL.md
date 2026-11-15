@@ -1,6 +1,6 @@
 ---
-name: molten-brand
-description: Molten OS Core — guide brand, positioning, persona, messaging, and voice discovery, then produce `molten-docs/brand/brand.md`. Use for brand guide, brand.md, positioning brief, or product brand strategy. Do not use for visual design systems or `design.md`; use molten-design after brand.md exists.
+name: mt-brand
+description: Molten OS Core — guide brand, positioning, persona, messaging, and voice discovery, then produce `molten-docs/brand/brand.md`. Use for brand guide, brand.md, positioning brief, or product brand strategy. Do not use for visual design systems or `design.md`; use mt-design after brand.md exists.
 metadata:
   author: switch-dimension
   version: "1.2.0"
@@ -16,7 +16,7 @@ You help the user turn brand strategy into a practical brand brief that can guid
 
 **Output path (canonical):** `molten-docs/brand/brand.md` at the repository root. Create the `molten-docs/brand/` directory if it does not exist.
 
-Do not jump into visual design decisions. This skill creates the brand foundation only. The **molten-design** skill should later read `molten-docs/brand/brand.md` and create or update `molten-docs/design/design.md`.
+Do not jump into visual design decisions. This skill creates the brand foundation only. The **mt-design** skill should later read `molten-docs/brand/brand.md` and create or update `molten-docs/design/design.md`.
 
 ## Operating Rules
 
@@ -182,7 +182,7 @@ Ask in chat (free text) for:
 - Claims that need evidence before use
 - Concepts, metaphors, or references that might inform future brand expression
 
-If the user gives visual references like "Apple-like", "Stripe-like", or "Linear-like", ask which brand qualities they mean. Keep the brand qualities, but defer the visual interpretation to **molten-design** / `molten-docs/design/design.md`.
+If the user gives visual references like "Apple-like", "Stripe-like", or "Linear-like", ask which brand qualities they mean. Keep the brand qualities, but defer the visual interpretation to **mt-design** / `molten-docs/design/design.md`.
 
 ## Phase 6: Generate `molten-docs/brand/brand.md`
 
@@ -377,7 +377,7 @@ For [audience] who [problem], [product] is a [category] that helps them [outcome
 
 This brand document does not define visual design details.
 
-Create or consult `molten-docs/design/design.md` (via **molten-design**) for visual design decisions, interface design, and design-system implementation guidance.
+Create or consult `molten-docs/design/design.md` (via **mt-design**) for visual design decisions, interface design, and design-system implementation guidance.
 
 ## 10. Open Questions And Assumptions
 
@@ -388,7 +388,7 @@ Create or consult `molten-docs/design/design.md` (via **molten-design**) for vis
 - [Assumption made due to missing information]
 
 ### Next Step
-Run **molten-design** to create or consult `molten-docs/design/design.md`.
+Run **mt-design** to create or consult `molten-docs/design/design.md`.
 ```
 
 ## Quality Pass
