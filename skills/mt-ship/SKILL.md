@@ -3,7 +3,7 @@ name: mt-ship
 description: Molten OS Core — seventh and final step of the Agent Development Loop. Takes a reviewed change to an open pull request — confirms review, verify, and plan are done, tidies the branch, re-runs build, tests, lint, and type-check, scans the whole branch for secrets with gitleaks and audits dependencies, updates docs and changelog, writes the PR from the spec, verify, and review docs, watches CI, closes out the tracker, then runs a short retrospective that suggests improvements. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`. Use when the user wants to ship, open a PR, "get this ready to merge", or wrap up a feature after review. Does not merge. Do not use before mt-review approves, or to fix bugs (use mt-build and mt-verify).
 metadata:
   author: switch-dimension
-  version: "0.1.0"
+  version: "0.2.1"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -43,6 +43,9 @@ Get an approved change into a clean, safe, well-explained pull request, then lea
 - Review recommendation is `approve` or `approve-with-suggestions`, and any blockers are resolved.
 - Verify verdict is `pass`. If code changed after verify, note it; the gates in step 3 must cover it.
 - Every plan task is ticked (or done in the tracker).
+- Work is on a feature branch, not the default branch. If it is on the default branch, stop and offer to move the commits to `feat/<slug>` before going further.
+- If the wave was built in parallel: every task branch has merged into the feature branch. Offer to remove the leftover worktrees (`git worktree list`, then `git worktree remove <path>`) and delete the merged task branches.
+- If the plan required a database branch, confirm one exists for this feature and the app is pointed at it. Offer to delete it after the PR merges, or now if the user says it was only for development. Do not delete it while opening the PR.
 - The branch is up to date with its base and merges without conflicts. If not, offer to rebase or merge the base in, then re-run step 3.
 
 ### 2. Tidy
@@ -66,7 +69,15 @@ Run the project's own commands (from `package.json` scripts, `Makefile`, CI work
 | Secrets | `gitleaks git --log-opts="<base>..HEAD"` (older versions: `gitleaks detect --log-opts="<base>..HEAD"`) finds nothing. Scan the branch's commits, not just the working tree |
 | Dependencies | When dependencies changed: `npm audit` / `pnpm audit` / `pip-audit` / `cargo audit` or equivalent shows no new high or critical issues |
 
-If **gitleaks** is not installed, offer to install it (`brew install gitleaks`) or run it with Docker (`docker run --rm -v "$PWD:/repo" zricethezav/gitleaks git /repo --log-opts="<base>..HEAD"`). If neither is possible, run a basic pattern scan of the branch diff for keys, tokens, and private keys, and record the secrets gate as `partial` with the reason.
+If **gitleaks** is not installed, offer to install it, using whichever fits the machine:
+
+- **Homebrew** (macOS, Linux): `brew install gitleaks`
+- **Prebuilt binary** (any OS): download it from the [gitleaks releases page](https://github.com/gitleaks/gitleaks/releases)
+- **Go**: `go install github.com/zricethezav/gitleaks/v8@latest`
+- **Windows**: `scoop install gitleaks` or `choco install gitleaks`
+- **Nothing can be installed but Docker is available**: `docker run --rm -v "$PWD:/repo" zricethezav/gitleaks git /repo --log-opts="<base>..HEAD"`
+
+If none of these is possible, run a basic pattern scan of the branch diff for keys, tokens, and private keys, and record the secrets gate as `partial` with the reason.
 
 ### 4. Docs and release
 
@@ -137,12 +148,15 @@ pr: <URL> | null
 ## Docs and release (README, .env.example, CHANGELOG, version)
 ## Pull request (link, CI result)
 ## Rollout and rollback (production deploys only)
+## Database branch (if the plan required one: name, and whether it is still open)
 ## Blocked on (if result is blocked: what failed and which skill fixes it)
 ```
 
 ## Done checklist
 
-- [ ] Review approved, verify passed, plan complete, branch current with base
+- [ ] Review approved, verify passed, plan complete, on a feature branch current with base
+- [ ] Any task branches merged and worktrees cleaned up
+- [ ] Database branch noted when the plan required one; deleted only if the user asks
 - [ ] Working tree clean; no debug leftovers, throwaway code, or stray files
 - [ ] Build, tests, lint, type-check pass on the final commit
 - [ ] gitleaks scanned the branch history (or `partial` recorded with reason); dependency audit run if deps changed

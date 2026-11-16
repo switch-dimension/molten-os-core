@@ -21,15 +21,15 @@ Per-skill versions in skill front matter (independent of repo tags):
 | --- | --- |
 | mt-brand | 1.2.0 |
 | mt-design | 1.8.0 |
-| mt-build | 0.2.0 |
+| mt-build | 0.3.1 |
 | mt-discovery | 0.3.0 |
 | mt-guide | 0.3.0 |
 | mt-landing | 1.2.0 |
 | mt-mockup | 0.1.1 |
-| mt-plan | 0.3.0 |
+| mt-plan | 0.3.2 |
 | mt-prototype | 0.2.0 |
 | mt-review | 0.3.0 |
-| mt-ship | 0.1.0 |
+| mt-ship | 0.2.1 |
 | mt-search | 1.0.0 |
 | mt-skill-manage | 1.4.0 |
 | mt-spec | 0.3.0 |
@@ -40,7 +40,8 @@ Per-skill versions in skill front matter (independent of repo tags):
 
 ### Added
 
-- **mt-ship** — seventh and final dev-loop step. Confirms review, verify and plan are done; tidies the branch (clean tree, no debug leftovers or throwaway code); re-runs build, tests, lint and type-check; scans branch history with gitleaks and audits changed dependencies; updates docs, `.env.example` and CHANGELOG; opens a PR with summary, evidence and a merge-danger call; watches CI; closes out the tracker. Never merges. Always ends with a short retrospective (`references/retro.md`) that draws on the session, logs and Molten docs, and applies improvements only with approval. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`.
+- **Branches and worktrees** — **mt-build** always works on a feature branch (`feat/<slug>`, with the issue key when there is a tracker) and never on the default branch. A new optional "Running a wave in parallel" section covers one worktree and task branch per parallel task, merging back when green, and who ticks the plan with and without a tracker; it defers to worktrees the agent host already manages. **mt-ship** checks for a feature branch, confirms task branches are merged, and offers to clean up worktrees. **mt-plan** notes that parallel waves pair with worktrees. A database branch is separate: **mt-plan** marks it yes or no (schema or seed changes on a branchable database, or parallel writers that would collide), **mt-build** creates one only when the plan says yes, and **mt-ship** offers to delete it rather than deleting it with the PR.
+- **mt-ship** — seventh and final dev-loop step. Confirms review, verify and plan are done; tidies the branch (clean tree, no debug leftovers or throwaway code); re-runs build, tests, lint and type-check; scans branch history with gitleaks (installed via Homebrew, release binary, Go, Scoop/Chocolatey, or Docker) and audits changed dependencies; updates docs, `.env.example` and CHANGELOG; opens a PR with summary, evidence and a merge-danger call; watches CI; closes out the tracker. Never merges. Always ends with a short retrospective (`references/retro.md`) that draws on the session, logs and Molten docs, and applies improvements only with approval. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`.
 - **Issue tracker sync** — **mt-plan** detects GitHub Issues, Linear or Jira, confirms once, and records the tracker, status names and operations in `molten-docs/config.md` (sync on by default). On plan approval it creates a parent issue per feature and one issue per task with blocking links. **mt-build** claims and closes task issues with commit links; **mt-verify** and **mt-review** comment verdicts on the parent; **mt-guide** reads task status from the tracker. With no tracker, the plan file remains the task list. Shared details live in `mt-plan/references/trackers.md`.
 - **Parallel waves** — **mt-plan** groups tasks into waves that can run at the same time (no shared dependencies or files); **mt-build** picks the next ready task by wave and skips tasks already claimed.
 - **mt-guide** — "start here" utility skill that routes users to the right Molten skill. Reads `molten-docs/` front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`) to report where each feature is and what comes next; otherwise asks up to three questions. Includes shortcuts for tiny changes, bugs, PR reviews and existing specs, and only routes to installed skills. Inspired by Addy Osmani's `using-agent-skills` and Matt Pocock's `ask-matt`.

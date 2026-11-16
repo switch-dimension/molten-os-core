@@ -3,7 +3,7 @@ name: mt-build
 description: Molten OS Core — fourth step of the Agent Development Loop. Implements an approved plan one thin slice at a time using a lightweight test-driven loop (red, green, refactor), keeping the app runnable and committing after each green task, and updates `molten-docs/plan/<slug>.md` as tasks complete. When `molten-docs/config.md` names an issue tracker (GitHub Issues, Linear, Jira), moves each task's issue to in progress and done, and comments with the commit. Use when the user wants to build, implement, or start coding a planned feature. Do not use without a plan or for exploratory spikes (use mt-prototype).
 metadata:
   author: switch-dimension
-  version: "0.2.0"
+  version: "0.3.1"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -23,6 +23,8 @@ Turn the plan into working, tested code — one small slice at a time. The loop 
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Work on a feature branch.** Before the first task, check the current branch. If it is the default branch (`main`, `master`, or the repo's default), create `feat/<slug>`, including the issue key when there is a tracker (e.g. `feat/ENG-123-checkout`) so Linear and Jira link it. Tell the user the branch name. Never build directly on the default branch.
+- **Branch the database only when the plan says to.** Read Dependencies & setup in the plan. If it says a database branch is required, create one with the project's own tool before the first migration, name it after the feature branch, and point this checkout's env at it. Tell the user the database branch name. Never commit the connection string. If the plan says no, use the existing dev database and do not create one. If the plan forgot to decide and this task changes schema, stop and ask.
 - **One task at a time.** Pick the next unchecked task whose dependencies are done, lowest wave first. Do not start a second task until the first is green and committed.
 - **Respect parallel work.** Other agents or people may be working the same plan. With a tracker, re-read issue status before picking a task and skip any task that is already in progress or done; claim yours (start + assign) before writing code. Without a tracker, ask the user which task to take if several are ready in the same wave and others may be working.
 - **Tests first, where tests make sense.** For logic, APIs, and data handling: write a failing test, watch it fail for the right reason, write the minimum code to pass, then refactor with the tests green. For pure visual or config work where a test is not practical, state the verification you will use instead (screenshot, command output) and do it.
@@ -49,15 +51,28 @@ For each task in the plan:
 7. **Save** — tick the task in the plan file and make one small commit with a message that says what and why, including the issue key if there is one. Only commit if the user has asked for commits in this project; otherwise leave changes staged and say so. With a tracker, **finish** the issue with the commit (or "staged, not committed") and the verify result.
 8. **Checkpoint** — at the end of each phase, run the full suite, summarise progress, and pause for the user before starting the next phase. With a tracker, post the checkpoint summary as a comment on the parent issue.
 
+## Running a wave in parallel
+
+Optional. A single agent working down the plan does not need any of this: stay on the feature branch. Use it only when several agents or people take tasks from the same wave at once.
+
+- **One worktree per task.** Each parallel task gets its own git worktree and task branch, cut from the feature branch (e.g. `feat/<slug>--1.2`). If the agent host already creates worktrees per session (Claude Code, Codex, Orca, Conductor and others do), use what it provides instead of running `git worktree` yourself.
+- **Set each worktree up to run.** Install dependencies, copy any `.env` files the app needs (never commit them), and use a different port if a dev server is needed, so worktrees do not clash.
+- **Give writers their own database.** A worktree that runs migrations or writes data gets its own database branch, or its own local database file, with the URL only in that worktree's `.env`. Worktrees that only read can share the feature's database branch.
+- **Merge back when green.** When a task is green and committed, merge its task branch into the feature branch, re-run the suite on the feature branch, then remove the worktree. Tasks in the same wave touch different files, so merges should be clean; a conflict means the plan's waves were wrong. Stop and tell the user.
+- **Who ticks the plan.** Each worktree has its own copy of `molten-docs/`. With a tracker, each agent updates its issue and the tracker is the source of truth. Without a tracker, only the main session (on the feature branch) ticks the plan, after each task branch merges back; agents in worktrees do not edit the plan file.
+- **Checkpoints still gate.** Do not start the next wave across a checkpoint until every task branch in the current phase has merged and the full suite passes on the feature branch.
+
 ## Done checklist
 
 - [ ] Every plan task is ticked and its verify step passed
 - [ ] Tests exist for each acceptance criterion the plan assigned to the task
 - [ ] Full suite, lint, type-check, and build pass
 - [ ] No unrelated changes mixed in; "Noticed" items recorded in the plan
+- [ ] All work is on the feature branch; any task branches merged back and their worktrees removed
+- [ ] A database branch exists only if the plan required one; connection strings stayed out of git
 - [ ] Plan `status` updated (`in-progress` while building, `done` when all tasks complete)
 - [ ] With a tracker: every finished task's issue is done with a commit link; no `sync: pending` left
 
 ## Extending
 
-Common additions: a UI/frontend variant (component, accessibility, and responsive checks), an API-design pass before coding endpoints, a fresh-context "doubt" review of risky decisions mid-build, or a worktree-per-task flow so several agents can each take a task from the same wave.
+Common additions: a UI/frontend variant (component, accessibility, and responsive checks), an API-design pass before coding endpoints, a fresh-context "doubt" review of risky decisions mid-build, or an orchestrator that starts one agent per task in the current wave.

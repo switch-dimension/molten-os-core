@@ -3,7 +3,7 @@ name: mt-plan
 description: Molten OS Core — third step of the Agent Development Loop. Breaks an approved spec into an ordered, agent-executable implementation plan — vertical-slice tasks with acceptance criteria, dependencies, files to touch, verification steps, checkpoints, and parallel waves showing which tasks can run at the same time — written to `molten-docs/plan/<slug>.md`. Detects the project's issue tracker (GitHub Issues, Linear, Jira), records it in `molten-docs/config.md`, and on approval creates one issue per task with blocking links; with no tracker, the plan file holds the tasks. Use when the user wants an implementation plan, task breakdown, build plan, tickets or issues for a feature, or "how should we build this". Do not use to define requirements (use mt-spec).
 metadata:
   author: switch-dimension
-  version: "0.3.0"
+  version: "0.3.2"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -46,6 +46,16 @@ The plan gives a safe order for one agent **and** shows which tasks can run at t
 - Group tasks into **waves**. Wave 1 holds tasks with no dependencies; each later wave holds tasks whose dependencies are all in earlier waves. Tasks in the same wave are parallel-safe with each other.
 - Do not split work just to make it parallel. Two or three serial tasks are often right for a small feature; a single-task wave is fine.
 - Checkpoints still close each phase. A wave never spans a checkpoint.
+- When a wave is worked in parallel, each task usually gets its own worktree and task branch; **mt-build** covers how they merge back.
+
+## Database branch
+
+A code branch does not by itself need a database branch. Decide in the plan, and write the decision under Dependencies & setup.
+
+- **Check before you assume.** Read the spec and the codebase. A database branch is required when this feature changes schema, migrations, or seed data **and** the project uses a branchable database (Neon, PlanetScale, Supabase branching, and similar). It is also required when tasks in one wave would write to the same database and collide.
+- **Leave it out** when the work does not touch schema or data, or the project has no branchable database. A local database (SQLite, Docker Postgres) is isolated per worktree by **mt-build**, not by a hosted branch.
+- **Schema changes share a database the way shared files share a merge.** Two tasks that both migrate are not parallel-safe on one database. Put them in different waves, or note that each task gets its own database branch.
+- Name the provider the project already uses. **mt-build** creates the branch; **mt-ship** offers to delete it.
 
 ## Issue tracker
 
@@ -89,6 +99,7 @@ molten_next_skill: mt-build
 ## Approach
 ## Architecture decisions
 ## Dependencies & setup (packages, migrations, env vars)
+Database branch: yes | no — <provider, or why not>
 
 ## Phase 1 — <name>
 - [ ] **1.1 <task>** — files: `…` · covers: AC-1 · depends on: — · wave: 1 · issue: <key/URL or —> · verify: <test/command/check>
@@ -119,6 +130,7 @@ molten_next_skill: mt-build
 - [ ] Tasks are vertical slices ordered by dependency so the app stays runnable
 - [ ] Waves only group tasks that share no dependency and no files
 - [ ] A checkpoint closes each phase
+- [ ] Database branch marked yes or no, with the provider or the reason to skip it
 - [ ] `molten-docs/config.md` exists with the chosen tracker (or `local`)
 - [ ] `molten-docs/plan/<slug>.md` written; status set to `approved` once the user signs off
 - [ ] With tracker sync on: issues created after approval, links written into the plan, no duplicates
