@@ -1,6 +1,6 @@
 ---
 name: mt-guide
-description: Molten OS Core — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
+description: Molten Loop — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
 metadata:
   author: switch-dimension
   version: "0.3.0"
@@ -20,7 +20,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
 ## Operating Rules
 
 - **Read before you describe.** The summaries below are for orientation only. Before telling the user what a skill does, or recommending that a step be skipped, read that skill's `SKILL.md`.
-- **Only route to installed skills.** Check which `mt-*` skills are available. If the best fit is not installed, say so and give the install command: `npx skills add switch-dimension/molten-os-core --skill <name>`.
+- **Only route to installed skills.** Check which `mt-*` skills are available. If the best fit is not installed, say so and give the install command: `npx skills add switch-dimension/molten-loop --skill <name>`.
 - **State first, questions second.** If `molten-docs/` answers the question, do not ask.
 - Ask at most three questions, as plain numbered text in chat; for finite choices, list lettered options under the question (1a, 1b, 1c). Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 - Recommend one next skill. Mention an optional step only when it clearly earns its cost.

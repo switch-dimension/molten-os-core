@@ -1,6 +1,6 @@
 ---
 name: mt-build
-description: Molten OS Core — fourth step of the Agent Development Loop. Implements an approved plan one thin slice at a time using a lightweight test-driven loop (red, green, refactor), keeping the app runnable and committing after each green task, and updates `molten-docs/plan/<slug>.md` as tasks complete. When `molten-docs/config.md` names an issue tracker (GitHub Issues, Linear, Jira), moves each task's issue to in progress and done, and comments with the commit. Use when the user wants to build, implement, or start coding a planned feature. Do not use without a plan or for exploratory spikes (use mt-prototype).
+description: Molten Loop — fourth step of the Agent Development Loop. Implements an approved plan one thin slice at a time using a lightweight test-driven loop (red, green, refactor), keeping the app runnable and committing after each green task, and updates `molten-docs/plan/<slug>.md` as tasks complete. When `molten-docs/config.md` names an issue tracker (GitHub Issues, Linear, Jira), moves each task's issue to in progress and done, and comments with the commit. Use when the user wants to build, implement, or start coding a planned feature. Do not use without a plan or for exploratory spikes (use mt-prototype).
 metadata:
   author: switch-dimension
   version: "0.3.1"

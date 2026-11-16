@@ -1,6 +1,6 @@
 ---
 name: mt-spec
-description: Molten OS Core — second step of the Agent Development Loop. Turns discovery learnings (plus any optional prototype or mockup learnings) into a clear, testable feature spec — objectives, requirements, acceptance criteria, data and API shape, edge cases, testing approach, boundaries, and non-goals — written to `molten-docs/spec/<slug>.md`. Use when the user wants a spec, PRD, requirements doc, or acceptance criteria for a feature. Do not use for task breakdown (use mt-plan).
+description: Molten Loop — second step of the Agent Development Loop. Turns discovery learnings (plus any optional prototype or mockup learnings) into a clear, testable feature spec — objectives, requirements, acceptance criteria, data and API shape, edge cases, testing approach, boundaries, and non-goals — written to `molten-docs/spec/<slug>.md`. Use when the user wants a spec, PRD, requirements doc, or acceptance criteria for a feature. Do not use for task breakdown (use mt-plan).
 metadata:
   author: switch-dimension
   version: "0.3.0"

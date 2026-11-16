@@ -1,6 +1,6 @@
 ---
 name: mt-verify
-description: Molten OS Core — fifth step of the Agent Development Loop. Proves the built feature actually works by checking every spec acceptance criterion against evidence — running the test suite, driving the real app (browser or CLI) where relevant, and debugging failures from root cause — then writes `molten-docs/verify/<slug>.md`. Use when the user wants to test, verify, QA, or confirm that a feature works or "is done". Do not use to write new features (use mt-build) or to critique code quality (use mt-review).
+description: Molten Loop — fifth step of the Agent Development Loop. Proves the built feature actually works by checking every spec acceptance criterion against evidence — running the test suite, driving the real app (browser or CLI) where relevant, and debugging failures from root cause — then writes `molten-docs/verify/<slug>.md`. Use when the user wants to test, verify, QA, or confirm that a feature works or "is done". Do not use to write new features (use mt-build) or to critique code quality (use mt-review).
 metadata:
   author: switch-dimension
   version: "0.2.0"

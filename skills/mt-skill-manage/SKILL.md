@@ -1,6 +1,6 @@
 ---
 name: mt-skill-manage
-description: Molten OS Core — manage agent skills with the skills.sh CLI (`npx skills`). Use to install, add, update, upgrade, remove, list, or find skills, restore from a lockfile, or scaffold a new skill. Trigger when the user mentions skills.sh, the skills CLI, `npx skills`, or asks to add/install/update/remove/list skills.
+description: Molten Loop — manage agent skills with the skills.sh CLI (`npx skills`). Use to install, add, update, upgrade, remove, list, or find skills, restore from a lockfile, or scaffold a new skill. Trigger when the user mentions skills.sh, the skills CLI, `npx skills`, or asks to add/install/update/remove/list skills.
 metadata:
   author: switch-dimension
   version: "1.4.0"
@@ -29,21 +29,21 @@ This project manages agent skills with the **skills.sh** CLI, run via `npx skill
 **Install a skill package** (a GitHub repo or URL):
 
 ```bash
-npx skills add switch-dimension/molten-os-core
+npx skills add switch-dimension/molten-loop
 ```
 
 Install specific skills or target specific agents:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-brand mt-design
-npx skills add switch-dimension/molten-os-core --agent claude-code cursor
-npx skills add switch-dimension/molten-os-core --all   # all skills, all agents, no prompts
+npx skills add switch-dimension/molten-loop --skill mt-brand mt-design
+npx skills add switch-dimension/molten-loop --agent claude-code cursor
+npx skills add switch-dimension/molten-loop --all   # all skills, all agents, no prompts
 ```
 
 Preview what a repo offers without installing:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --list
+npx skills add switch-dimension/molten-loop --list
 ```
 
 **Update skills** to their latest versions:
@@ -107,7 +107,7 @@ Skills in this suite use the **`mt-<name>`** convention so they are easy to dist
 
 ## Skill taxonomy
 
-Molten OS Core skills fall into three categories. Set `molten-category` in skill front matter when adding or editing a skill.
+Molten Loop skills fall into three categories. Set `molten-category` in skill front matter when adding or editing a skill.
 
 | Category | Skills | `molten-order` | Purpose |
 | --- | --- | --- | --- |

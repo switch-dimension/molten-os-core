@@ -6,7 +6,7 @@ The rubric you write against is the seven conversion principles in [`principles.
 
 ## Step 0 — Reuse existing brand and design foundations
 
-Before asking anything, check for Molten OS Core artifacts:
+Before asking anything, check for Molten Loop artifacts:
 
 - **Brand:** `molten-docs/brand/brand.md` (canonical from **mt-brand**). Fall back to `brand.md` at the project root or in `.docs/` on older projects.
 - **Design:** `molten-docs/design/design.md` (canonical from **mt-design**). Fall back to `design.md` at the project root or in `.docs/` on older projects.

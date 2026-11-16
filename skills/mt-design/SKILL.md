@@ -1,6 +1,6 @@
 ---
 name: mt-design
-description: "Molten OS Core — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by choosing one design surface (landing page, web product, mobile product, or desktop product), then load the matching surface reference and ask whether the user wants a fast draft or detailed pass. Do not use for brand strategy or messaging; use mt-brand for those."
+description: "Molten Loop — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by choosing one design surface (landing page, web product, mobile product, or desktop product), then load the matching surface reference and ask whether the user wants a fast draft or detailed pass. Do not use for brand strategy or messaging; use mt-brand for those."
 metadata:
   author: switch-dimension
   version: "1.8.0"

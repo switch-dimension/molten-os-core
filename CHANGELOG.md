@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to [Molten OS Core](https://github.com/switch-dimension/molten-os-core) are documented in this file.
+All notable changes to [Molten Loop](https://github.com/switch-dimension/molten-loop) are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -37,6 +37,10 @@ Per-skill versions in skill front matter (independent of repo tags):
 | mt-verify | 0.2.0 |
 
 ## [Unreleased]
+
+### Changed
+
+- **Renamed to Molten Loop.** The GitHub repo is `switch-dimension/molten-loop`. GitHub keeps a redirect from `switch-dimension/molten-os-core`. Skill ids stay `mt-*`, the suite id stays `molten-os`, and output stays in `molten-docs/`.
 
 ### Added
 

@@ -1,10 +1,10 @@
-# Molten OS Core - Idea in, shipped feature out
+# Molten Loop - Idea in, shipped feature out
 
-![Molten OS Core banner](molten-os-banner.png)
+![Molten Loop banner](molten-os-banner.png)
 
 ### Validate the idea, give it a brand and a landing page, then build it with your coding agent using a disciplined loop: discovery, spec, plan, build, verify, review, ship.
 
-Molten OS Core is a set of AI agent skills from [Switch Dimension](https://switchdimension.com) and AI builder YouTuber [Rob Shocks](https://youtube.com/robshocks). It covers the two places most AI-built products go wrong:
+Molten Loop is a set of AI agent skills from [Switch Dimension](https://switchdimension.com) and AI builder YouTuber [Rob Shocks](https://youtube.com/robshocks). It covers the two places most AI-built products go wrong:
 
 - **Building the wrong thing.** The product skills challenge the idea first, then turn the strongest version into a brand, a design system and a landing page you can test with real people.
 - **Building it badly.** The Agent Development Loop stops your coding agent from jumping straight to code. It interviews you, writes a testable spec and a plan, builds in thin tested slices, proves every acceptance criterion, reviews the change, and ships it as a clean, secret-scanned pull request.
@@ -12,7 +12,7 @@ Molten OS Core is a set of AI agent skills from [Switch Dimension](https://switc
 Drop this prompt into your AI agent to get started:
 
 ```
-install all the skills in this repo to my project - https://github.com/switch-dimension/molten-os-core
+install all the skills in this repo to my project - https://github.com/switch-dimension/molten-loop
 ```
 
 Not sure where to start? Ask your agent to run **mt-guide**. It reads your `molten-docs/` folder, tells you where you are and recommends the next skill.
@@ -66,7 +66,7 @@ Use these between discovery and spec only when they earn their cost. If the shap
 
 Turn a raw idea into a validated landing page you can test with real people — score, brand, design system and page — in an afternoon, not a quarter.
 
-![Molten OS Core product workflow: validate, brand, design system, landing page](molten-workflow.png)
+![Molten Loop product workflow: validate, brand, design system, landing page](molten-workflow.png)
 
 Run these in order.
 
@@ -125,31 +125,31 @@ Paste this repo into your agent with the prompt above, or install manually with 
 Install all skills:
 
 ```bash
-npx skills add switch-dimension/molten-os-core
+npx skills add switch-dimension/molten-loop
 ```
 
 Install the Agent Development Loop only, plus mt-guide (drop `mt-prototype` and `mt-mockup` if you don't want the optional steps):
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-guide mt-discovery mt-prototype mt-mockup mt-spec mt-plan mt-build mt-verify mt-review mt-ship
+npx skills add switch-dimension/molten-loop --skill mt-guide mt-discovery mt-prototype mt-mockup mt-spec mt-plan mt-build mt-verify mt-review mt-ship
 ```
 
 Install product skills only, plus mt-guide:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-guide mt-validate mt-brand mt-design mt-landing
+npx skills add switch-dimension/molten-loop --skill mt-guide mt-validate mt-brand mt-design mt-landing
 ```
 
 Install utility skills only:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-guide mt-search mt-skill-manage
+npx skills add switch-dimension/molten-loop --skill mt-guide mt-search mt-skill-manage
 ```
 
 Install a single skill:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-landing
+npx skills add switch-dimension/molten-loop --skill mt-landing
 ```
 
 All skills use the **`mt-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.

@@ -1,6 +1,6 @@
 ---
 name: mt-review
-description: Molten OS Core — sixth step of the Agent Development Loop. Reviews the finished change before it merges across five axes — correctness against the spec, readability, architecture, security, and performance — with severity-labelled findings, and writes `molten-docs/review/<slug>.md`. Use when the user wants a code review, a pre-merge check, a "is this ready to ship" pass, or a review of a diff or PR. Do not use to add features (use mt-build) or to prove behaviour (use mt-verify).
+description: Molten Loop — sixth step of the Agent Development Loop. Reviews the finished change before it merges across five axes — correctness against the spec, readability, architecture, security, and performance — with severity-labelled findings, and writes `molten-docs/review/<slug>.md`. Use when the user wants a code review, a pre-merge check, a "is this ready to ship" pass, or a review of a diff or PR. Do not use to add features (use mt-build) or to prove behaviour (use mt-verify).
 metadata:
   author: switch-dimension
   version: "0.3.0"
