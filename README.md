@@ -47,8 +47,8 @@ Run these in order.
 | --- | --- | --- |
 | 1 | **mt-discovery** | Interviews you before any code is written: goals, users, constraints, codebase context and the riskiest unknown. Writes `molten-docs/discovery/<slug>.md`. |
 | 2 | **mt-spec** | Turns discovery (and any prototype or mockup learnings) into a testable spec with acceptance criteria, data shape, edge cases and non-goals. Writes `molten-docs/spec/<slug>.md`. |
-| 3 | **mt-plan** | Breaks the approved spec into ordered vertical-slice tasks with checkpoints. Writes `molten-docs/plan/<slug>.md`. |
-| 4 | **mt-build** | Implements the plan one slice at a time with a lightweight red-green-refactor loop, keeping the app runnable. |
+| 3 | **mt-plan** | Breaks the approved spec into ordered vertical-slice tasks with checkpoints, grouped into parallel waves so several agents or people can work at once. Creates one issue per task in GitHub Issues, Linear or Jira when you use one. Writes `molten-docs/plan/<slug>.md`. |
+| 4 | **mt-build** | Implements the plan one slice at a time with a lightweight red-green-refactor loop, keeping the app runnable. Ticks tasks off in the plan, or moves their issues to done in your tracker. |
 | 5 | **mt-verify** | Checks every acceptance criterion against evidence (tests, the real app) and debugs failures from root cause. Writes `molten-docs/verify/<slug>.md`. |
 | 6 | **mt-review** | Reviews the change before it merges for correctness, readability, architecture, security and performance, with severity-labelled findings. Writes `molten-docs/review/<slug>.md`. |
 
@@ -95,6 +95,16 @@ The product skills and the dev loop share the same `molten-docs/` folder, so the
 2. **Build the product**: run the Agent Development Loop once per feature. mt-discovery, mt-prototype, mt-mockup and mt-spec pick up `brand.md` and `design.md` when they exist, so what you build matches what you tested.
 
 You don't need both. Use the dev loop on its own in any existing codebase, or the product skills on their own to test an idea.
+
+### Issue trackers
+
+The first time **mt-plan** runs, it looks for GitHub Issues, Linear or Jira (via your agent's connectors, CLIs such as `gh`, and repo signals), confirms the choice with you, and saves it in `molten-docs/config.md`. Sync is on by default:
+
+- **mt-plan** shows you the issues it will create, then creates them when you approve the plan: one parent per feature and one issue per task, with blocking links.
+- **mt-build** claims each task's issue when it starts, and closes it with the commit when the task is green.
+- **mt-verify** and **mt-review** post their verdicts on the parent issue.
+
+No tracker? The plan file holds the tasks and they're ticked off as they're done.
 
 ## Utility skills
 

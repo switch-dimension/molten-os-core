@@ -3,7 +3,7 @@ name: mt-guide
 description: Molten OS Core — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
 metadata:
   author: switch-dimension
-  version: "0.1.0"
+  version: "0.2.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -28,7 +28,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
 
 ## Workflow
 
-1. **Read the project state.** Scan `molten-docs/` (see State map). For each feature slug, find the furthest step that exists and read its front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`).
+1. **Read the project state.** Scan `molten-docs/` (see State map). For each feature slug, find the furthest step that exists and read its front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`). If `molten-docs/config.md` has `tracker_sync: true`, read task status from the tracker using the operations listed there (the plan checkboxes are only a cache) and mention which tasks are in progress, done, and ready in the current wave.
 2. **If there is state, report it and recommend.** Give a short status per active feature, then the next skill. Example:
    > **checkout** — spec approved, plan 3 of 7 tasks done.
    > **Next:** mt-build, starting at task 1.4. It reads `molten-docs/plan/checkout.md`.
@@ -95,7 +95,7 @@ The product flow feeds the dev loop. mt-discovery, mt-prototype, mt-mockup and m
 | `spec/<slug>.md` `status: draft` | Spec unfinished | **mt-spec** to finish and approve |
 | `spec/<slug>.md` `status: approved`, no plan | Ready to plan | **mt-plan** |
 | `plan/<slug>.md` `draft` | Plan unfinished | **mt-plan** to finish and approve |
-| `plan/<slug>.md` `approved` / `in-progress` | Building | **mt-build**, from the first unticked task |
+| `plan/<slug>.md` `approved` / `in-progress` | Building | **mt-build**, from the next ready task (lowest wave, not claimed). With a tracker, check issue status first |
 | `plan/<slug>.md` `done`, no verify | Built | **mt-verify** |
 | `verify/<slug>.md` `verdict: fail` / `partial` | Not proven | **mt-build** to fix, then **mt-verify** again |
 | `verify/<slug>.md` `verdict: pass`, no review | Proven | **mt-review** |
@@ -114,6 +114,7 @@ Not every job needs the whole loop. Use these when they fit:
 | Something is broken | **mt-verify** (debugs from root cause) → **mt-build** for the fix → **mt-review** |
 | A diff or PR to check | **mt-review** |
 | Spec already written elsewhere | **mt-plan** (point it at that spec) |
+| Turn a spec into tickets or issues | **mt-plan** (creates issues in GitHub, Linear or Jira on approval) |
 | Clear feature, no unknowns | **mt-discovery** → **mt-spec**, skip both detours |
 | Existing landing page to improve | **mt-landing** (audit mode) |
 | Only need research | **mt-search** |
