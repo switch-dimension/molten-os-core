@@ -3,10 +3,11 @@ name: mt-mockup
 description: Molten OS Core — optional step in the Agent Development Loop, between discovery and spec. Builds a frontend-only, fully clickable mockup of a feature or app using mocked JSON data and a fake API layer — no backend, auth, database, or real integrations — so the user can see, click through, and iterate on the UX before any expensive code is written. Asks whether the mockup should be throwaway (in `molten-docs/mockup/<slug>/`) or scaffolded as real pages in the project's own frontend, and writes the decisions to `molten-docs/mockup/<slug>.md`. Use when the user wants to mock up, wireframe-in-code, preview the UX, or iterate on a feature's design with fake data. Do not use for backend or integration work, or for answering technical feasibility questions (use mt-prototype).
 metadata:
   author: switch-dimension
-  version: "0.1.0"
+  version: "0.1.1"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
+  molten-optional: "true"
 ---
 
 # Mockup

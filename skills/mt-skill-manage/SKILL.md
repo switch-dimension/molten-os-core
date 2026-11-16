@@ -3,7 +3,7 @@ name: mt-skill-manage
 description: Molten OS Core — manage agent skills with the skills.sh CLI (`npx skills`). Use to install, add, update, upgrade, remove, list, or find skills, restore from a lockfile, or scaffold a new skill. Trigger when the user mentions skills.sh, the skills CLI, `npx skills`, or asks to add/install/update/remove/list skills.
 metadata:
   author: switch-dimension
-  version: "1.1.0"
+  version: "1.2.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -112,7 +112,7 @@ Molten OS Core skills fall into three categories. Set `molten-category` in skill
 | Category | Skills | `molten-order` | Purpose |
 | --- | --- | --- | --- |
 | **product** | mt-validate, mt-brand, mt-design, mt-landing | Required (`"1"`–`"4"`) | Sequential pipeline; writes artifacts to `molten-docs/` |
-| **dev-loop** | mt-discovery, mt-prototype, mt-spec, mt-plan | Required (`"1"`–`"4"`) | Agent Development Loop; feature discovery → prototype → spec → plan, writes artifacts to `molten-docs/` |
+| **dev-loop** | mt-discovery, mt-spec, mt-plan, mt-build, mt-verify, mt-review (core); mt-prototype, mt-mockup (optional) | Core: required (`"1"`–`"6"`). Optional: omit, set `molten-optional: "true"` | Agent Development Loop; discovery → spec → plan → build → verify → review, with optional prototype/mockup detours between discovery and spec; writes artifacts to `molten-docs/` |
 | **utility** | mt-search, mt-skill-manage | Omit | Cross-cutting helpers; use anytime, not part of the product workflow |
 
 **Product skills** and **dev-loop skills** each run in order and build on each other. **Utility skills** are optional — install only what you need.
@@ -120,7 +120,7 @@ Molten OS Core skills fall into three categories. Set `molten-category` in skill
 When scaffolding a new skill:
 
 - Product skill → `molten-category: product`, assign the next `molten-order`
-- Dev-loop skill → `molten-category: dev-loop`, assign the next `molten-order`
+- Dev-loop skill → `molten-category: dev-loop`, assign the next `molten-order` (core step) or omit it and set `molten-optional: "true"` (optional detour)
 - Utility skill → `molten-category: utility`, no `molten-order`
 
 Keep all skills in flat `skills/mt-<name>/` paths so `npx skills add` discovers them correctly.

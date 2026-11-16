@@ -1,18 +1,20 @@
 ---
 name: mt-prototype
-description: Molten OS Core — second step of the Agent Development Loop. Builds a fast, throwaway prototype to answer the riskiest question from discovery (UX, flow, or technical feasibility), then records what was learned in `molten-docs/prototype/<slug>.md`. Use when the user wants to prototype, spike, mock up, try out, or de-risk a feature before speccing it. Do not use for production implementation.
+description: Molten OS Core — optional step in the Agent Development Loop, between discovery and spec. Builds a fast, throwaway prototype to answer the riskiest question from discovery (UX, flow, or technical feasibility), then records what was learned in `molten-docs/prototype/<slug>.md`. Use when the user wants to prototype, spike, try out, or de-risk a feature before speccing it. Skip it when the shape and feasibility are already clear. Do not use for production implementation, or for a clickable whole-feature UX mockup with fake data (use mt-mockup).
 metadata:
   author: switch-dimension
-  version: "0.1.0"
+  version: "0.2.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
-  molten-order: "2"
+  molten-optional: "true"
 ---
 
 # Prototype
 
 Build the smallest thing that answers the riskiest question. Prototypes are for learning, not shipping.
+
+**Optional step.** Run this only when discovery leaves a real unknown — usually technical feasibility or one risky interaction. If the shape is already clear, skip straight to **mt-spec**.
 
 **Input path:** `molten-docs/discovery/<slug>.md` from **mt-discovery**. If missing, ask for the question the prototype must answer (or offer to run **mt-discovery** first).
 

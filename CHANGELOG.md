@@ -21,30 +21,40 @@ Per-skill versions in skill front matter (independent of repo tags):
 | --- | --- |
 | mt-brand | 1.2.0 |
 | mt-design | 1.8.0 |
-| mt-discovery | 0.1.0 |
+| mt-build | 0.1.0 |
+| mt-discovery | 0.3.0 |
 | mt-landing | 1.2.0 |
-| mt-mockup | 0.1.0 |
-| mt-plan | 0.1.0 |
-| mt-prototype | 0.1.0 |
+| mt-mockup | 0.1.1 |
+| mt-plan | 0.2.0 |
+| mt-prototype | 0.2.0 |
+| mt-review | 0.1.0 |
 | mt-search | 1.0.0 |
-| mt-skill-manage | 1.1.0 |
-| mt-spec | 0.1.0 |
+| mt-skill-manage | 1.2.0 |
+| mt-spec | 0.3.0 |
 | mt-validate | 1.2.0 |
+| mt-verify | 0.1.0 |
 
 ## [Unreleased]
 
 ### Added
 
-- **Agent Development Loop** — new `dev-loop` skill category with four sequential skills:
+- **Agent Development Loop** — new `dev-loop` skill category. Six core steps run in order (`molten-order` 1–6):
   - **mt-discovery** — explore a feature before code; writes `molten-docs/discovery/<slug>.md`.
-  - **mt-prototype** — throwaway prototype to answer the riskiest question; writes `molten-docs/prototype/<slug>.md`.
   - **mt-spec** — testable feature spec with acceptance criteria; writes `molten-docs/spec/<slug>.md`.
   - **mt-plan** — agent-executable implementation plan; writes `molten-docs/plan/<slug>.md`.
-- **mt-mockup** — optional dev-loop skill that builds a frontend-only, clickable mockup with mocked JSON and a fake API layer so the UX can be iterated on before real integrations. Asks whether to build a throwaway mockup in `molten-docs/mockup/<slug>/` or scaffold real pages in the project's frontend; decisions go to `molten-docs/mockup/<slug>.md`.
+  - **mt-build** — implements the plan one slice at a time with red-green-refactor.
+  - **mt-verify** — proves every acceptance criterion with evidence; writes `molten-docs/verify/<slug>.md`.
+  - **mt-review** — pre-merge review with severity-labelled findings; writes `molten-docs/review/<slug>.md`.
+- **Optional dev-loop steps** between discovery and spec, marked with `molten-optional: "true"` and no `molten-order`:
+  - **mt-prototype** — throwaway prototype to answer one risky question; writes `molten-docs/prototype/<slug>.md`.
+  - **mt-mockup** — frontend-only, clickable mockup with mocked JSON and a fake API layer so the UX can be iterated on before real integrations. Asks whether to build a throwaway mockup in `molten-docs/mockup/<slug>/` or scaffold real pages in the project's frontend; decisions go to `molten-docs/mockup/<slug>.md`.
 
 ### Changed
 
 - **Breaking:** renamed all skills from `molten-<name>` to `mt-<name>` for brevity (`mt-validate`, `mt-brand`, `mt-design`, `mt-landing`, `mt-search`, `mt-skill-manage`). Re-install with the new names; `molten-docs/` output paths and `molten-*` metadata keys are unchanged.
+- **README** rewritten to lead with the Agent Development Loop alongside the product skills, with a loop diagram, core vs optional steps, and how the two groups hand off through `molten-docs/`.
+- **mt-discovery** and **mt-spec** treat mt-prototype and mt-mockup as optional detours; mt-spec reads mockup learnings and the implied data contract.
+- **mt-skill-manage:** taxonomy documents core vs optional dev-loop skills.
 - **All skills:** ask questions as plain numbered text, with multiple-choice options as lettered sub-items (1a, 1b, 1c). Removed instructions to use agent-specific question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 
 ## [1.3.1] - 2026-08-25
