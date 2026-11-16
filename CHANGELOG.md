@@ -23,14 +23,15 @@ Per-skill versions in skill front matter (independent of repo tags):
 | mt-design | 1.8.0 |
 | mt-build | 0.2.0 |
 | mt-discovery | 0.3.0 |
-| mt-guide | 0.2.0 |
+| mt-guide | 0.3.0 |
 | mt-landing | 1.2.0 |
 | mt-mockup | 0.1.1 |
 | mt-plan | 0.3.0 |
 | mt-prototype | 0.2.0 |
-| mt-review | 0.2.0 |
+| mt-review | 0.3.0 |
+| mt-ship | 0.1.0 |
 | mt-search | 1.0.0 |
-| mt-skill-manage | 1.3.0 |
+| mt-skill-manage | 1.4.0 |
 | mt-spec | 0.3.0 |
 | mt-validate | 1.2.0 |
 | mt-verify | 0.2.0 |
@@ -39,16 +40,18 @@ Per-skill versions in skill front matter (independent of repo tags):
 
 ### Added
 
+- **mt-ship** — seventh and final dev-loop step. Confirms review, verify and plan are done; tidies the branch (clean tree, no debug leftovers or throwaway code); re-runs build, tests, lint and type-check; scans branch history with gitleaks and audits changed dependencies; updates docs, `.env.example` and CHANGELOG; opens a PR with summary, evidence and a merge-danger call; watches CI; closes out the tracker. Never merges. Always ends with a short retrospective (`references/retro.md`) that draws on the session, logs and Molten docs, and applies improvements only with approval. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`.
 - **Issue tracker sync** — **mt-plan** detects GitHub Issues, Linear or Jira, confirms once, and records the tracker, status names and operations in `molten-docs/config.md` (sync on by default). On plan approval it creates a parent issue per feature and one issue per task with blocking links. **mt-build** claims and closes task issues with commit links; **mt-verify** and **mt-review** comment verdicts on the parent; **mt-guide** reads task status from the tracker. With no tracker, the plan file remains the task list. Shared details live in `mt-plan/references/trackers.md`.
 - **Parallel waves** — **mt-plan** groups tasks into waves that can run at the same time (no shared dependencies or files); **mt-build** picks the next ready task by wave and skips tasks already claimed.
 - **mt-guide** — "start here" utility skill that routes users to the right Molten skill. Reads `molten-docs/` front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`) to report where each feature is and what comes next; otherwise asks up to three questions. Includes shortcuts for tiny changes, bugs, PR reviews and existing specs, and only routes to installed skills. Inspired by Addy Osmani's `using-agent-skills` and Matt Pocock's `ask-matt`.
-- **Agent Development Loop** — new `dev-loop` skill category. Six core steps run in order (`molten-order` 1–6):
+- **Agent Development Loop** — new `dev-loop` skill category. Seven core steps run in order (`molten-order` 1–7):
   - **mt-discovery** — explore a feature before code; writes `molten-docs/discovery/<slug>.md`.
   - **mt-spec** — testable feature spec with acceptance criteria; writes `molten-docs/spec/<slug>.md`.
   - **mt-plan** — agent-executable implementation plan; writes `molten-docs/plan/<slug>.md`.
   - **mt-build** — implements the plan one slice at a time with red-green-refactor.
   - **mt-verify** — proves every acceptance criterion with evidence; writes `molten-docs/verify/<slug>.md`.
   - **mt-review** — pre-merge review with severity-labelled findings; writes `molten-docs/review/<slug>.md`.
+  - **mt-ship** — final gates, PR and retrospective; writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`.
 - **Optional dev-loop steps** between discovery and spec, marked with `molten-optional: "true"` and no `molten-order`:
   - **mt-prototype** — throwaway prototype to answer one risky question; writes `molten-docs/prototype/<slug>.md`.
   - **mt-mockup** — frontend-only, clickable mockup with mocked JSON and a fake API layer so the UX can be iterated on before real integrations. Asks whether to build a throwaway mockup in `molten-docs/mockup/<slug>/` or scaffold real pages in the project's frontend; decisions go to `molten-docs/mockup/<slug>.md`.

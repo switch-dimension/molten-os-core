@@ -3,7 +3,7 @@ name: mt-guide
 description: Molten OS Core — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
 metadata:
   author: switch-dimension
-  version: "0.2.0"
+  version: "0.3.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -66,6 +66,7 @@ Run in order, once per feature.
 4. **mt-build** — implement one slice at a time, test first; ticks off plan tasks.
 5. **mt-verify** — prove every acceptance criterion with evidence; debug failures. → `molten-docs/verify/<slug>.md`
 6. **mt-review** — pre-merge review with severity-labelled findings. → `molten-docs/review/<slug>.md`
+7. **mt-ship** — final gates (build, tests, gitleaks, audit), tidy, PR, tracker close-out, then a short retro. Never merges. → `molten-docs/ship/<slug>.md`, `molten-docs/retro/<slug>.md`
 
 **Optional detours between discovery and spec.** Skip both when the shape is already clear.
 
@@ -100,7 +101,9 @@ The product flow feeds the dev loop. mt-discovery, mt-prototype, mt-mockup and m
 | `verify/<slug>.md` `verdict: fail` / `partial` | Not proven | **mt-build** to fix, then **mt-verify** again |
 | `verify/<slug>.md` `verdict: pass`, no review | Proven | **mt-review** |
 | `review/<slug>.md` `request-changes` | Changes needed | **mt-build** for the fixes, then **mt-verify** and **mt-review** |
-| `review/<slug>.md` `approve` / `approve-with-suggestions` | Ready to merge | Merge, then **mt-discovery** for the next feature |
+| `review/<slug>.md` `approve` / `approve-with-suggestions`, no ship | Ready to ship | **mt-ship** |
+| `ship/<slug>.md` `result: blocked` | Ship gate failed | The skill named under "Blocked on" (usually **mt-build** → **mt-verify**), then **mt-ship** again |
+| `ship/<slug>.md` `result: pr-open` | PR open | Human merges; then **mt-discovery** for the next feature |
 
 If an artifact's front matter has `molten_next_skill`, prefer it over this table unless its status says the step is unfinished.
 
@@ -113,6 +116,7 @@ Not every job needs the whole loop. Use these when they fit:
 | Tiny, obvious change | **mt-build** with a one-line plan in chat |
 | Something is broken | **mt-verify** (debugs from root cause) → **mt-build** for the fix → **mt-review** |
 | A diff or PR to check | **mt-review** |
+| Approved branch, just needs a PR | **mt-ship** |
 | Spec already written elsewhere | **mt-plan** (point it at that spec) |
 | Turn a spec into tickets or issues | **mt-plan** (creates issues in GitHub, Linear or Jira on approval) |
 | Clear feature, no unknowns | **mt-discovery** → **mt-spec**, skip both detours |

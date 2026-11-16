@@ -2,12 +2,12 @@
 
 ![Molten OS Core banner](molten-os-banner.png)
 
-### Validate the idea, give it a brand and a landing page, then build it with your coding agent using a disciplined loop: discovery, spec, plan, build, verify, review.
+### Validate the idea, give it a brand and a landing page, then build it with your coding agent using a disciplined loop: discovery, spec, plan, build, verify, review, ship.
 
 Molten OS Core is a set of AI agent skills from [Switch Dimension](https://switchdimension.com) and AI builder YouTuber [Rob Shocks](https://youtube.com/robshocks). It covers the two places most AI-built products go wrong:
 
 - **Building the wrong thing.** The product skills challenge the idea first, then turn the strongest version into a brand, a design system and a landing page you can test with real people.
-- **Building it badly.** The Agent Development Loop stops your coding agent from jumping straight to code. It interviews you, writes a testable spec and a plan, builds in thin tested slices, proves every acceptance criterion and reviews the change before it merges.
+- **Building it badly.** The Agent Development Loop stops your coding agent from jumping straight to code. It interviews you, writes a testable spec and a plan, builds in thin tested slices, proves every acceptance criterion, reviews the change, and ships it as a clean, secret-scanned pull request.
 
 Drop this prompt into your AI agent to get started:
 
@@ -25,7 +25,7 @@ Every skill writes its output as Markdown under `molten-docs/`, so each step bui
 
 | Group | Skills | Use it when |
 | --- | --- | --- |
-| **Agent Development Loop** | mt-discovery → mt-spec → mt-plan → mt-build → mt-verify → mt-review, plus optional mt-prototype and mt-mockup | You're building a feature or product with a coding agent |
+| **Agent Development Loop** | mt-discovery → mt-spec → mt-plan → mt-build → mt-verify → mt-review → mt-ship, plus optional mt-prototype and mt-mockup | You're building a feature or product with a coding agent |
 | **Product skills** | mt-validate → mt-brand → mt-design → mt-landing | You have an idea and want to test it with real people before building |
 | **Utility skills** | mt-guide, mt-search, mt-skill-manage | Any time. Start with **mt-guide** if you're unsure which skill to use |
 
@@ -35,7 +35,7 @@ A vague request that goes straight to code produces the wrong thing quickly. The
 
 ```
                  ┌─ mt-prototype (optional) ─┐
-mt-discovery ────┤                           ├──► mt-spec ─► mt-plan ─► mt-build ─► mt-verify ─► mt-review
+mt-discovery ────┤                           ├──► mt-spec ─► mt-plan ─► mt-build ─► mt-verify ─► mt-review ─► mt-ship
                  └─ mt-mockup    (optional) ─┘
 ```
 
@@ -51,6 +51,7 @@ Run these in order.
 | 4 | **mt-build** | Implements the plan one slice at a time with a lightweight red-green-refactor loop, keeping the app runnable. Ticks tasks off in the plan, or moves their issues to done in your tracker. |
 | 5 | **mt-verify** | Checks every acceptance criterion against evidence (tests, the real app) and debugs failures from root cause. Writes `molten-docs/verify/<slug>.md`. |
 | 6 | **mt-review** | Reviews the change before it merges for correctness, readability, architecture, security and performance, with severity-labelled findings. Writes `molten-docs/review/<slug>.md`. |
+| 7 | **mt-ship** | Gets the approved change into a clean pull request: re-runs build, tests, lint and type-check, scans the branch for secrets with gitleaks, audits dependencies, tidies commits and debug leftovers, updates docs and changelog, writes the PR with evidence and a "merge danger" call, and watches CI. It never merges. Ends with a short retrospective that suggests improvements to your checks, docs and skills. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`. |
 
 ### Optional steps
 
@@ -103,6 +104,7 @@ The first time **mt-plan** runs, it looks for GitHub Issues, Linear or Jira (via
 - **mt-plan** shows you the issues it will create, then creates them when you approve the plan: one parent per feature and one issue per task, with blocking links.
 - **mt-build** claims each task's issue when it starts, and closes it with the commit when the task is green.
 - **mt-verify** and **mt-review** post their verdicts on the parent issue.
+- **mt-ship** links the PR to the parent issue so it closes on merge.
 
 No tracker? The plan file holds the tasks and they're ticked off as they're done.
 
@@ -129,7 +131,7 @@ npx skills add switch-dimension/molten-os-core
 Install the Agent Development Loop only, plus mt-guide (drop `mt-prototype` and `mt-mockup` if you don't want the optional steps):
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-guide mt-discovery mt-prototype mt-mockup mt-spec mt-plan mt-build mt-verify mt-review
+npx skills add switch-dimension/molten-os-core --skill mt-guide mt-discovery mt-prototype mt-mockup mt-spec mt-plan mt-build mt-verify mt-review mt-ship
 ```
 
 Install product skills only, plus mt-guide:

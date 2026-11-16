@@ -1,9 +1,9 @@
 ---
 name: mt-review
-description: Molten OS Core — sixth and final step of the Agent Development Loop. Reviews the finished change before it merges across five axes — correctness against the spec, readability, architecture, security, and performance — with severity-labelled findings, and writes `molten-docs/review/<slug>.md`. Use when the user wants a code review, a pre-merge check, a "is this ready to ship" pass, or a review of a diff or PR. Do not use to add features (use mt-build) or to prove behaviour (use mt-verify).
+description: Molten OS Core — sixth step of the Agent Development Loop. Reviews the finished change before it merges across five axes — correctness against the spec, readability, architecture, security, and performance — with severity-labelled findings, and writes `molten-docs/review/<slug>.md`. Use when the user wants a code review, a pre-merge check, a "is this ready to ship" pass, or a review of a diff or PR. Do not use to add features (use mt-build) or to prove behaviour (use mt-verify).
 metadata:
   author: switch-dimension
-  version: "0.2.0"
+  version: "0.3.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -17,6 +17,8 @@ The last gate before merge. The question is not "is this perfect?" but "does thi
 **Input paths:** the diff (current branch vs. its base, or a PR), `molten-docs/spec/<slug>.md`, and `molten-docs/verify/<slug>.md` when present. If verification has not been run or its verdict is `fail`, recommend **mt-verify** first.
 
 **Output path (canonical):** `molten-docs/review/<slug>.md`. Create the directory if it does not exist.
+
+**Next skill:** **mt-ship** when the recommendation is approve or approve with suggestions; **mt-build** (then **mt-verify**) when changes are requested.
 
 ## Operating Rules
 
@@ -59,6 +61,7 @@ slug: <slug>
 created: <YYYY-MM-DD>
 spec: molten-docs/spec/<slug>.md
 recommendation: approve | approve-with-suggestions | request-changes
+molten_next_skill: mt-ship | mt-build
 ---
 
 # Review — <name>
