@@ -50,6 +50,7 @@ Run these in order when building a feature with your coding agent. Each step wri
 | --- | --- |
 | **mt-discovery** | Explores the problem before any code — goals, users, constraints, codebase context, and the riskiest unknown; writes `molten-docs/discovery/<slug>.md`. |
 | **mt-prototype** | Builds a fast, throwaway prototype to answer the riskiest question, then records what was learned in `molten-docs/prototype/<slug>.md`. |
+| **mt-mockup** | Optional. Builds a clickable, frontend-only mockup with mocked JSON and a fake API so you can iterate on the UX before writing integrations. Choose throwaway (`molten-docs/mockup/<slug>/`) or scaffold real pages in your app. |
 | **mt-spec** | Turns discovery and prototype learnings into a testable spec with acceptance criteria; writes `molten-docs/spec/<slug>.md`. |
 | **mt-plan** | Converts the approved spec into an ordered, agent-executable implementation plan; writes `molten-docs/plan/<slug>.md`. |
 
@@ -106,7 +107,7 @@ npx skills add switch-dimension/molten-os-core --skill mt-validate mt-brand mt-d
 Install Agent Development Loop skills only:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-discovery mt-prototype mt-spec mt-plan
+npx skills add switch-dimension/molten-os-core --skill mt-discovery mt-prototype mt-mockup mt-spec mt-plan
 ```
 
 Install utility skills only:

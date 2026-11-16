@@ -23,6 +23,7 @@ Per-skill versions in skill front matter (independent of repo tags):
 | mt-design | 1.8.0 |
 | mt-discovery | 0.1.0 |
 | mt-landing | 1.2.0 |
+| mt-mockup | 0.1.0 |
 | mt-plan | 0.1.0 |
 | mt-prototype | 0.1.0 |
 | mt-search | 1.0.0 |
@@ -39,6 +40,7 @@ Per-skill versions in skill front matter (independent of repo tags):
   - **mt-prototype** — throwaway prototype to answer the riskiest question; writes `molten-docs/prototype/<slug>.md`.
   - **mt-spec** — testable feature spec with acceptance criteria; writes `molten-docs/spec/<slug>.md`.
   - **mt-plan** — agent-executable implementation plan; writes `molten-docs/plan/<slug>.md`.
+- **mt-mockup** — optional dev-loop skill that builds a frontend-only, clickable mockup with mocked JSON and a fake API layer so the UX can be iterated on before real integrations. Asks whether to build a throwaway mockup in `molten-docs/mockup/<slug>/` or scaffold real pages in the project's frontend; decisions go to `molten-docs/mockup/<slug>.md`.
 
 ### Changed
 
