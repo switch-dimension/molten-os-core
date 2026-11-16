@@ -1,6 +1,6 @@
 # Molten Loop - Idea in, shipped feature out
 
-![Molten Loop banner](molten-os-banner.png)
+![Molten Loop](molten-loop.png)
 
 ### Validate the idea, give it a brand and a landing page, then build it with your coding agent using a disciplined loop: discovery, spec, plan, build, verify, review, ship.
 
@@ -65,8 +65,6 @@ Use these between discovery and spec only when they earn their cost. If the shap
 ## Product skills
 
 Turn a raw idea into a validated landing page you can test with real people — score, brand, design system and page — in an afternoon, not a quarter.
-
-![Molten Loop product workflow: validate, brand, design system, landing page](molten-workflow.png)
 
 Run these in order.
 
