@@ -15,6 +15,8 @@ Drop this prompt into your AI agent to get started:
 install all the skills in this repo to my project - https://github.com/switch-dimension/molten-os-core
 ```
 
+Not sure where to start? Ask your agent to run **mt-guide**. It reads your `molten-docs/` folder, tells you where you are and recommends the next skill.
+
 > Released under the MIT license — copy it, fork it, and use it as inspiration for your own evolving system. [Full install options below.](#installation)
 
 ## What you get
@@ -25,7 +27,7 @@ Every skill writes its output as Markdown under `molten-docs/`, so each step bui
 | --- | --- | --- |
 | **Agent Development Loop** | mt-discovery → mt-spec → mt-plan → mt-build → mt-verify → mt-review, plus optional mt-prototype and mt-mockup | You're building a feature or product with a coding agent |
 | **Product skills** | mt-validate → mt-brand → mt-design → mt-landing | You have an idea and want to test it with real people before building |
-| **Utility skills** | mt-search, mt-skill-manage | Any time |
+| **Utility skills** | mt-guide, mt-search, mt-skill-manage | Any time. Start with **mt-guide** if you're unsure which skill to use |
 
 ## Agent Development Loop
 
@@ -100,6 +102,7 @@ Cross-cutting helpers. Install and use as needed.
 
 | Skill | What it does for you |
 | --- | --- |
+| **mt-guide** | The "start here" router. Reads `molten-docs/` to show where each feature is and what comes next, or asks a few questions and recommends the right skill, including shortcuts for small fixes, bugs and reviews. |
 | **mt-search** | Routes search and research queries to the right backend: quick web lookup, recent social pulse, platform-specific fetch or cited web research. Handy during validation and discovery. |
 | **mt-skill-manage** | Manages skills via the skills.sh CLI (`npx skills`): install, update, remove, list and find skills. |
 
@@ -113,22 +116,22 @@ Install all skills:
 npx skills add switch-dimension/molten-os-core
 ```
 
-Install the Agent Development Loop only (drop `mt-prototype` and `mt-mockup` if you don't want the optional steps):
+Install the Agent Development Loop only, plus mt-guide (drop `mt-prototype` and `mt-mockup` if you don't want the optional steps):
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-discovery mt-prototype mt-mockup mt-spec mt-plan mt-build mt-verify mt-review
+npx skills add switch-dimension/molten-os-core --skill mt-guide mt-discovery mt-prototype mt-mockup mt-spec mt-plan mt-build mt-verify mt-review
 ```
 
-Install product skills only:
+Install product skills only, plus mt-guide:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-validate mt-brand mt-design mt-landing
+npx skills add switch-dimension/molten-os-core --skill mt-guide mt-validate mt-brand mt-design mt-landing
 ```
 
 Install utility skills only:
 
 ```bash
-npx skills add switch-dimension/molten-os-core --skill mt-search mt-skill-manage
+npx skills add switch-dimension/molten-os-core --skill mt-guide mt-search mt-skill-manage
 ```
 
 Install a single skill:
