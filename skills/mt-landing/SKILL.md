@@ -18,15 +18,10 @@ This skill covers the full landing-page lifecycle: **building** a new page and *
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
 - Ask concise questions in small batches. Group related questions together — don't drip them out one at a time.
-- Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
-- Prefer the agent's structured question tool for any question with a finite set of meaningful options (conversion goal, awareness level, output format, build vs audit).
-- **Structured question tool by agent:**
-  - **Codex:** `request_user_input`
-  - **Claude Code:** `AskUserQuestion`
-  - **Cursor:** `AskQuestion`
-- Ask open-ended questions conversationally in chat when the answer is free text (transformation, mechanism, proof assets, objections, traffic source).
-- Never list multiple-choice options as letters or bullets in chat text. Multiple choice → structured question tool. Open-ended → plain prose.
-- Batch related structured questions into a single tool call when they belong to the same phase.
+- Ask every question as plain numbered text in chat so the user can answer by reference, especially when dictating in voice mode. Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
+- For multiple-choice questions, list the options as lettered sub-items under the numbered question (1a, 1b, 1c) so the user can reply with something like "1b, 2a". Use this for conversion goal, awareness level, output format, and build vs audit.
+- Ask open-ended questions as numbered prose questions when the answer is free text (transformation, mechanism, proof assets, objections, traffic source).
+- Batch related questions into a single message when they belong to the same phase.
 - If the user already provided an answer, or `molten-docs/brand/brand.md` / `molten-docs/design/design.md` already answers it, do not ask again.
 
 ## Step 1 — Route to the right workflow
@@ -36,7 +31,7 @@ Decide which mode the user is in, then read the matching reference file before d
 - **Build / create** a new page (build, design, draft, mock up, prototype, "make me a landing page") → read [`references/creating.md`](references/creating.md) and follow it.
 - **Audit / review** an existing page (review, audit, critique, grade, QA, "is this good", "does this convert", "how do I improve this") → read [`references/auditing.md`](references/auditing.md) and follow it.
 
-If the intent is ambiguous (e.g. "help me with my landing page"), use the structured question tool with one choice: build a new page vs review an existing one. Don't load both reference files.
+If the intent is ambiguous (e.g. "help me with my landing page"), ask one numbered question with two options: (a) build a new page or (b) review an existing one. Don't load both reference files.
 
 After a build, offer an audit. After an audit that fails badly, offer a rewrite — the two workflows chain naturally.
 

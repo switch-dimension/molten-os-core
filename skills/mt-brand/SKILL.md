@@ -23,15 +23,10 @@ Do not jump into visual design decisions. This skill creates the brand foundatio
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
 - Guide the user via an example of how to answer. Example: "For question 1, my answer is..."
 - Ask concise questions in small batches.
-- Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
-- Prefer the agent's structured question tool for any question with a finite set of meaningful options. Use it for awareness level, persona archetype, personality dimensions, tone choices, and similar structured tradeoffs.
-- **Structured question tool by agent:**
-  - **Codex:** `request_user_input`
-  - **Claude Code:** `AskUserQuestion`
-  - **Cursor:** `AskQuestion`
-- Ask open-ended questions conversationally in chat when the answer is free text (product name, one-liner, problem description, unique copy, references).
-- Never list multiple-choice options as letters or bullets in chat text. If it's multiple choice, use the structured question tool for that agent. If it's open-ended, ask in plain prose.
-- Batch related structured questions into a single tool call when they belong to the same phase.
+- Ask every question as plain numbered text in chat so the user can answer by reference, especially when dictating in voice mode. Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
+- For multiple-choice questions, list the options as lettered sub-items under the numbered question (1a, 1b, 1c) so the user can reply with something like "1b, 2a". Use this for awareness level, persona archetype, personality dimensions, tone choices, and similar tradeoffs.
+- Ask open-ended questions as numbered prose questions when the answer is free text (product name, one-liner, problem description, unique copy, references).
+- Batch related questions into a single message when they belong to the same phase.
 - If the user already provided an answer, do not ask for it again.
 - Prefer specific tradeoffs over generic taste words.
 - Push back on vague answers like "modern", "clean", "premium", or "for everyone".
@@ -42,15 +37,15 @@ Do not jump into visual design decisions. This skill creates the brand foundatio
 - Create or update the brand brief only after the user has provided enough signal.
 - If file writing is available, write `**molten-docs/brand/brand.md`** (create parent directories as needed). Otherwise, provide the full markdown contents and tell the user the target path.
 
-## When To Use Structured Questions vs Chat
+## When To Use Multiple-Choice vs Open Questions
 
-Use the structured question tool (`request_user_input` / `AskUserQuestion` / `AskQuestion`) when:
+Ask a numbered question with lettered options when:
 
 - The answer is naturally one or a few choices from a finite set.
 - The user benefits from seeing the tradeoffs side-by-side.
 - You're forcing a decision between competing brand directions.
 
-Examples of good structured-question prompts in this skill:
+Examples of good multiple-choice questions in this skill:
 
 - Awareness level (unaware / problem-aware / solution-aware / product-aware / most-aware)
 - Brand maturity (playful / polished / editorial / technical / utilitarian / luxury / expressive / calm)
@@ -59,7 +54,7 @@ Examples of good structured-question prompts in this skill:
 - Pricing position (free / low-cost / mid-market / premium / enterprise)
 - Persona archetype, narrative arc style, primary objection type
 
-Ask conversationally in chat (no structured question tool) when:
+Ask an open numbered question (no options) when:
 
 - The answer must be free text: product name, one-liner, problem description, customer quote, claim, anti-reference, custom CTA copy, microcopy rule.
 - You're pushing back on a vague answer.
@@ -67,7 +62,7 @@ Ask conversationally in chat (no structured question tool) when:
 
 ## Phase 1: Brand Foundation
 
-Start by asking for the minimum viable brand context. Ask in chat (not the structured question tool) because these answers are free text.
+Start by asking for the minimum viable brand context. Ask open numbered questions because these answers are free text.
 
 Cover:
 
@@ -90,7 +85,7 @@ Useful questions:
 
 Once the foundation is clear, clarify the market and positioning.
 
-Use the structured question tool for:
+Ask as multiple-choice (lettered options) for:
 
 - Buyer vs user (same person / different person / buying committee)
 - Awareness level (unaware / problem-aware / solution-aware / product-aware / most-aware)
@@ -114,7 +109,7 @@ Do not accept "small businesses", "founders", or "creators" without narrowing by
 
 Build one primary persona first. Add secondary personas only if they change product, message, trust, or buying decisions.
 
-Use the structured question tool for:
+Ask as multiple-choice (lettered options) for:
 
 - Skill level (novice / intermediate / expert / mixed)
 - Primary device or environment (mobile / desktop / both / specialized hardware)
@@ -139,7 +134,7 @@ Persona quality bar:
 
 Translate strategy into voice and copy rules.
 
-Use the structured question tool for the voice axes (ask multiple in a single call, `allow_multiple: false` per axis):
+Ask the voice axes as multiple-choice, all in one message, one answer per axis:
 
 - Formality (very formal / professional / conversational / casual / playful)
 - Authority (peer-to-peer / coach / expert / authority figure)
@@ -168,11 +163,11 @@ Use a paired-trait format:
 
 Clarify the brand-level guidance that a future `molten-docs/design/design.md` should use.
 
-Use the structured question tool for:
+Ask as multiple-choice (lettered options) for:
 
-- Brand maturity (playful / polished / editorial / technical / utilitarian / luxury / expressive / calm) — `allow_multiple: true` if the user wants a blend
+- Brand maturity (playful / polished / editorial / technical / utilitarian / luxury / expressive / calm) — the user may pick more than one if they want a blend
 - Risk posture (safe and conventional / confident / contrarian / disruptive)
-- Trust strategy emphasis (social proof / credentials / transparency / track record / demos / guarantees) — `allow_multiple: true`
+- Trust strategy emphasis (social proof / credentials / transparency / track record / demos / guarantees) — the user may pick more than one
 
 Ask in chat (free text) for:
 

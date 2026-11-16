@@ -43,6 +43,7 @@ Per-skill versions in skill front matter (independent of repo tags):
 ### Changed
 
 - **Breaking:** renamed all skills from `molten-<name>` to `mt-<name>` for brevity (`mt-validate`, `mt-brand`, `mt-design`, `mt-landing`, `mt-search`, `mt-skill-manage`). Re-install with the new names; `molten-docs/` output paths and `molten-*` metadata keys are unchanged.
+- **All skills:** ask questions as plain numbered text, with multiple-choice options as lettered sub-items (1a, 1b, 1c). Removed instructions to use agent-specific question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 
 ## [1.3.1] - 2026-08-25
 

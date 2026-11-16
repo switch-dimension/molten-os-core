@@ -26,7 +26,7 @@ Define **how** the spec gets built, in small steps an agent can execute and veri
 - Every task maps back to one or more spec acceptance criteria.
 - Order tasks so the riskiest or most foundational work comes first and the app stays runnable between tasks.
 - Include a test or verification step for each task.
-- Number every free-text question asked in chat; use the agent's structured question tool (`AskUserQuestion`, `AskQuestion`, `request_user_input`) for finite choices.
+- Ask every question as plain numbered text in chat; for finite choices, list lettered options under the question (1a, 1b, 1c). Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 - Do not start implementing while this skill is active — hand off once the plan is approved.
 
 ## Workflow

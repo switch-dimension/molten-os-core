@@ -5,7 +5,7 @@ Use when a prior **`product-score-*.md`** exists or the user reports new evidenc
 ## Workflow
 
 1. **Find the latest score file** in `molten-docs/validate/` (create the folder when writing if missing). If the user points to an older path, read that file for context but write the new report under `molten-docs/validate/`. Read the prior file fully.
-2. Ask in chat (or one `AskQuestion`):
+2. Ask in chat as numbered questions:
    - What changed since the last evaluation? (new interviews, LOIs, revenue, pivot, failed experiment)
    - Did they run the **riskiest-assumption test** from the prior report? Outcome vs threshold?
 3. **Re-run only rounds that new evidence affects** — do not repeat unchanged rounds; record "unchanged from prior" in raw answers.

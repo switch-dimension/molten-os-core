@@ -121,4 +121,4 @@ Reply with **only** a pointer to the file, for example:
 
 > Review your evaluation in **`molten-docs/validate/product-score-N.md`** — hypothesis, verdict, scorecard, red flags, riskiest-assumption experiment, and recommended next steps are all there.
 
-You may add one short line if the user must do something outside the file (e.g. run the next `AskQuestion` round). Otherwise, stop after the pointer.
+You may add one short line if the user must do something outside the file (e.g. answer the next interview round). Otherwise, stop after the pointer.

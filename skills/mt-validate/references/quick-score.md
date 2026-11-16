@@ -21,7 +21,7 @@ Use [`glossary.md`](glossary.md) in chat and reports: plain language, no jargon,
 
 ## Do not
 
-- Run five `AskQuestion` rounds unless the user upgrades to full interview mid-session.
+- Run all five interview rounds unless the user upgrades to full interview mid-session.
 - Give high scores on criteria 3, 6, or 7 without user-stated evidence.
 - Skip writing the file.
 

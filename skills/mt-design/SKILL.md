@@ -28,7 +28,7 @@ At the start of every run, establish **one design surface** for this session. Do
 
 Skip this ask only when the user already named the surface clearly (e.g. "landing page design system", "mobile app UI", "SaaS dashboard").
 
-Use the structured question tool:
+Ask as a numbered multiple-choice question:
 
 **"What is this design system for?"**
 
@@ -38,7 +38,7 @@ Options:
 - **Web product** — browser-based app UI (dashboards, forms, nav, dense workflows)
 - **Mobile product** — phone-first app UI (lists, tabs, thumb zones, native-like patterns)
 - **Desktop product** — desktop app UI (window chrome, menus, multi-pane workflows, keyboard-heavy use)
-- **Choose for me — infer from brand.md and context** (`id: choose_for_me`)
+- **Choose for me — infer from brand.md and context**
 
 When the user picks **Choose for me**, infer from `brand.md` and their prompt:
 
@@ -74,9 +74,9 @@ Most users of this skill are not designers, but they should still control the le
 
 Before creating files, ask which approach they want unless they already said "fast", "quick", "detailed", "guided", or equivalent in their prompt.
 
-Batch **Design surface** and **Fast vs Detailed** into one structured question tool call when both are still unknown.
+Ask **Design surface** and **Fast vs Detailed** together as questions 1 and 2 in one message when both are still unknown.
 
-Use the structured question tool with exactly these two choices for the workflow:
+Offer exactly these two choices for the workflow:
 
 - **Fast draft:** Read the brand brief, ask at most 3 plain-language questions if needed, infer token-level choices, then create `design.md` and `example.html`.
 - **Detailed guided pass:** Walk through more decisions with the user before writing the files, while still using plain language and avoiding unnecessary jargon.
@@ -131,16 +131,12 @@ Even in the detailed path, start with plain-language choices and translate the a
 - Ask the Fast vs Detailed approach question before creating files unless the user already chose an approach.
 - Scope the entire run to **one** surface (landing page, web product, mobile product, or desktop product). Never mix surfaces in one pass.
 - Ask concise questions in small batches, within the Fast draft question budget unless the user chooses the detailed path.
-- Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
-- Prefer inference over questions. Use the structured question tool only when choices are plain-language and genuinely reduce user effort.
-- **Structured question tool by agent:**
-  - **Codex:** `request_user_input`
-  - **Claude Code:** `AskUserQuestion`
-  - **Cursor:** `AskQuestion`
-- Ask open-ended questions conversationally when the answer is free text, such as reference websites, existing assets, visual dislikes, or product context.
-- Never list multiple-choice options as letters or bullets in chat text. Multiple choice → structured question tool. Open-ended → plain prose.
-- Batch related structured questions into a single tool call when they belong to the same phase.
-- **Act as a consultant, not a survey form.** Every structured question after the initial startup questions (design surface and fast vs detailed) must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
+- Prefer inference over questions. Offer multiple-choice options only when they are plain-language and genuinely reduce user effort.
+- Ask every question as plain numbered text in chat so the user can answer by reference, especially when dictating in voice mode. Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
+- For multiple-choice questions, list the options as lettered sub-items under the numbered question (1a, 1b, 1c) so the user can reply with something like "1b, 2a".
+- Ask open-ended questions as numbered prose questions when the answer is free text, such as reference websites, existing assets, visual dislikes, or product context.
+- Batch related questions into a single message when they belong to the same phase.
+- **Act as a consultant, not a survey form.** Every multiple-choice question after the initial startup questions (design surface and fast vs detailed) must include a final "Choose for me" option so the user can defer to your judgment. When chosen, pick the option that best matches `brand.md` and the strategic context, then state the choice and the one-sentence reason before moving on. Do not silently choose — always surface the decision.
 - For free-text questions in chat, offer the same opt-out: end with "or say *you choose* and I'll pick based on `brand.md`." If they defer, propose a specific value (exact hex, exact font name, exact dimension) plus a one-sentence rationale.
 - If `brand.md` already answers a question, do not ask it again. Cite the value back to the user for confirmation only when ambiguous.
 - Push back on vague taste words ("modern", "clean", "premium", "minimal"). Replace them with concrete tradeoffs.
@@ -151,15 +147,15 @@ Even in the detailed path, start with plain-language choices and translate the a
 - Create or update the design brief only after the user has provided enough signal **and** any Pinterest reference has been confirmed or explicitly skipped.
 - If file writing is available, write **`molten-docs/design/design.md`** and **`molten-docs/design/example.html`** (create parent directories as needed). Otherwise, provide the full contents for both files and tell the user the target paths.
 
-## When To Use Structured Questions vs Chat
+## When To Use Multiple-Choice vs Open Questions
 
-In Fast draft mode, use the structured question tool (`request_user_input` / `AskUserQuestion` / `AskQuestion`) only when:
+In Fast draft mode, offer lettered options only when:
 
 - The answer is one or a few choices from a finite set.
 - The user benefits from seeing tradeoffs side-by-side.
 - The choices are plain-language outcomes, not design-system internals.
 
-Examples of good structured-question prompts in this skill:
+Examples of good multiple-choice questions in this skill:
 
 - Design surface: landing page / web product / mobile product / desktop product
 - Overall feel in plain language, such as serious / friendly / premium / energetic / calm / utilitarian
@@ -167,7 +163,7 @@ Examples of good structured-question prompts in this skill:
 - Visual archetype, such as Calm SaaS / Premium Editorial / Developer Tool / Friendly Consumer / Bold Launch Page
 - Whether to proceed from the brand brief alone or include optional reference websites
 
-Ask conversationally in chat (no structured question tool) when:
+Ask an open numbered question (no options) when:
 
 - The answer is free text: reference websites, existing brand colors, things to avoid, or context about the product.
 - You're pushing back on a vague answer.
@@ -177,15 +173,15 @@ Ask conversationally in chat (no structured question tool) when:
 
 Every question in this skill must allow the user to delegate the decision to you. You are operating as a design consultant — the user should be able to say "you decide" at any point and trust that you will make a reasoned, brand-aligned choice.
 
-### For the structured question tool
+### For multiple-choice questions
 
-Always append a final option with `id: choose_for_me` and a label that names the action and the basis for your judgment. Examples:
+Always append a final lettered option that names the action and the basis for your judgment. Examples:
 
 - `"Choose for me — recommend based on brand.md"`
 - `"You decide — pick what fits the brand best"`
 - `"Choose for me — go with the safest default for this brand maturity"`
 
-When the user selects `choose_for_me`:
+When the user picks the choose-for-me option:
 
 1. Pick the option that best aligns with `brand.md` signal, the strategic context, and DESIGN.md best practice.
 2. State your choice explicitly: *"Picking **X** because [one-sentence reason tied to brand.md or research]."*
@@ -201,8 +197,8 @@ When the user opts out, propose a specific concrete value plus a one-sentence ra
 
 ### Example flow
 
-> **Question (structured question tool):** "What should the product feel like?"
-> Options: serious / friendly / premium / energetic / calm / utilitarian / **Choose for me — recommend based on brand.md**
+> **1. What should the product feel like?**
+> a) Serious  b) Friendly  c) Premium  d) Energetic  e) Calm  f) Utilitarian  g) **Choose for me — recommend based on brand.md**
 >
 > **User picks Choose for me.**
 >
@@ -282,7 +278,7 @@ In chat, say something like:
 > 4. …
 > 5. …
 
-Then use the structured question tool:
+Then ask:
 
 **"Shall I open these Pinterest searches for you?"**
 
@@ -290,7 +286,7 @@ Options:
 
 - **Yes — open them so I can pick a favourite**
 - **Skip — infer from brand.md alone**
-- **Choose for me — recommend based on brand.md** (`id: choose_for_me`)
+- **Choose for me — recommend based on brand.md**
 
 If they pick **Choose for me**: recommend **Skip** when `brand.md` already has strong visual references or a clear maturity/personality signal; recommend **Yes** when the brand brief is thin on visual cues or the user chose the detailed path. State the recommendation in one sentence, then follow it.
 
@@ -334,7 +330,7 @@ If the image is unclear, low resolution, or off-topic, say so and ask for a diff
 
 ### Confirmation gate (mandatory)
 
-Before applying the reference to tokens, get explicit approval. Use the structured question tool when available:
+Before applying the reference to tokens, get explicit approval with a numbered multiple-choice question:
 
 **"Does this match what you liked in the reference?"**
 

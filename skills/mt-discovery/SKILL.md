@@ -22,10 +22,7 @@ Understand the problem well enough to build the right thing. Discovery comes bef
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
 - Number every free-text question asked in chat so the user can answer by reference.
-- Use the agent's structured question tool for finite choices:
-  - **Codex:** `request_user_input`
-  - **Claude Code:** `AskUserQuestion`
-  - **Cursor:** `AskQuestion`
+- For finite choices, list lettered options under the numbered question (1a, 1b, 1c) so the user can reply with something like "1b, 2a". Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 - Ask in small batches. Do not re-ask anything already answered by the user or by existing `molten-docs/` artifacts.
 - Separate **facts**, **assumptions**, and **open questions**.
 - Do not write application code while this skill is active.

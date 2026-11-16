@@ -2,7 +2,9 @@
 
 Use for **full** mode. One round per turn unless the user explicitly asks to run all rounds in one go.
 
-**Language:** `AskQuestion` labels and chat must follow [`glossary.md`](glossary.md) — plain terms, no jargon, **no book/framework/author names**. Customer-discovery rules in glossary § Customer discovery.
+**Format:** Ask each round as numbered questions in plain chat text, with options as lettered sub-items (1a, 1b, 1c). Mark multi-select questions "(pick all that apply)". Do not use agent question tools.
+
+**Language:** Question wording, options and chat must follow [`glossary.md`](glossary.md) — plain terms, no jargon, **no book/framework/author names**. Customer-discovery rules in glossary § Customer discovery.
 
 ## Skip logic
 
@@ -27,7 +29,7 @@ Echo it back verbatim. Do not editorialise yet. If they've already given a clear
 
 ### Round 2 — Customer, problem, current alternatives
 
-Ask in one `AskQuestion` call. Questions mirror **customer discovery** (glossary): focus on their life today, not your pitch.
+Ask in one message. Questions mirror **customer discovery** (glossary): focus on their life today, not your pitch.
 
 - **"How close are you to the customer?"**
   - "I am the customer myself"
@@ -53,7 +55,7 @@ After: restate **customer + problem + current alternative** in one sentence. If 
 
 ### Round 3 — Demand evidence (most important)
 
-Ask in one `AskQuestion` call. Both questions allow multi-select:
+Ask in one message. Both questions allow multi-select:
 
 - **"What evidence do you have from STRANGERS (not friends, family, advisors)?"** (multi)
   - "Strangers have described this problem to me unprompted"
@@ -74,7 +76,7 @@ Ask in one `AskQuestion` call. Both questions allow multi-select:
 
 ### Round 4 — Differentiation, beachhead, distribution
 
-Ask in one `AskQuestion` call:
+Ask in one message:
 
 - **"Compared to the BEST existing alternative (including 'do nothing' and spreadsheets), this is 10× better on:"** (single)
   - "Speed / time-to-first-value"
@@ -103,7 +105,7 @@ Flag in chat (plain language): only incrementally better than alternatives; targ
 
 ### Round 5 — Business model + why-you-why-now
 
-Ask in one `AskQuestion` call:
+Ask in one message:
 
 - **"Bottom-up unit economics: # customers × realistic price × capture rate. Is lifetime value at least ~3× cost to acquire each customer?"** *(Lifetime value = what one customer pays you over time; acquisition cost = what you spend to win them — ads, sales time, etc.)*
   - "Yes — modelled bottom-up; revenue per customer is ~3×+ what it costs to acquire them"

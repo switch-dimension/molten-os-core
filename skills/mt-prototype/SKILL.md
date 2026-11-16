@@ -33,7 +33,7 @@ Build the smallest thing that answers the riskiest question. Prototypes are for 
 - Time-box it. Prefer hardcoded data, no auth, no tests, no polish.
 - Keep prototype code isolated from production code. Never merge it in as-is.
 - If `molten-docs/design/design.md` exists, use its tokens for UI prototypes.
-- Number every free-text question asked in chat; use the agent's structured question tool (`AskUserQuestion`, `AskQuestion`, `request_user_input`) for finite choices.
+- Ask every question as plain numbered text in chat; for finite choices, list lettered options under the question (1a, 1b, 1c). Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 
 ## Workflow
 

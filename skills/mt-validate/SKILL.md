@@ -31,7 +31,7 @@ If ambiguous, ask once: *"Quick score from what you've shared, full 5 minute, 5-
 
 After routing, also read when needed:
 
-- **Glossary (user-facing language)** — before chat or `AskQuestion`: `[references/glossary.md](references/glossary.md)`
+- **Glossary (user-facing language)** — before any question or chat message: `[references/glossary.md](references/glossary.md)`
 - **Scoring & caps** — before any score: `[references/scoring.md](references/scoring.md)`
 - **Report file** — when writing output: `[references/report-template.md](references/report-template.md)`
 - **Molten OS handoff** — after scoring: `[references/molten-handoff.md](references/molten-handoff.md)`
@@ -49,12 +49,12 @@ Before interactive validation, advise the user: "The best way to interact with t
 6. **End with falsification**, not a green light.
 7. **Plain language with the user** — no unexplained jargon (CAC, LTV, GTM, TAM, LOI, etc.). Interviews and recommendations must stand alone (customer-discovery section in glossary).
 
-## AskQuestion vs chat
+## How to ask questions
 
-- **Chat (free text):** Round 1 hypothesis, clarifications, pushback on vague answers.
-- `**AskQuestion`:** Rounds 2–5 in full interview (one round per user turn unless they say "run the full interview now").
-- **Numbered chat questions:** Number every free-text question asked in chat so the user can answer by reference, especially when dictating in voice mode.
-- **Never** paste multiple-choice options as bullets in chat — use `AskQuestion`.
+- **Open questions (free text):** Round 1 hypothesis, clarifications, pushback on vague answers.
+- **Multiple-choice questions:** Rounds 2–5 in full interview (one round per user turn unless they say "run the full interview now"). List options as lettered sub-items under each numbered question (1a, 1b, 1c) so the user can reply with something like "1b, 2a, 2c".
+- **Number every question** so the user can answer by reference, especially when dictating in voice mode.
+- **Never** use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`) — plain numbered text only.
 - **Do not re-ask** what the user already answered; confirm and move on.
 - **One round per turn** in full interview (default).
 

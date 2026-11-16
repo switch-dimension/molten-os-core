@@ -27,7 +27,7 @@ Define **what** will be built and how we'll know it works. The spec is the contr
 - Every requirement must be testable. Rewrite vague requirements ("fast", "intuitive") into observable criteria.
 - Carry forward prototype decisions; flag any spec item that contradicts them.
 - Keep open questions visible — do not silently resolve them with guesses.
-- Number every free-text question asked in chat; use the agent's structured question tool (`AskUserQuestion`, `AskQuestion`, `request_user_input`) for finite choices.
+- Ask every question as plain numbered text in chat; for finite choices, list lettered options under the question (1a, 1b, 1c). Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 - Do not write application code while this skill is active.
 
 ## Workflow

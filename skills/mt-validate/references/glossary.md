@@ -1,12 +1,12 @@
 # Plain-language glossary
 
-Use these definitions whenever you **speak or write to the user** (chat, `AskQuestion` prompts, `product-score-*.md`). Do not assume they know startup finance jargon or have read any particular book.
+Use these definitions whenever you **speak or write to the user** (chat, numbered questions and options, `product-score-*.md`). Do not assume they know startup finance jargon or have read any particular book.
 
 In **internal rubric tables** you may use the short forms in parentheses after the plain term once per section, e.g. "lifetime value (LTV)".
 
 ## User output rules (non-negotiable)
 
-**Never** put these in chat, `AskQuestion` labels, or `product-score-*.md`:
+**Never** put these in chat, question options, or `product-score-*.md`:
 
 **Instead:** describe the *check* in plain language (what you looked for and what the evidence showed). Framework names live only in `[research.md](research.md)` and the **Internal reference** column in `[scoring.md](scoring.md)` — agent-only.
 
