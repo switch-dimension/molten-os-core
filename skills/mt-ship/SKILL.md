@@ -3,7 +3,7 @@ name: mt-ship
 description: Molten Loop — seventh and final step of the Agent Development Loop. Takes a reviewed change to an open pull request — confirms review, verify, and plan are done, tidies the branch, re-runs build, tests, lint, and type-check, scans the whole branch for secrets with gitleaks and audits dependencies, updates docs and changelog, writes the PR from the spec, verify, and review docs, watches CI, closes out the tracker, then runs a short retrospective that suggests improvements. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`. Use when the user wants to ship, open a PR, "get this ready to merge", or wrap up a feature after review. Does not merge. Do not use before mt-review approves, or to fix bugs (use mt-build and mt-verify).
 metadata:
   author: switch-dimension
-  version: "0.2.1"
+  version: "0.3.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -42,7 +42,7 @@ Get an approved change into a clean, safe, well-explained pull request, then lea
 
 - Review recommendation is `approve` or `approve-with-suggestions`, and any blockers are resolved.
 - Verify verdict is `pass`. If code changed after verify, note it; the gates in step 3 must cover it.
-- Every plan task is ticked (or done in the tracker).
+- Every task is done in the task source (see `mt-plan/references/trackers.md` → Task source). With a tracker, every task issue under the plan's `tracker_parent` is closed. Without one, every plan checkbox is ticked.
 - Work is on a feature branch, not the default branch. If it is on the default branch, stop and offer to move the commits to `feat/<slug>` before going further.
 - If the wave was built in parallel: every task branch has merged into the feature branch. Offer to remove the leftover worktrees (`git worktree list`, then `git worktree remove <path>`) and delete the merged task branches.
 - If the plan required a database branch, confirm one exists for this feature and the app is pointed at it. Offer to delete it after the PR merges, or now if the user says it was only for development. Do not delete it while opening the PR.

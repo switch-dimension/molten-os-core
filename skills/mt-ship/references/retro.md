@@ -8,7 +8,7 @@ Read what is available, most useful first:
 
 1. **This session.** The conversation so far: corrections the user made, places the agent went back and forth, questions that should not have been needed.
 2. **Session logs** when the build ran in earlier sessions. If the agent keeps local logs (for example Claude Code under `~/.claude/projects/`, or Codex under `~/.codex/sessions/`), read the sessions for this branch. Ask before reading logs outside the project, and skip this if the user declines.
-3. **Molten docs for this feature:** the plan (re-split tasks, the "Noticed" list, `sync: pending` lines), the verify report (failures and how they were found), the review (blockers and suggestions), and the ship report (gates that failed or were skipped).
+3. **Molten docs for this feature:** the task source (re-split tasks, and "Noticed" items: issues added under the tracker parent, or the plan's Noticed list without a tracker), plus any status updates that had to wait for the tracker, the verify report (failures and how they were found), the review (blockers and suggestions), and the ship report (gates that failed or were skipped).
 4. **Git history:** fixup or revert commits, tasks that took many commits, files changed far outside the plan.
 5. **Tracker and CI:** reopened issues, CI failures that passed locally.
 

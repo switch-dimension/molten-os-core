@@ -1,8 +1,22 @@
 # Issue trackers
 
-How **mt-plan** finds the project's issue tracker, records it in `molten-docs/config.md`, and turns plan tasks into issues. Later skills (**mt-build**, **mt-verify**, **mt-review**, **mt-guide**) read only `molten-docs/config.md`, so everything they need must be written there.
+How **mt-plan** finds the project's issue tracker, records it in `molten-docs/config.md`, and turns plan tasks into issues. Later skills (**mt-build**, **mt-verify**, **mt-review**, **mt-ship**, **mt-guide**) read only `molten-docs/config.md`, so everything they need must be written there.
 
 Supported trackers: **GitHub Issues**, **Linear**, **Jira**, and **local** (the plan file itself).
+
+## Task source (read this first)
+
+Every project has exactly **one task source**: the single place where task details and status live. Every Molten skill reads and writes task status there and nowhere else.
+
+| `molten-docs/config.md` | Task source | The plan file holds |
+| --- | --- | --- |
+| `issue_tracker: github`, `linear` or `jira`, with `tracker_sync: true` | **The tracker.** One issue per task under the feature's parent issue | Links to the issues, with no task details, checkboxes, or status |
+| `issue_tracker: local`, or `tracker_sync: false`, or no config | **The plan file** | Full task blocks with checkboxes |
+
+Rules that follow from this:
+- **Never record status in both.** With the tracker as source, don't tick, annotate, or add `sync` notes to the plan. With the plan as source, don't create or update task issues.
+- **Findings and new work go into the task source.** With a tracker, add a new issue under the parent; with the plan, add a new task or a "Noticed" note.
+- **Switching sources** (for example, turning `tracker_sync` off, or adopting a tracker mid-feature) means moving every open task across in one step and then marking the old copy as retired. For issues, close them with a comment pointing to the plan. For the plan, reduce the tasks to links. Two live copies are never allowed.
 
 ## 1. Detect
 
@@ -70,9 +84,9 @@ Creating issues writes to a shared, team-visible system. Show the user the list 
 - **One issue per task**: title `<task id> <task name>`, body contains the task's files, covered ACs, done-condition, verify step, and a link back to the plan.
 - **Blocking links** from the task's `depends on` field: each dependency becomes a real "blocked by" relation where the tracker supports it.
 - Apply the `label` from config to every issue.
-- Write each issue's key or URL back into the plan task line (`issue: …`) and the parent into the plan front matter (`tracker_parent: …`).
+- Once all issues exist, replace each task block in the plan with a one-line link (`- [#12](url) 1.1 <task> · wave 1`), add issue numbers to the waves table, and put the parent in the front matter (`tracker_parent: …`). The issue now holds the task's details; the plan keeps no copy of them.
 
-If creation fails partway, report what was created, write those links into the plan, and leave the rest as `issue: —` so a re-run can finish the job without duplicates. Before creating, search for existing issues with the same title under the same parent to stay idempotent.
+If creation fails partway, report what was created. Reduce only those tasks to links, and keep full blocks for the rest so a re-run can finish the job without duplicates. Before creating, search for existing issues with the same title under the same parent to stay idempotent.
 
 ## 4. Operations by tracker
 
@@ -116,6 +130,10 @@ No external operations. The plan file is the tracker: tasks are checkboxes, `dep
 
 ## 5. Source of truth
 
-- With a tracker and `tracker_sync: true`, **status lives in the tracker**. The plan's checkboxes are a cache that skills update alongside it; if they disagree, the tracker wins and the plan is corrected.
-- The plan file always remains the map: tasks, dependencies, waves, files, checkpoints, and issue links.
-- If the tracker is unreachable, keep working, tick the plan, mark the task `sync: pending` on its line, and push the status when the tracker is back.
+Tasks live in exactly **one** place: the task source (see the top of this file).
+
+- **With a tracker and `tracker_sync: true`, the tracker is the single source of truth** for each task's details (files, ACs, done-condition, verify, blockers) and its status. The plan has no task details, checkboxes, or status, only links to the issues. Skills read and update status in the tracker only.
+- **Findings during the build** become new issues under the parent, not notes in the plan.
+- **Without a tracker (`local`)**, the plan file is the single source of truth, with full task blocks and checkboxes.
+- **The plan file always remains the map:** approach, architecture, setup, phase order, waves, checkpoints, risks, AC coverage, and the issue links.
+- **If the tracker is unreachable**, keep working, but don't move status into the plan. Note the pending updates in the session, and push them to the tracker when it's back.

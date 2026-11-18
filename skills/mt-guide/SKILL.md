@@ -3,7 +3,7 @@ name: mt-guide
 description: Molten Loop — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
 metadata:
   author: switch-dimension
-  version: "0.3.0"
+  version: "0.4.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -28,7 +28,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
 
 ## Workflow
 
-1. **Read the project state.** Scan `molten-docs/` (see State map). For each feature slug, find the furthest step that exists and read its front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`). If `molten-docs/config.md` has `tracker_sync: true`, read task status from the tracker using the operations listed there (the plan checkboxes are only a cache) and mention which tasks are in progress, done, and ready in the current wave.
+1. **Read the project state.** Scan `molten-docs/` (see State map). For each feature slug, find the furthest step that exists and read its front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`). Read task status from the task source (see `mt-plan/references/trackers.md` → Task source). With `tracker_sync: true` in `molten-docs/config.md`, that is the tracker, read using the operations listed there; the plan then only links to issues. Otherwise it is the plan's checkboxes. Mention which tasks are in progress, done, and ready in the current wave.
 2. **If there is state, report it and recommend.** Give a short status per active feature, then the next skill. Example:
    > **checkout** — spec approved, plan 3 of 7 tasks done.
    > **Next:** mt-build, starting at task 1.4. It reads `molten-docs/plan/checkout.md`.
@@ -65,7 +65,7 @@ Run in order, once per feature. Steps 1–2 are Product Engineering; steps 3–7
 1. **mt-discovery** — interview before code; find the riskiest unknown. → `molten-docs/discovery/<slug>.md`
 2. **mt-spec** — testable spec with acceptance criteria. → `molten-docs/spec/<slug>.md`
 3. **mt-plan** — vertical-slice tasks with checkpoints. → `molten-docs/plan/<slug>.md`
-4. **mt-build** — implement one slice at a time, test first; ticks off plan tasks.
+4. **mt-build** — implement one slice at a time, test first; records task status in the task source (tracker issues, or the plan when there's no tracker).
 5. **mt-verify** — prove every acceptance criterion with evidence; debug failures. → `molten-docs/verify/<slug>.md`
 6. **mt-review** — pre-merge review with severity-labelled findings. → `molten-docs/review/<slug>.md`
 7. **mt-ship** — final gates (build, tests, gitleaks, audit), tidy, PR, tracker close-out, then a short retro. Never merges. → `molten-docs/ship/<slug>.md`, `molten-docs/retro/<slug>.md`
@@ -98,7 +98,7 @@ The spec is the handoff between the two disciplines. The product flow feeds the 
 | `spec/<slug>.md` `status: draft` | Spec unfinished | **mt-spec** to finish and approve |
 | `spec/<slug>.md` `status: approved`, no plan | Ready to plan | **mt-plan** |
 | `plan/<slug>.md` `draft` | Plan unfinished | **mt-plan** to finish and approve |
-| `plan/<slug>.md` `approved` / `in-progress` | Building | **mt-build**, from the next ready task (lowest wave, not claimed). With a tracker, check issue status first |
+| `plan/<slug>.md` `approved` / `in-progress` | Building | **mt-build**, from the next ready task (lowest wave, not claimed). Read status from the task source: issues with a tracker, plan checkboxes without |
 | `plan/<slug>.md` `done`, no verify | Built | **mt-verify** |
 | `verify/<slug>.md` `verdict: fail` / `partial` | Not proven | **mt-build** to fix, then **mt-verify** again |
 | `verify/<slug>.md` `verdict: pass`, no review | Proven | **mt-review** |

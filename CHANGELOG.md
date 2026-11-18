@@ -21,26 +21,28 @@ Per-skill versions in skill front matter (independent of repo tags):
 | --- | --- |
 | mt-brand | 1.2.0 |
 | mt-design | 1.8.0 |
-| mt-build | 0.3.1 |
+| mt-build | 0.4.0 |
 | mt-discovery | 0.3.0 |
-| mt-guide | 0.3.0 |
+| mt-guide | 0.4.0 |
 | mt-landing | 1.2.0 |
 | mt-mockup | 0.1.1 |
-| mt-plan | 0.3.2 |
-| mt-prototype | 0.2.0 |
-| mt-review | 0.3.0 |
-| mt-ship | 0.2.1 |
+| mt-plan | 0.4.0 |
+| mt-prototype | 0.3.0 |
+| mt-review | 0.4.0 |
+| mt-ship | 0.3.0 |
 | mt-search | 1.0.0 |
 | mt-skill-manage | 1.4.0 |
 | mt-spec | 0.3.0 |
 | mt-validate | 1.2.0 |
-| mt-verify | 0.2.0 |
+| mt-verify | 0.3.0 |
 
 ## [Unreleased]
 
 ### Changed
 
 - **Renamed to Molten Loop.** The GitHub repo is `switch-dimension/molten-loop`. GitHub keeps a redirect from `switch-dimension/molten-os-core`. Skill ids stay `mt-*`, the suite id stays `molten-os`, and output stays in `molten-docs/`.
+- **One task source.** Task status now lives in one place. With a tracker and sync on, that is the tracker: **mt-build** moves issues and comments with commits, and the plan only links to issues. Without a tracker, it is the plan's checkboxes. **mt-plan**, **mt-guide**, **mt-verify**, **mt-review**, **mt-ship** and the retro follow the same rule (see `mt-plan/references/trackers.md` → Task source).
+- **mt-prototype** also covers HTML UX mockups. It asks how many variations to build (3 recommended), each with dummy data.
 
 ### Added
 
