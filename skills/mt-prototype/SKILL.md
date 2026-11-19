@@ -3,7 +3,7 @@ name: mt-prototype
 description: Molten Loop — optional step in the Agent Development Loop, between discovery and spec. Builds a fast, throwaway prototype to answer the riskiest question from discovery (UX, flow, or technical feasibility), then records what was learned in `molten-docs/prototype/<slug>.md`. Use when the user wants to prototype, spike, try out, or de-risk a feature before speccing it. Skip it when the shape and feasibility are already clear. Do not use for production implementation, or for a clickable whole-feature UX mockup with fake data (use mt-mockup).
 metadata:
   author: switch-dimension
-  version: "0.2.0"
+  version: "0.3.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -12,7 +12,7 @@ metadata:
 
 # Prototype
 
-Build the smallest thing that answers the riskiest question. Prototypes are for learning, not shipping.
+Build the smallest thing that answers the riskiest question. Prototypes are for learning, not shipping. Also use this skill to build HTML mockups of interfaces that explore UX ideas. Ask the user how many variations they want (recommend 3). Build each as an HTML mockup with dummy data or JSON. They are throwaway inspiration that later builds can draw on.
 
 **Optional step.** Run this only when discovery leaves a real unknown — usually technical feasibility or one risky interaction. If the shape is already clear, skip straight to **mt-spec**.
 
