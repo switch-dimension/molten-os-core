@@ -1,6 +1,6 @@
 ---
 name: mt-build
-description: Molten Loop — fourth step of the Agent Development Loop. Implements an approved plan one thin slice at a time using a lightweight test-driven loop (red, green, refactor), keeping the app runnable and committing after each green task, and records task status in one place only, the task source. When `molten-docs/config.md` names an issue tracker (GitHub Issues, Linear, Jira) with sync on, that is the tracker: each task's issue moves to in progress and done, with a comment carrying the commit. Otherwise it is `molten-docs/plan/<slug>.md`, where tasks are ticked off. Use when the user wants to build, implement, or start coding a planned feature. Do not use without a plan or for exploratory spikes (use mt-prototype).
+description: Molten Loop — fourth step of the Agent Development Loop. Implements an approved plan one thin slice at a time using a lightweight test-driven loop (red, green, refactor), keeping the app runnable and committing after each green task, and records task status in one place only, the task source. When `molten-docs/config.md` names an issue tracker (GitHub Issues, Linear, Jira) with sync on, that is the tracker, and each task's issue moves to in progress and done, with a comment carrying the commit. Otherwise it is `molten-docs/plan/<slug>.md`, where tasks are ticked off. Use when the user wants to build, implement, or start coding a planned feature. Do not use without a plan or for exploratory spikes (use mt-prototype).
 metadata:
   author: switch-dimension
   version: "0.4.0"
