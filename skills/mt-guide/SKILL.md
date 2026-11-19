@@ -47,7 +47,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
 
 ## Skill map
 
-Molten Loop splits into two disciplines that meet at the spec. **Product Engineering** decides what to build: the product flow, plus discovery → spec for each feature. **Factory Engineering** builds it: plan → build → verify → review → ship. The Agent Development Loop is one feature's full run across both.
+Molten Loop splits into two disciplines. **Product Engineering** decides whether the product is worth building: validate → brand → design → landing, once per product. **Software Engineering** builds each feature through the Agent Development Loop: discovery → spec → plan → build → verify → review → ship.
 
 ### Product flow (Product Engineering) — idea to a testable landing page
 
@@ -58,9 +58,9 @@ Run in order. For testing an idea with real people before building.
 3. **mt-design** — design system for one surface (landing, web, mobile, desktop). → `molten-docs/design/design.md`
 4. **mt-landing** — build or audit a landing page from brand and design.
 
-### Agent Development Loop — feature to merged code
+### Agent Development Loop (Software Engineering) — feature to merged code
 
-Run in order, once per feature. Steps 1–2 are Product Engineering; steps 3–7 are Factory Engineering. A user who already has a spec can start at step 3.
+Run in order, once per feature. A user who already has a spec can start at step 3.
 
 1. **mt-discovery** — interview before code; find the riskiest unknown. → `molten-docs/discovery/<slug>.md`
 2. **mt-spec** — testable spec with acceptance criteria. → `molten-docs/spec/<slug>.md`
@@ -70,14 +70,13 @@ Run in order, once per feature. Steps 1–2 are Product Engineering; steps 3–7
 6. **mt-review** — pre-merge review by fresh-context Spec and Quality reviewers, with severity-labelled findings. → `molten-docs/review/<slug>.md`
 7. **mt-ship** — final gates (build, tests, gitleaks, audit), tidy, PR, tracker close-out, then a short retro. Never merges. → `molten-docs/ship/<slug>.md`, `molten-docs/retro/<slug>.md`
 
-**Optional detours between discovery and spec.** Skip both when the shape is already clear.
+**Optional detour between discovery and spec.** Skip it when the shape and feasibility are already clear.
 
-- **mt-prototype** — one risky question, usually technical feasibility or a single tricky interaction. → `molten-docs/prototype/<slug>.md`
-- **mt-mockup** — the user needs to see and click through the whole UX with fake data before backend work. → `molten-docs/mockup/<slug>.md`
+- **mt-prototype** — a clickable UX mockup with fake data (default), or a time-boxed technical prototype for one risky feasibility question. → `molten-docs/prototype/<slug>.md`
 
 ### Where the flows meet
 
-The spec is the handoff between the two disciplines. The product flow feeds the dev loop: mt-discovery, mt-prototype, mt-mockup and mt-spec pick up `brand.md` and `design.md` when they exist. Neither flow requires the other: the dev loop works on its own in any codebase.
+The spec is the handoff between the two disciplines. The product flow feeds the dev loop: mt-discovery, mt-prototype and mt-spec pick up `brand.md` and `design.md` when they exist. Neither flow requires the other: the dev loop works on its own in any codebase.
 
 ### Utility — any time
 

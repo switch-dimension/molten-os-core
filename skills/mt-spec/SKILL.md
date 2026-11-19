@@ -14,7 +14,7 @@ metadata:
 
 Define **what** will be built and how we'll know it works — before any code. The spec is the contract between the human and the agent doing the implementation, and the thing every later step (plan, build, verify, review) is checked against.
 
-**Input paths:** `molten-docs/discovery/<slug>.md` (from **mt-discovery**), plus the optional `molten-docs/prototype/<slug>.md` (from **mt-prototype**) and `molten-docs/mockup/<slug>.md` (from **mt-mockup**) when present. If neither exists, gather the essentials directly or offer to run **mt-discovery** first.
+**Input paths:** `molten-docs/discovery/<slug>.md` (from **mt-discovery**), plus the optional `molten-docs/prototype/<slug>.md` (from **mt-prototype**, either a UX mockup or a technical prototype) when present. If neither exists, gather the essentials directly or offer to run **mt-discovery** first.
 
 **Output path (canonical):** `molten-docs/spec/<slug>.md`. Create the directory if it does not exist.
 
@@ -34,7 +34,7 @@ Define **what** will be built and how we'll know it works — before any code. T
 
 ## Workflow
 
-1. Read discovery, any prototype or mockup learnings, and relevant code.
+1. Read discovery, any prototype learnings, and relevant code.
 2. **List assumptions** (stack, scope, users, data) and confirm them with the user.
 3. Draft the spec using the template below.
 4. Review gaps with the user: missing edge cases, unclear acceptance criteria, unresolved questions, anything that crosses a boundary.
@@ -50,7 +50,6 @@ created: <YYYY-MM-DD>
 status: draft | approved
 discovery: molten-docs/discovery/<slug>.md
 prototype: molten-docs/prototype/<slug>.md | null
-mockup: molten-docs/mockup/<slug>.md | null
 molten_next_skill: mt-plan
 ---
 

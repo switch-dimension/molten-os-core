@@ -112,7 +112,7 @@ Molten Loop skills fall into three categories. Set `molten-category` in skill fr
 | Category | Skills | `molten-order` | Purpose |
 | --- | --- | --- | --- |
 | **product** | mt-validate, mt-brand, mt-design, mt-landing | Required (`"1"`–`"4"`) | Sequential pipeline; writes artifacts to `molten-docs/` |
-| **dev-loop** | mt-discovery, mt-spec, mt-plan, mt-build, mt-verify, mt-review, mt-ship (core); mt-prototype, mt-mockup (optional) | Core: required (`"1"`–`"7"`). Optional: omit, set `molten-optional: "true"` | Agent Development Loop; discovery → spec → plan → build → verify → review → ship, with optional prototype/mockup detours between discovery and spec; writes artifacts to `molten-docs/` |
+| **dev-loop** | mt-discovery, mt-spec, mt-plan, mt-build, mt-verify, mt-review, mt-ship (core); mt-prototype (optional) | Core: required (`"1"`–`"7"`). Optional: omit, set `molten-optional: "true"` | Agent Development Loop; discovery → spec → plan → build → verify → review → ship, with an optional prototype detour (UX mockup or technical prototype) between discovery and spec; writes artifacts to `molten-docs/` |
 | **utility** | mt-guide, mt-search, mt-skill-manage | Omit | Cross-cutting helpers; use anytime, not part of the product workflow |
 
 **Product skills** and **dev-loop skills** each run in order and build on each other. **Utility skills** are optional — install only what you need.

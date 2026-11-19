@@ -25,9 +25,8 @@ Per-skill versions in skill front matter (independent of repo tags):
 | mt-discovery | 0.3.0 |
 | mt-guide | 0.4.0 |
 | mt-landing | 1.2.0 |
-| mt-mockup | 0.1.1 |
 | mt-plan | 0.4.0 |
-| mt-prototype | 0.3.0 |
+| mt-prototype | 0.4.0 |
 | mt-review | 0.5.0 |
 | mt-ship | 0.3.0 |
 | mt-search | 1.0.0 |
@@ -43,7 +42,8 @@ Per-skill versions in skill front matter (independent of repo tags):
 - **Renamed to Molten Loop.** The GitHub repo is `switch-dimension/molten-loop`. GitHub keeps a redirect from `switch-dimension/molten-os-core`. Skill ids stay `mt-*`, the suite id stays `molten-os`, and output stays in `molten-docs/`.
 - **One task source.** Task status now lives in one place. With a tracker and sync on, that is the tracker: **mt-build** moves issues and comments with commits, and the plan only links to issues. Without a tracker, it is the plan's checkboxes. **mt-plan**, **mt-guide**, **mt-verify**, **mt-review**, **mt-ship** and the retro follow the same rule (see `mt-plan/references/trackers.md` → Task source).
 - **mt-review** reviews with agents that did not write the code. Two fresh-context reviewers run in parallel: **Spec** (missing, wrong, or unasked-for behaviour against the acceptance criteria) and **Quality** (correctness, readability, architecture, security, performance, plus structural smells). The two get separate verdicts so one cannot hide the other. The main session then acts as lead: it checks each finding against callers and tests, merges duplicates, and records what it dropped in a **Dismissed** list. Before reviewing, it pins the diff to a resolved base, checks for a clean checkout, and states the intent. For risky changes it offers a second opinion from a different model (such as Codex or Gemini CLI, read-only) and reports when that is skipped. Reviewer prompts live in `mt-review/references/reviewer-briefs.md`. Draws on Matt Pocock's `code-review`, Lauren Tan's `interrogate`, and Addy Osmani's `code-review-and-quality`.
-- **mt-prototype** also covers HTML UX mockups. It asks how many variations to build (3 recommended), each with dummy data.
+- **Breaking: mt-mockup merged into mt-prototype.** One optional step between discovery and spec with two paths: a clickable UX mockup (the default; throwaway or scaffolded pages, with a choice of variations) in `references/mockup.md`, and a time-boxed technical prototype for one feasibility question in `references/prototype.md`. Output moves from `molten-docs/mockup/` to `molten-docs/prototype/<slug>.md`, with a `type: mockup | prototype` field. Remove `mt-mockup` if you installed it. **mt-discovery**, **mt-spec**, **mt-plan**, **mt-ship**, **mt-guide** and **mt-skill-manage** updated to match.
+- **README** splits the work into Product Engineering (validate, brand, design, landing) and Software Engineering (the whole Agent Development Loop, discovery through ship). Replaces "Factory Engineering" and removes the ASCII diagram.
 
 ### Added
 

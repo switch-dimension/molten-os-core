@@ -52,7 +52,7 @@ Get an approved change into a clean, safe, well-explained pull request, then lea
 
 - `git status` is clean: everything intended is committed, nothing stray is left untracked.
 - No debug leftovers in the diff: stray `console.log` / `print` / `debugger`, `.only` or skipped tests, commented-out code, new TODOs without an issue.
-- No throwaway prototype or throwaway mockup code in the diff (scaffolded mockup pages are fine if the plan built on them).
+- No throwaway prototype code (from `molten-docs/prototype/`) in the diff (scaffolded mockup pages are fine if the plan built on them).
 - No `.env` files, credentials, large binaries, or generated files committed by mistake.
 - Commit history tells a clear story. If it is messy (fixups, "wip"), offer to squash or split and wait for approval.
 

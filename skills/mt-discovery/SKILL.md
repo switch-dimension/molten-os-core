@@ -16,7 +16,7 @@ Interview the user until you understand what they actually want. Discovery comes
 
 **Output path (canonical):** `molten-docs/discovery/<slug>.md` at the repository root, where `<slug>` is a short kebab-case name for the feature. Create the directory if it does not exist.
 
-**Next skill:** **mt-spec** by default. Optionally run **mt-prototype** first (when the riskiest question is technical feasibility or one risky interaction) and/or **mt-mockup** (when the user needs to see and click through the whole UX with fake data).
+**Next skill:** **mt-spec** by default. Optionally run **mt-prototype** first, to click through the UX as a mockup with fake data or to test a risky technical question.
 
 ## Operating Rules
 
@@ -43,7 +43,7 @@ Interview the user until you understand what they actually want. Discovery comes
    - Out of scope — what this explicitly is *not*
 4. **Surface risks.** Ask what would make this fail or what the user is least sure about. Name the **riskiest unknown** (UX, technical feasibility, data, third-party dependency).
 5. **Play it back.** Summarise your understanding in 5–8 lines and ask the user to correct it. Stop interviewing when corrections stop — do not pad.
-6. **Recommend the next step.** Default to **mt-spec**. Recommend an optional detour only when it earns its cost: **mt-prototype** if the riskiest unknown is feasibility or one risky interaction, **mt-mockup** if the user needs to see and iterate on the full UX before committing.
+6. **Recommend the next step.** Default to **mt-spec**. Recommend an optional detour only when it earns its cost: **mt-prototype** if the user needs to see and iterate on the UX before committing (mockup path), or if the riskiest unknown is technical feasibility (prototype path).
 7. **Write the discovery doc** and point the user to the file.
 
 ## Output template
@@ -53,7 +53,7 @@ Interview the user until you understand what they actually want. Discovery comes
 feature: <name>
 slug: <slug>
 created: <YYYY-MM-DD>
-molten_next_skill: mt-spec | mt-prototype | mt-mockup
+molten_next_skill: mt-spec | mt-prototype
 ---
 
 # Discovery — <name>

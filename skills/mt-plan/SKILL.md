@@ -75,7 +75,7 @@ Either way, the plan stays the map: approach, architecture, setup, phase order, 
 
 ## Workflow
 
-1. Read the spec, prototype or mockup learnings, the relevant code, and `molten-docs/config.md` if it exists.
+1. Read the spec, prototype learnings, the relevant code, and `molten-docs/config.md` if it exists.
 2. Identify architecture decisions and dependencies (new packages, migrations, env vars).
 3. Draft the dependency order, then group work into phases and break phases into checklist tasks.
 4. Group tasks into parallel waves (see Parallel waves).
