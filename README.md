@@ -1,6 +1,6 @@
 # Molten Loop - Idea in, shipped feature out
 
-![Molten Loop](molten-loop.png)
+![Molten Loop](assets/molten-loop-header.png)
 
 ### Validate the idea, give it a brand and a landing page, then build it with your coding agent using a disciplined loop: discovery, spec, plan, build, verify, review, ship.
 
@@ -93,7 +93,7 @@ Your coding agent is the production line. These skills make the line itself well
 | 3 | **mt-plan** | Breaks the approved spec into ordered vertical-slice tasks with checkpoints, grouped into parallel waves so several agents or people can work at once. Says whether the feature needs a database branch. Creates one issue per task in GitHub Issues, Linear or Jira when you use one. Writes `molten-docs/plan/<slug>.md`. |
 | 4 | **mt-build** | Implements the plan one slice at a time on a feature branch with a lightweight red-green-refactor loop, keeping the app runnable. Creates a database branch only when the plan requires one. When several agents work a wave in parallel, it gives each task its own worktree and merges them back. Ticks tasks off in the plan, or moves their issues to done in your tracker. |
 | 5 | **mt-verify** | Checks every acceptance criterion against evidence (tests, the real app) and debugs failures from root cause. Writes `molten-docs/verify/<slug>.md`. |
-| 6 | **mt-review** | Reviews the change before it merges for correctness, readability, architecture, security and performance, with severity-labelled findings. Writes `molten-docs/review/<slug>.md`. |
+| 6 | **mt-review** | Reviews the change before it merges with two fresh-context reviewers, Spec and Quality (correctness, readability, architecture, security, performance). Checks each finding against the code and lists what it dismissed. Optional second opinion from another model. Writes `molten-docs/review/<slug>.md`. |
 | 7 | **mt-ship** | Gets the approved change into a clean pull request: re-runs build, tests, lint and type-check, scans the branch for secrets with gitleaks, audits dependencies, tidies commits and debug leftovers, updates docs and changelog, writes the PR with evidence and a "merge danger" call, and watches CI. It never merges. Ends with a short retrospective that suggests improvements to your checks, docs and skills. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`. |
 
 The factory takes a spec as input. Use **mt-spec** to write one, or bring your own in `molten-docs/spec/<slug>.md`.

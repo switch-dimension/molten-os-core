@@ -67,7 +67,7 @@ Run in order, once per feature. Steps 1–2 are Product Engineering; steps 3–7
 3. **mt-plan** — vertical-slice tasks with checkpoints. → `molten-docs/plan/<slug>.md`
 4. **mt-build** — implement one slice at a time, test first; records task status in the task source (tracker issues, or the plan when there's no tracker).
 5. **mt-verify** — prove every acceptance criterion with evidence; debug failures. → `molten-docs/verify/<slug>.md`
-6. **mt-review** — pre-merge review with severity-labelled findings. → `molten-docs/review/<slug>.md`
+6. **mt-review** — pre-merge review by fresh-context Spec and Quality reviewers, with severity-labelled findings. → `molten-docs/review/<slug>.md`
 7. **mt-ship** — final gates (build, tests, gitleaks, audit), tidy, PR, tracker close-out, then a short retro. Never merges. → `molten-docs/ship/<slug>.md`, `molten-docs/retro/<slug>.md`
 
 **Optional detours between discovery and spec.** Skip both when the shape is already clear.
